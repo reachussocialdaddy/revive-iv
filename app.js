@@ -85,21 +85,82 @@ function initHorizontalScroll() {
     });
 }
 
-/* ─── 5. Draggable Reviews ──────────────────────────────────── */
-function initDraggableReviews() {
-    const reviewsTrack   = document.querySelector('.reviews-track');
-    const reviewsWrapper = document.querySelector('.reviews-wrapper');
-    if (!reviewsTrack || !reviewsWrapper || typeof Draggable === 'undefined') return;
-
-    let mm = gsap.matchMedia();
-    mm.add('(min-width: 769px)', () => {
-        Draggable.create(reviewsTrack, {
-            type: 'x',
-            bounds: reviewsWrapper,
-            inertia: true,
-            edgeResistance: 0.65
+/* ─── 5. Stacked Auto-Swiping Reviews ────────────────────────── */
+function initStackedReviews() {
+    const cards = document.querySelectorAll('.review-card');
+    if (!cards.length) return;
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+    
+    function updateStack() {
+        cards.forEach((card, i) => {
+            // Relative index from the front
+            let relIndex = (i - currentIndex + cards.length) % cards.length;
+            
+            if (relIndex === 0) {
+                card.classList.add('active');
+                gsap.to(card, {
+                    z: 0, y: 0, scale: 1, opacity: 1, 
+                    duration: 0.8, ease: "power3.out",
+                    zIndex: 10
+                });
+            } else if (relIndex < 3) {
+                card.classList.remove('active');
+                gsap.to(card, {
+                    z: -60 * relIndex,
+                    y: 20 * relIndex,
+                    scale: 1 - (0.05 * relIndex),
+                    opacity: 1 - (0.25 * relIndex),
+                    duration: 0.8, 
+                    ease: "power3.out",
+                    zIndex: 10 - relIndex
+                });
+            } else {
+                card.classList.remove('active');
+                gsap.to(card, {
+                    opacity: 0, z: -200, duration: 0.8, zIndex: 0
+                });
+            }
         });
-    });
+    }
+
+    function showNext() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const currentCard = cards[currentIndex];
+        
+        // Throw top card away
+        gsap.to(currentCard, {
+            x: -150,
+            y: 50,
+            rotation: -15,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.inOut",
+            onComplete: () => {
+                gsap.set(currentCard, { x: 0, y: 0, rotation: 0, zIndex: 0 });
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateStack();
+                setTimeout(() => { isAnimating = false; }, 100);
+            }
+        });
+    }
+
+    // Initial state
+    updateStack();
+    
+    // Auto cycle
+    if (window.reviewInterval) clearInterval(window.reviewInterval);
+    window.reviewInterval = setInterval(showNext, 5000);
+    
+    // Click to go next manually
+    const wrapper = document.querySelector('.reviews-wrapper');
+    if (wrapper) {
+        wrapper.style.cursor = 'pointer';
+        wrapper.onclick = showNext;
+    }
 }
 
 /* ─── 6. Hero Parallax ──────────────────────────────────────── */
@@ -214,7 +275,7 @@ window.initScrollAnimations = function () {
     initBentoStagger();
     initHeroParallax();
     initHorizontalScroll();
-    initDraggableReviews();
+    initStackedReviews();
     initHeroSlider();
     initMarquee();
     initShotCards();
@@ -226,5 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initLenis();
     initMarquee();
     initShotCards();
+    initStackedReviews();
     window.initScrollAnimations();
 });
