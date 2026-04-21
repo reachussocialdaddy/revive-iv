@@ -219,6 +219,9 @@
                     }
                     // Always re-init REVIVE IV reveal
                     initReviveIVReveal();
+                    if (typeof updateActiveNavLink === 'function') {
+                        updateActiveNavLink();
+                    }
                 }
             }
         ]
@@ -227,6 +230,9 @@
     /* ── Run on first load ── */
     document.addEventListener('DOMContentLoaded', () => {
         initReviveIVReveal();
+        if (typeof updateActiveNavLink === 'function') {
+            updateActiveNavLink();
+        }
     });
 
 })();

@@ -14,12 +14,26 @@ function initMobileMenu() {
         mobileMenu.classList.toggle('open');
     });
 
-    // Close menu when a link inside it is clicked
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('open');
             mobileMenu.classList.remove('open');
         });
+    });
+}
+
+function updateActiveNavLink() {
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
+
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 }
 
@@ -322,6 +336,7 @@ window.initScrollAnimations = function () {
     initHeroSlider();
     initMarquee();
     initShotCards();
+    updateActiveNavLink();
 };
 
 /* ─── Boot on DOMContentLoaded ──────────────────────────────── */
@@ -331,5 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMarquee();
     initShotCards();
     initReviews();
+    updateActiveNavLink();
     window.initScrollAnimations();
 });
