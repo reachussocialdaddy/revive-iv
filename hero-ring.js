@@ -103,7 +103,7 @@
             const elapsed = performance.now() - startTime;
             const isMob = window.innerWidth <= 768;
             const clusterSize = isMob ? 160 : 320;
-            const radius = isMob ? 60 : 125; 
+            const radius = isMob ? 46 : 95; 
             const cx = clusterSize / 2;
             const cy = clusterSize / 2;
             const iconSize = isMob ? 28 : 48; 
@@ -178,7 +178,7 @@
         });
         const ringMesh = new THREE.Mesh(torusGeo, torusMat);
         // Tilt slightly for drama
-        ringMesh.rotation.x = Math.PI / 8;
+        ringMesh.rotation.x = Math.PI / 2;
         scene.add(ringMesh);
 
         /* ── Inner glow ring (ghost) ── */
@@ -187,7 +187,7 @@
             color: 0xF3E5AB, transparent: true, opacity: 0.25, side: THREE.DoubleSide
         });
         const innerRing = new THREE.Mesh(innerGeo, innerMat);
-        innerRing.rotation.x = Math.PI / 8;
+        innerRing.rotation.x = Math.PI / 2;
         scene.add(innerRing);
 
         /* ── Floating particles ── */
@@ -271,9 +271,9 @@
             currentRotX += (targetRotX - currentRotX) * 0.04;
             currentRotY += (targetRotY - currentRotY) * 0.04;
             ringMesh.rotation.y = currentRotY;
-            ringMesh.rotation.x = Math.PI / 8 + currentRotX;
+            ringMesh.rotation.x = Math.PI / 2 + currentRotX;
             innerRing.rotation.y = currentRotY;
-            innerRing.rotation.x = Math.PI / 8 + currentRotX;
+            innerRing.rotation.x = Math.PI / 2 + currentRotX;
 
             // Float up/down
             ringMesh.position.y = Math.sin(t * 0.6) * 0.12;
