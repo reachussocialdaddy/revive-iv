@@ -1212,9 +1212,12 @@ img {
   }
   .hero-title {
     font-size: 13vw;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
   .hero-desc {
     font-size: 1.05rem;
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 5px rgba(255,255,255,0.8);
   }
   .hero-btns {
     flex-direction: column;
@@ -1379,9 +1382,9 @@ img {
 /* ── Extra mobile fixes ── */
 @media (max-width: 768px) {
   .icon-orbit-cluster {
-    width: 220px;
-    height: 220px;
-    top: 38%;
+    width: 160px;
+    height: 160px;
+    top: 42%;
   }
   .orbit-icon {
     width: 38px;

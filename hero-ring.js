@@ -102,11 +102,11 @@
         function updateOrbit() {
             const elapsed = performance.now() - startTime;
             const isMob = window.innerWidth <= 768;
-            const clusterSize = isMob ? 220 : 320;
-            const radius = isMob ? 80 : 125; // Reduced from 85
+            const clusterSize = isMob ? 160 : 320;
+            const radius = isMob ? 60 : 125; 
             const cx = clusterSize / 2;
             const cy = clusterSize / 2;
-            const iconSize = isMob ? 36 : 48; // Reduced from 40
+            const iconSize = isMob ? 28 : 48; 
 
             icons.forEach((icon, i) => {
                 const count = icons.length;
@@ -128,8 +128,8 @@
         // Sync cluster size on resize
         const syncSize = () => {
             const isMob = window.innerWidth <= 768;
-            cluster.style.width  = isMob ? '220px' : '320px';
-            cluster.style.height = isMob ? '220px' : '320px';
+            cluster.style.width  = isMob ? '160px' : '320px';
+            cluster.style.height = isMob ? '160px' : '320px';
         };
         window.addEventListener('resize', syncSize);
         syncSize();
@@ -163,8 +163,8 @@
 
         /* ── Premium Gold Torus Ring ── */
         // Radius depends on screen
-        const ringRadius = isMobile() ? 2.0 : 2.4;
-        const tubeRadius = isMobile() ? 0.12 : 0.14;
+        const ringRadius = isMobile() ? 1.5 : 2.4;
+        const tubeRadius = isMobile() ? 0.08 : 0.14;
 
         const torusGeo = new THREE.TorusGeometry(ringRadius, tubeRadius, 32, 120);
         const torusMat = new THREE.MeshPhysicalMaterial({
