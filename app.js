@@ -252,13 +252,13 @@ function initHeroSlider() {
 function initShotCards() {
     const shotCards = document.querySelectorAll('.shot-card');
     shotCards.forEach(card => {
-        card.addEventListener('click', () => {
+        card.onclick = () => {
             // Optional: Close others
             shotCards.forEach(other => {
                 if (other !== card) other.classList.remove('active');
             });
             card.classList.toggle('active');
-        });
+        };
     });
 }
 

@@ -965,10 +965,42 @@ img {
 }
 
 .shot-card.active .shot-body {
-  max-height: 250px; /* increased to prevent cut-off */
+  max-height: 450px; /* increased for image and button */
   opacity: 1;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   color: rgba(255,255,255,0.9);
+}
+
+.shot-content-wrapper {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.shot-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+.shot-text {
+    flex: 1;
+    text-align: left;
+}
+
+@media (max-width: 480px) {
+    .shot-content-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .shot-img {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 /* Stacked Reviews Section */
