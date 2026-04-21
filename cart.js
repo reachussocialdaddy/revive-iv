@@ -47,7 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (totalItems > 0) {
                 bottomBar.classList.add('visible');
                 bottomBar.querySelector('.cart-item-count').textContent = `${totalItems} ITEM${totalItems > 1 ? 'S' : ''}`;
-                bottomBar.querySelector('.cart-total-price').textContent = `$${totalPrice}`;
+                
+                const hasCustom = cart.some(i => i.id === 'drip_custom');
+                if (hasCustom) {
+                    bottomBar.querySelector('.cart-total-price').innerHTML = `$${totalPrice} <span style="font-size:0.6rem; font-weight:normal; opacity:0.8;">+ health needs</span>`;
+                } else {
+                    bottomBar.querySelector('.cart-total-price').textContent = `$${totalPrice}`;
+                }
             } else {
                 bottomBar.classList.remove('visible');
             }
