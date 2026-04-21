@@ -1801,6 +1801,7 @@ img {
     }
     .ingredients-list {
         justify-content: center !important;
+        flex-wrap: wrap !important;
         gap: 0.4rem !important;
         margin-bottom: 2rem !important;
     }
@@ -1810,6 +1811,7 @@ img {
     }
     .trust-pill-row {
         justify-content: center !important;
+        flex-wrap: wrap !important;
         gap: 0.4rem !important;
         margin-bottom: 2.5rem !important;
     }
