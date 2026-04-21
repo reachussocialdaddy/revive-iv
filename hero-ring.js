@@ -29,17 +29,26 @@
         );
 
         // Exit loader
-        gsap.to(loader, {
-            opacity: 0,
-            duration: 0.6,
-            delay: 1.6,
-            ease: 'power2.inOut',
-            onComplete: () => {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(loader, {
+                opacity: 0,
+                duration: 0.6,
+                delay: 1.6,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    loader.classList.add('fade-out');
+                    loader.style.display = 'none';
+                    animateHeroEntrance();
+                }
+            });
+        } else {
+            // Fallback if GSAP is missing
+            setTimeout(() => {
+                loader.classList.add('fade-out');
                 loader.style.display = 'none';
-                // Trigger hero entrance after loader
                 animateHeroEntrance();
-            }
-        });
+            }, 2000);
+        }
     }
 
     /* ─── Hero entrance animations ─────────────────────────────── */
