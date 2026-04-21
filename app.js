@@ -94,6 +94,7 @@ function initReviews() {
 
     let mm = gsap.matchMedia();
     let reviewInterval;
+    let currentIndex = 0;
 
     mm.add({
         isDesktop: "(min-width: 1024px)",
@@ -101,36 +102,24 @@ function initReviews() {
     }, (context) => {
         let { isDesktop, isMobile } = context.conditions;
 
-        // Cleanup previous interval
         if (reviewInterval) clearInterval(reviewInterval);
 
         if (isMobile) {
-            /* ─── Mobile: 3D Stack ─── */
-            let currentIndex = 0;
+            /* ─── Mobile: Single Card Swipe ─── */
             let isAnimating = false;
 
             function updateStack() {
                 cards.forEach((card, i) => {
-                    let relIndex = (i - currentIndex + cards.length) % cards.length;
-                    
-                    if (relIndex === 0) {
+                    if (i === currentIndex) {
                         gsap.to(card, {
-                            z: 0, y: 0, x: 0, rotation: 0, scale: 1, opacity: 1, 
-                            duration: 0.8, ease: "power3.out", zIndex: 10, pointerEvents: 'auto'
-                        });
-                    } else if (relIndex < 3) {
-                        // Background cards visible
-                        gsap.to(card, {
-                            z: -100 * relIndex,
-                            y: 30 * relIndex,
-                            x: 0,
-                            rotation: 0,
-                            scale: 1 - (0.08 * relIndex),
-                            opacity: 0.8 - (0.3 * relIndex),
-                            duration: 0.8, ease: "power3.out", zIndex: 10 - relIndex, pointerEvents: 'none'
+                            x: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out", 
+                            zIndex: 10, pointerEvents: 'auto'
                         });
                     } else {
-                        gsap.to(card, { opacity: 0, z: -300, duration: 0.6, zIndex: 0, pointerEvents: 'none' });
+                        gsap.to(card, {
+                            opacity: 0, scale: 0.9, duration: 0.6, ease: "power2.out", 
+                            zIndex: 0, pointerEvents: 'none'
+                        });
                     }
                 });
             }
@@ -141,13 +130,11 @@ function initReviews() {
                 const currentCard = cards[currentIndex];
                 
                 gsap.to(currentCard, {
-                    x: -200, y: 100, rotation: -20, opacity: 0, scale: 0.8,
-                    duration: 0.7, ease: "power2.inOut",
+                    x: -100, opacity: 0, duration: 0.5, ease: "power2.in",
                     onComplete: () => {
-                        gsap.set(currentCard, { x: 0, y: 0, rotation: 0, zIndex: 0 });
                         currentIndex = (currentIndex + 1) % cards.length;
                         updateStack();
-                        setTimeout(() => { isAnimating = false; }, 100);
+                        isAnimating = false;
                     }
                 });
             }
@@ -158,24 +145,32 @@ function initReviews() {
             wrapper.style.cursor = 'pointer';
 
         } else {
-            /* ─── Desktop: Horizontal Slider ─── */
+            /* ─── Desktop: Horizontal Auto-Slider ─── */
             gsap.set(cards, { opacity: 1, x: 0, y: 0, z: 0, rotation: 0, scale: 1, pointerEvents: 'auto' });
             
-            // Simple Draggable
+            let scrollWidth = track.scrollWidth - wrapper.offsetWidth;
+            let currentX = 0;
+
+            function autoSlideDesktop() {
+                currentX -= 432; // card width (400) + gap (32)
+                if (Math.abs(currentX) > scrollWidth) currentX = 0;
+                
+                gsap.to(track, {
+                    x: currentX,
+                    duration: 1,
+                    ease: "power2.inOut"
+                });
+            }
+
+            reviewInterval = setInterval(autoSlideDesktop, 5000);
+
             if (typeof Draggable !== 'undefined') {
                 Draggable.create(track, {
                     type: "x",
                     bounds: wrapper,
                     inertia: true,
-                    edgeResistance: 0.65
+                    onDragStart: () => clearInterval(reviewInterval)
                 });
-            }
-
-            // Optional: Auto-slide on desktop too
-            let desktopX = 0;
-            function autoSlideDesktop() {
-                // This is a bit complex with Draggable, so we'll keep it simple:
-                // Just let users drag on desktop for best UX, or use a basic marquee
             }
             wrapper.onclick = null;
             wrapper.style.cursor = 'grab';
@@ -183,10 +178,8 @@ function initReviews() {
 
         return () => {
             if (reviewInterval) clearInterval(reviewInterval);
-            if (isDesktop && typeof Draggable !== 'undefined') {
-                const draggables = Draggable.get(track);
-                if (draggables) draggables.kill();
-            }
+            const draggables = Draggable.get(track);
+            if (draggables) draggables.kill();
         };
     });
 }
