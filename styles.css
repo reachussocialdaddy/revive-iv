@@ -910,24 +910,33 @@ img {
 
 /* Shot Bar */
 .shotbar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
 }
 
 .shot-card {
-  background: var(--bg-surface);
-  border-radius: var(--radius-lg);
+  flex: 0 1 380px; /* Base width for cards */
+  background: white;
+  border-radius: 24px;
   padding: 2rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-light);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.06);
+  border: 2px solid var(--accent-gold); /* Golden border like reviews */
   cursor: pointer;
-  transition: var(--transition-slow);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color: var(--text-primary);
+}
+
+.shot-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
 }
 
 .shot-card.active {
   background: var(--accent-primary);
   color: white;
+  border-color: transparent;
   transform: translateY(-5px);
 }
 
@@ -944,10 +953,10 @@ img {
 }
 
 .shot-icon {
-  color: var(--accent-secondary);
+  color: var(--accent-gold);
   font-size: 2rem;
   transition: var(--transition-fast);
-  pointer-events: none; /* Let the card handle the click */
+  pointer-events: none;
 }
 
 .shot-card.active .shot-icon {
