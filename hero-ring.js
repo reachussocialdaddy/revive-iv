@@ -102,11 +102,11 @@
         function updateOrbit() {
             const elapsed = performance.now() - startTime;
             const isMob = window.innerWidth <= 768;
-            const clusterSize = isMob ? 160 : 320;
-            const radius = isMob ? 46 : 95; 
+            const clusterSize = isMob ? 220 : 440;
+            const radius = isMob ? 90 : 200; 
             const cx = clusterSize / 2;
             const cy = clusterSize / 2;
-            const iconSize = isMob ? 28 : 48; 
+            const iconSize = isMob ? 32 : 48; 
 
             icons.forEach((icon, i) => {
                 const count = icons.length;
@@ -128,8 +128,8 @@
         // Sync cluster size on resize
         const syncSize = () => {
             const isMob = window.innerWidth <= 768;
-            cluster.style.width  = isMob ? '160px' : '320px';
-            cluster.style.height = isMob ? '160px' : '320px';
+            cluster.style.width  = isMob ? '220px' : '440px';
+            cluster.style.height = isMob ? '220px' : '440px';
         };
         window.addEventListener('resize', syncSize);
         syncSize();
@@ -177,8 +177,8 @@
             emissiveIntensity: 0.08,
         });
         const ringMesh = new THREE.Mesh(torusGeo, torusMat);
-        // Tilt slightly for drama
-        ringMesh.rotation.x = Math.PI / 2;
+        // Face-on perfect circle
+        ringMesh.rotation.x = 0;
         scene.add(ringMesh);
 
         /* ── Inner glow ring (ghost) ── */
@@ -187,7 +187,7 @@
             color: 0xF3E5AB, transparent: true, opacity: 0.25, side: THREE.DoubleSide
         });
         const innerRing = new THREE.Mesh(innerGeo, innerMat);
-        innerRing.rotation.x = Math.PI / 2;
+        innerRing.rotation.x = 0;
         scene.add(innerRing);
 
         /* ── Floating particles ── */
@@ -271,9 +271,9 @@
             currentRotX += (targetRotX - currentRotX) * 0.04;
             currentRotY += (targetRotY - currentRotY) * 0.04;
             ringMesh.rotation.y = currentRotY;
-            ringMesh.rotation.x = Math.PI / 2 + currentRotX;
+            ringMesh.rotation.x = currentRotX;
             innerRing.rotation.y = currentRotY;
-            innerRing.rotation.x = Math.PI / 2 + currentRotX;
+            innerRing.rotation.x = currentRotX;
 
             // Float up/down
             ringMesh.position.y = Math.sin(t * 0.6) * 0.12;
