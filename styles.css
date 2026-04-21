@@ -930,7 +930,7 @@ img {
   border-radius: 20px;
   padding: 2.5rem;
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border: 1.5px solid rgba(0,0,0,0.12); /* More defined dark border */
+  border: 2px solid #D4AF37; /* Vibrant gold border */
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   color: var(--text-primary);
@@ -939,7 +939,7 @@ img {
 .shot-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-    border-color: var(--accent-gold);
+    border-color: #D4AF37;
 }
 
 .shot-card.active {
@@ -962,7 +962,7 @@ img {
 }
 
 .shot-icon {
-  color: var(--accent-gold);
+  color: #D4AF37;
   font-size: 2rem;
   transition: var(--transition-fast);
   pointer-events: none;
@@ -1055,7 +1055,7 @@ img {
   border-radius: 24px;
   padding: 3.5rem 2.5rem;
   box-shadow: 0 15px 45px rgba(0,0,0,0.08);
-  border: 2px solid var(--accent-gold); /* Default golden border */
+  border: 2px solid #D4AF37; /* Solid vibrant gold border */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
