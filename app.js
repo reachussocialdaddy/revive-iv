@@ -187,6 +187,20 @@ function initHeroSlider() {
     }, 6000); // 6 seconds per slide
 }
 
+/* ─── 10. Shot Card Toggle ─────────────────────────────────────── */
+function initShotCards() {
+    const shotCards = document.querySelectorAll('.shot-card');
+    shotCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Optional: Close others
+            shotCards.forEach(other => {
+                if (other !== card) other.classList.remove('active');
+            });
+            card.classList.toggle('active');
+        });
+    });
+}
+
 /* ─── Exported: initScrollAnimations ────────────────────────
  * Called by Barba.js after each page transition.
  * Re-initializes ScrollTriggers, Sliders, and 3D scenes.
@@ -203,6 +217,7 @@ window.initScrollAnimations = function () {
     initDraggableReviews();
     initHeroSlider();
     initMarquee();
+    initShotCards();
 };
 
 /* ─── Boot on DOMContentLoaded ──────────────────────────────── */
@@ -210,5 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initLenis();
     initMarquee();
+    initShotCards();
     window.initScrollAnimations();
 });

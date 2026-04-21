@@ -925,7 +925,7 @@ img {
   transition: var(--transition-slow);
 }
 
-.shot-card:hover {
+.shot-card.active {
   background: var(--accent-primary);
   color: white;
   transform: translateY(-5px);
@@ -939,7 +939,7 @@ img {
   font-weight: 700;
 }
 
-.shot-card:hover .shot-header {
+.shot-card.active .shot-header {
   color: white;
 }
 
@@ -947,9 +947,10 @@ img {
   color: var(--accent-secondary);
   font-size: 2rem;
   transition: var(--transition-fast);
+  pointer-events: none; /* Let the card handle the click */
 }
 
-.shot-card:hover .shot-icon {
+.shot-card.active .shot-icon {
   color: white;
   transform: rotate(45deg);
 }
@@ -963,8 +964,8 @@ img {
   margin-top: 0;
 }
 
-.shot-card:hover .shot-body {
-  max-height: 150px;
+.shot-card.active .shot-body {
+  max-height: 250px; /* increased to prevent cut-off */
   opacity: 1;
   margin-top: 1rem;
   color: rgba(255,255,255,0.9);
