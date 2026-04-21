@@ -57,132 +57,258 @@
     <main data-barba="container" data-barba-namespace="services">
         
         <!-- Three.js Background Canvas for Services Only -->
-        <canvas id="services-bg-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6;"></canvas>
+        <canvas id="services-bg-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.4;"></canvas>
+
+        <!-- Ambient Lighting Overlay -->
+        <div class="services-ambient-light" style="position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 20% 20%, rgba(197,160,89,0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.8) 0%, transparent 50%); pointer-events: none;"></div>
 
         <!-- Hero Section -->
-        <header class="inner-page-header" style="min-height: 70vh; display: flex; align-items: center; text-align: center; background: transparent;">
-            <div class="container">
-                <span class="badge reveal">Revive Services</span>
-                <h1 class="page-title reveal" style="font-size: clamp(3rem, 8vw, 5rem);"><span class="text-gradient">Optimize Your Life.</span></h1>
-                <p class="page-subtitle reveal" style="font-size: 1.4rem; max-width: 800px; margin: 2rem auto;">From rapid recovery to long-term health optimization, our medical-grade treatments are delivered directly to your doorstep.</p>
-                <div class="header-cta reveal" style="margin-top: 3rem;">
-                    <a href="products.html" class="btn-primary">View Full Menu</a>
+        <section class="hero services-hero" style="min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-top: 100px;">
+            <div class="container hero-content">
+                <div class="hero-badge reveal">
+                    <i class="fas fa-sparkles" style="font-size: 0.75rem; color: var(--accent-gold);"></i>
+                    <span style="letter-spacing: 2px; text-transform: uppercase; font-weight: 700; font-size: 0.75rem;">Premium Mobile Care</span>
                 </div>
-            </div>
-        </header>
-
-        <!-- Core Service: IV Drips -->
-        <section class="section">
-            <div class="container">
-                <div class="service-detail-row">
-                    <div class="service-detail-content reveal">
-                        <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">IV Hydration Drips.</h2>
-                        <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem;">Our signature IV treatments bypass the digestive system to deliver 100% absorption of essential vitamins and nutrients. Whether you're recovering from a long night, preparing for an event, or managing chronic fatigue, we have a formula designed for you.</p>
-                        
-                        <div class="service-feature-list">
-                            <div class="feature-item">
-                                <div class="feature-dot"></div>
-                                <div>
-                                    <h4>Immediate Absorption</h4>
-                                    <p>Direct-to-bloodstream delivery for instant results.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-dot"></div>
-                                <div>
-                                    <h4>Custom Formulas</h4>
-                                    <p>Tailored vitamin blends based on your health goals.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-dot"></div>
-                                <div>
-                                    <h4>Medical Grade</h4>
-                                    <p>Administered by licensed RNs with hospital-level precision.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-detail-image reveal">
-                        <img src="assets/drip-close.png" alt="IV Drip" style="border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 2px solid var(--accent-gold);">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Wellness Shots Bento -->
-        <section class="section" style="background: #fdfdfd;">
-            <div class="container">
-                <h2 class="section-title reveal">Wellness Boosters.</h2>
-                <p class="section-subtitle reveal">Quick intramuscular shots for targeted health benefits.</p>
                 
-                <div class="bento-grid" style="margin-top: 4rem;">
-                    <div class="bento-item bento-tall reveal" style="background: linear-gradient(180deg, #fff, #f8f8f8);">
-                        <div class="bento-content">
-                            <span class="badge">Most Popular</span>
-                            <h3>Vitamin B12</h3>
-                            <p>Pure energy in a shot. Perfect for combating brain fog and chronic fatigue.</p>
-                            <img src="assets/vitsaminb12.png" alt="B12" style="width: 120px; margin: 2rem auto;">
+                <h1 class="hero-title reveal" style="font-size: clamp(3.5rem, 9vw, 6.5rem); font-family: var(--font-body); font-weight: 900; line-height: 1; margin: 1.5rem 0;">
+                    <span class="text-gradient">Optimize</span><br>Your Life.
+                </h1>
+                
+                <p class="hero-subtitle reveal" style="font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-secondary); max-width: 700px; margin: 0 auto 3.5rem; line-height: 1.7;">
+                    Medical-grade hydration and wellness treatments, delivered directly to your doorstep by licensed New York nurses.
+                </p>
+                
+                <div class="hero-cta-group reveal" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="products.html" class="btn-primary" style="padding: 1.2rem 3rem;">
+                        <span>View Full Menu</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
+                    </a>
+                    <a href="#experience" class="btn-secondary" style="padding: 1.2rem 3rem; border: 1.5px solid var(--accent-gold); color: var(--text-primary); border-radius: 99px;">
+                        <span>How It Works</span>
+                    </a>
+                </div>
+                
+                <div class="hero-stats reveal" style="display: flex; justify-content: center; gap: clamp(2rem, 5vw, 6rem); margin-top: 6rem; padding-top: 4rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 3rem; font-weight: 900; color: var(--accent-gold);">100%</div>
+                        <div class="stat-label" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary);">Absorption</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 3rem; font-weight: 900; color: var(--accent-gold);">45min</div>
+                        <div class="stat-label" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary);">Per Session</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 3rem; font-weight: 900; color: var(--accent-gold);">RN</div>
+                        <div class="stat-label" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary);">Licensed Staff</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Section: IV Drips -->
+        <section class="feature-section" style="padding: 10rem 0;">
+            <div class="container">
+                <div class="feature-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+                    <div class="feature-content">
+                        <span class="badge reveal">Core Service</span>
+                        <h2 class="feature-title reveal" style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin: 1.5rem 0;">
+                            IV Hydration <span class="text-gradient">Drips.</span>
+                        </h2>
+                        <p class="feature-text reveal" style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem;">
+                            Our signature IV treatments bypass the digestive system to deliver 100% absorption of essential vitamins and nutrients directly into your bloodstream.
+                        </p>
+                        
+                        <div class="feature-list" style="display: flex; flex-direction: column; gap: 2rem;">
+                            <div class="feature-item reveal" style="display: flex; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: all 0.3s ease;">
+                                <div class="feature-icon" style="width: 50px; height: 50px; background: rgba(197,160,89,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-gold);">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Immediate Results</h4>
+                                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Feel the effects within minutes, not hours.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item reveal" style="display: flex; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: all 0.3s ease;">
+                                <div class="feature-icon" style="width: 50px; height: 50px; background: rgba(197,160,89,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-gold);">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Tailored Precision</h4>
+                                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Custom formulas designed for your specific biomarkers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 3rem;" class="reveal">
+                            <a href="iv-drips.html" class="btn-ghost" style="color: var(--accent-gold); font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>Explore All Formulas</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="bento-item bento-wide reveal">
-                        <div class="bento-content">
-                            <h3>Biotin & Skin Health</h3>
-                            <p>Enhance your natural glow with our beauty-focused vitamin shots. Promotes healthy hair, skin, and nails from the inside out.</p>
+                    
+                    <div class="feature-visual reveal" style="position: relative;">
+                        <div class="feature-image-wrapper" style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="assets/drip-close.png" alt="IV Drip" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                    </div>
-                    <div class="bento-item reveal">
-                        <div class="bento-content">
-                            <h3>Vitamin D3</h3>
-                            <p>The "sunshine vitamin" for immune support and mood regulation.</p>
-                        </div>
-                    </div>
-                    <div class="bento-item reveal">
-                        <div class="bento-content">
-                            <h3>Lipo-Lean</h3>
-                            <p>Metabolism booster to support your weight management journey.</p>
+                        <div class="floating-badge" style="position: absolute; bottom: 2rem; left: -2rem; background: white; padding: 1.5rem 2rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 2px solid var(--accent-gold);">
+                            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">Starting at</div>
+                            <div style="font-size: 1.8rem; font-weight: 900; color: var(--text-primary);">$199</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Process Section -->
-        <section class="section">
+        <!-- Wellness Shots Bento Grid -->
+        <section class="bento-section" style="padding: 10rem 0; background: #fdfdfd;">
             <div class="container">
-                <h2 class="section-title reveal">The Experience.</h2>
-                <div class="process-steps">
-                    <div class="step-card reveal">
-                        <div class="step-num">01</div>
-                        <h4>Book Online</h4>
-                        <p>Select your treatment and schedule a time that works for you.</p>
+                <div class="section-header" style="text-align: center; max-width: 700px; margin: 0 auto 5rem;">
+                    <span class="badge reveal">Quick Boosters</span>
+                    <h2 class="section-title reveal" style="font-size: 3.5rem; font-weight: 900; margin: 1.5rem 0;">Wellness <span class="text-gradient">Shots.</span></h2>
+                    <p class="section-subtitle reveal" style="font-size: 1.2rem; color: var(--text-secondary);">Rapid intramuscular injections for targeted health benefits. Delivered in under 15 minutes.</p>
+                </div>
+                
+                <div class="bento-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 300px); gap: 1.5rem;">
+                    <!-- B12 - Tall -->
+                    <div class="bento-item reveal" style="grid-row: span 2; background: white; padding: 2.5rem; border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                        <div>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px;">Top Rated</span>
+                            <h3 style="font-size: 1.8rem; margin: 1rem 0;">Vitamin B12</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem;">Pure energy. Combats brain fog, fatigue, and supports the nervous system.</p>
+                        </div>
+                        <div style="font-size: 2rem; font-weight: 900; color: var(--accent-gold);">$49</div>
                     </div>
-                    <div class="step-card reveal">
-                        <div class="step-num">02</div>
-                        <h4>Nurse Arrives</h4>
-                        <p>A licensed RN arrives at your location with all medical equipment.</p>
+                    
+                    <!-- Biotin - Wide -->
+                    <div class="bento-item reveal" style="grid-column: span 2; background: white; padding: 2.5rem; border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Biotin & Glow</h3>
+                        <p style="color: var(--text-secondary); font-size: 1rem; max-width: 400px;">Enhance your natural beauty. Promotes healthy hair, skin, and nails from the inside out.</p>
+                        <div style="margin-top: 2rem; font-size: 1.5rem; font-weight: 900; color: var(--accent-gold);">$59</div>
                     </div>
-                    <div class="step-card reveal">
-                        <div class="step-num">03</div>
-                        <h4>Revive</h4>
-                        <p>Relax for 45 minutes while you receive your personalized treatment.</p>
+                    
+                    <!-- D3 -->
+                    <div class="bento-item reveal" style="background: white; padding: 2.5rem; border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                        <h3 style="font-size: 1.5rem;">Vitamin D3</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Immune support and mood regulation.</p>
+                        <div style="margin-top: 1.5rem; font-size: 1.3rem; font-weight: 900; color: var(--accent-gold);">$45</div>
+                    </div>
+                    
+                    <!-- Lipo -->
+                    <div class="bento-item reveal" style="grid-column: span 2; background: white; padding: 2.5rem; border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                        <h3 style="font-size: 1.8rem;">Lipo-Lean</h3>
+                        <p style="color: var(--text-secondary);">Metabolism booster to support your weight management journey.</p>
+                        <div style="margin-top: 1.5rem; font-size: 1.5rem; font-weight: 900; color: var(--accent-gold);">$55</div>
+                    </div>
+
+                    <!-- Extra -->
+                    <div class="bento-item reveal" style="background: white; padding: 2.5rem; border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <a href="products.html" style="font-weight: 700; color: var(--accent-gold);">View All Shots &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="section">
+        <!-- Trust Strip -->
+        <div class="trust-strip" style="padding: 4rem 0; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); background: white; overflow: hidden;">
+            <div class="trust-scroll" style="display: flex; gap: 5rem; animation: scrollTrust 40s linear infinite; width: max-content;">
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-shield-halved" style="color: var(--accent-gold);"></i> HIPAA COMPLIANT
+                </div>
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-certificate" style="color: var(--accent-gold);"></i> LICENSED RNs ONLY
+                </div>
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-truck-medical" style="color: var(--accent-gold);"></i> SAME-DAY DELIVERY
+                </div>
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-star" style="color: var(--accent-gold);"></i> 500+ REVIEWS
+                </div>
+                <!-- Duplicate for loop -->
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-shield-halved" style="color: var(--accent-gold);"></i> HIPAA COMPLIANT
+                </div>
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-certificate" style="color: var(--accent-gold);"></i> LICENSED RNs ONLY
+                </div>
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-truck-medical" style="color: var(--accent-gold);"></i> SAME-DAY DELIVERY
+                </div>
+                <div class="trust-item" style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">
+                    <i class="fas fa-star" style="color: var(--accent-gold);"></i> 500+ REVIEWS
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <section class="process-section" id="experience" style="padding: 10rem 0;">
             <div class="container">
-                <div class="cta-banner reveal" style="background: var(--text-primary); color: white; padding: 6rem; border-radius: 40px; text-align: center; position: relative; overflow: hidden;">
-                    <div style="position: relative; z-index: 2;">
-                        <h2 style="color: white; font-size: 3.5rem; margin-bottom: 2rem;">Ready to Revive?</h2>
-                        <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.8;">Our nurses are ready to serve you in the NYC Metro area.</p>
-                        <a href="contact.html" class="btn-primary">Book Your First Drip</a>
+                <div class="section-header" style="text-align: center; max-width: 700px; margin: 0 auto 6rem;">
+                    <span class="badge reveal">Seamless Care</span>
+                    <h2 class="section-title reveal" style="font-size: 3.5rem; font-weight: 900; margin: 1.5rem 0;">The <span class="text-gradient">Experience.</span></h2>
+                    <p class="section-subtitle reveal" style="font-size: 1.2rem; color: var(--text-secondary);">Three simple steps to feeling your absolute best. We bring the clinic to you.</p>
+                </div>
+                
+                <div class="process-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
+                    <div class="process-card reveal" style="background: white; padding: 4rem 3rem; border-radius: 40px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                        <div class="process-number" style="font-size: 5rem; font-weight: 900; color: rgba(197,160,89,0.08); position: absolute; top: 1rem; right: 2rem;">01</div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Book Online</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Select your treatment and schedule a time. Our concierge team confirms your appointment within minutes.</p>
+                    </div>
+                    
+                    <div class="process-card reveal" style="background: white; padding: 4rem 3rem; border-radius: 40px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                        <div class="process-number" style="font-size: 5rem; font-weight: 900; color: rgba(197,160,89,0.08); position: absolute; top: 1rem; right: 2rem;">02</div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Nurse Arrives</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">A licensed RN arrives at your location with all medical equipment. Relax in the comfort of your own space.</p>
+                    </div>
+                    
+                    <div class="process-card reveal" style="background: white; padding: 4rem 3rem; border-radius: 40px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; overflow: hidden;">
+                        <div class="process-number" style="font-size: 5rem; font-weight: 900; color: rgba(197,160,89,0.08); position: absolute; top: 1rem; right: 2rem;">03</div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Revive</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Enjoy your 45-minute treatment. Feel re-energized and revitalized immediately afterward.</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section" style="padding-bottom: 10rem;">
+            <div class="container">
+                <div class="cta-banner reveal" style="background: #0f172a; color: white; padding: 8rem 4rem; border-radius: 50px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(197,160,89,0.15) 0%, transparent 70%); pointer-events: none;"></div>
+                    <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
+                        <h2 style="color: white; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 2rem; line-height: 1;">Ready to <span class="text-gradient">Revive?</span></h2>
+                        <p style="font-size: 1.3rem; margin-bottom: 4rem; opacity: 0.8;">Same-day appointments available throughout the NYC Metro area.</p>
+                        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="contact.html" class="btn-primary" style="padding: 1.2rem 3.5rem;">Book Your First Drip</a>
+                            <a href="tel:+16467093698" class="btn-secondary" style="padding: 1.2rem 3.5rem; border: 1.5px solid rgba(255,255,255,0.3); color: white; border-radius: 99px;">Call (646) 709-3698</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            @keyframes scrollTrust {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            .bento-item:hover {
+                transform: translateY(-8px);
+                border-color: var(--accent-gold) !important;
+                box-shadow: 0 30px 60px rgba(0,0,0,0.05) !important;
+            }
+            .process-card:hover {
+                transform: translateY(-10px);
+                border-color: var(--accent-gold) !important;
+            }
+            @media (max-width: 1024px) {
+                .feature-grid, .process-grid { grid-template-columns: 1fr !important; }
+                .bento-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: auto !important; }
+                .bento-item { grid-column: span 2 !important; grid-row: auto !important; }
+            }
+        </style>
 
     </main>
 
