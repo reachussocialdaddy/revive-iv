@@ -55,46 +55,136 @@
     </div>
 
     <main data-barba="container" data-barba-namespace="services">
+        
+        <!-- Three.js Background Canvas for Services Only -->
+        <canvas id="services-bg-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6;"></canvas>
 
-
-    <!-- Header -->
-        <!-- Inner Page Header -->
-    <header class="inner-page-header">
-        <div class="container">
-            <h1 class="page-title reveal"><span class="text-gradient">Our Services</span></h1>
-            <p class="page-subtitle reveal">Comprehensive wellness solutions tailored for your ultimate health optimization.</p>
-        </div>
-    </header>
-
-    <!-- Services Overview -->
-    <section class="section">
-        <div class="container">
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <div class="service-icon">💧</div>
-                    <h3>IV Hydration Drips</h3>
-                    <p>Our core offering. Bypassing the digestive system, IV drips deliver 100% absorption of vitamins, minerals, and fluids directly into your bloodstream.</p>
-                    <a href="iv-drips.html" class="service-link">Explore IV Drips &rarr;</a>
-                </div>
-                
-                <div class="service-card reveal">
-                    <div class="service-icon">💉</div>
-                    <h3>Vitamin Shots</h3>
-                    <p>Rapid wellness boosts delivered in under 15 minutes. Add to any IV or book as a standalone treatment. Includes B12, Vitamin D, Lipolean, and Biotin.</p>
-                    <a href="pricing.html#shots" class="service-link">View Pricing &rarr;</a>
-                </div>
-
-                <div class="service-card reveal">
-                    <div class="service-icon">⚖️</div>
-                    <h3>Weight Management</h3>
-                    <p>Medical weight loss programs featuring Semaglutide and Tirzepatide. An effective, customized injection plan to support sustainable weight loss.</p>
-                    <a href="contact.html" class="service-link">Book Consultation &rarr;</a>
+        <!-- Hero Section -->
+        <header class="inner-page-header" style="min-height: 70vh; display: flex; align-items: center; text-align: center; background: transparent;">
+            <div class="container">
+                <span class="badge reveal">Revive Services</span>
+                <h1 class="page-title reveal" style="font-size: clamp(3rem, 8vw, 5rem);"><span class="text-gradient">Optimize Your Life.</span></h1>
+                <p class="page-subtitle reveal" style="font-size: 1.4rem; max-width: 800px; margin: 2rem auto;">From rapid recovery to long-term health optimization, our medical-grade treatments are delivered directly to your doorstep.</p>
+                <div class="header-cta reveal" style="margin-top: 3rem;">
+                    <a href="products.html" class="btn-primary">View Full Menu</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-            </main>
+        <!-- Core Service: IV Drips -->
+        <section class="section">
+            <div class="container">
+                <div class="service-detail-row">
+                    <div class="service-detail-content reveal">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">IV Hydration Drips.</h2>
+                        <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem;">Our signature IV treatments bypass the digestive system to deliver 100% absorption of essential vitamins and nutrients. Whether you're recovering from a long night, preparing for an event, or managing chronic fatigue, we have a formula designed for you.</p>
+                        
+                        <div class="service-feature-list">
+                            <div class="feature-item">
+                                <div class="feature-dot"></div>
+                                <div>
+                                    <h4>Immediate Absorption</h4>
+                                    <p>Direct-to-bloodstream delivery for instant results.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-dot"></div>
+                                <div>
+                                    <h4>Custom Formulas</h4>
+                                    <p>Tailored vitamin blends based on your health goals.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-dot"></div>
+                                <div>
+                                    <h4>Medical Grade</h4>
+                                    <p>Administered by licensed RNs with hospital-level precision.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-image reveal">
+                        <img src="assets/drip-close.png" alt="IV Drip" style="border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 2px solid var(--accent-gold);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wellness Shots Bento -->
+        <section class="section" style="background: #fdfdfd;">
+            <div class="container">
+                <h2 class="section-title reveal">Wellness Boosters.</h2>
+                <p class="section-subtitle reveal">Quick intramuscular shots for targeted health benefits.</p>
+                
+                <div class="bento-grid" style="margin-top: 4rem;">
+                    <div class="bento-item bento-tall reveal" style="background: linear-gradient(180deg, #fff, #f8f8f8);">
+                        <div class="bento-content">
+                            <span class="badge">Most Popular</span>
+                            <h3>Vitamin B12</h3>
+                            <p>Pure energy in a shot. Perfect for combating brain fog and chronic fatigue.</p>
+                            <img src="assets/vitsaminb12.png" alt="B12" style="width: 120px; margin: 2rem auto;">
+                        </div>
+                    </div>
+                    <div class="bento-item bento-wide reveal">
+                        <div class="bento-content">
+                            <h3>Biotin & Skin Health</h3>
+                            <p>Enhance your natural glow with our beauty-focused vitamin shots. Promotes healthy hair, skin, and nails from the inside out.</p>
+                        </div>
+                    </div>
+                    <div class="bento-item reveal">
+                        <div class="bento-content">
+                            <h3>Vitamin D3</h3>
+                            <p>The "sunshine vitamin" for immune support and mood regulation.</p>
+                        </div>
+                    </div>
+                    <div class="bento-item reveal">
+                        <div class="bento-content">
+                            <h3>Lipo-Lean</h3>
+                            <p>Metabolism booster to support your weight management journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title reveal">The Experience.</h2>
+                <div class="process-steps">
+                    <div class="step-card reveal">
+                        <div class="step-num">01</div>
+                        <h4>Book Online</h4>
+                        <p>Select your treatment and schedule a time that works for you.</p>
+                    </div>
+                    <div class="step-card reveal">
+                        <div class="step-num">02</div>
+                        <h4>Nurse Arrives</h4>
+                        <p>A licensed RN arrives at your location with all medical equipment.</p>
+                    </div>
+                    <div class="step-card reveal">
+                        <div class="step-num">03</div>
+                        <h4>Revive</h4>
+                        <p>Relax for 45 minutes while you receive your personalized treatment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-banner reveal" style="background: var(--text-primary); color: white; padding: 6rem; border-radius: 40px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: relative; z-index: 2;">
+                        <h2 style="color: white; font-size: 3.5rem; margin-bottom: 2rem;">Ready to Revive?</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.8;">Our nurses are ready to serve you in the NYC Metro area.</p>
+                        <a href="contact.html" class="btn-primary">Book Your First Drip</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer new-footer">

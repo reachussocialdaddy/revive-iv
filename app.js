@@ -256,6 +256,73 @@ function initRevealAnimations() {
     });
 }
 
+/* ─── 7. Services Page 3D Background ────────────────────────── */
+function initServices3D() {
+    const canvas = document.querySelector('#services-bg-canvas');
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // Particles
+    const geometry = new THREE.IcosahedronGeometry(0.1, 0);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0xC5A059, 
+        transparent: true, 
+        opacity: 0.6,
+        flatShading: true
+    });
+
+    const particlesCount = 100;
+    const particles = new THREE.Group();
+
+    for (let i = 0; i < particlesCount; i++) {
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(
+            (Math.random() - 0.5) * 15,
+            (Math.random() - 0.5) * 15,
+            (Math.random() - 0.5) * 10
+        );
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+        const scale = Math.random() * 0.5 + 0.5;
+        mesh.scale.set(scale, scale, scale);
+        particles.add(mesh);
+    }
+    scene.add(particles);
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener('resize', onWindowResize);
+    onWindowResize();
+
+    function animate() {
+        requestAnimationFrame(animate);
+        particles.rotation.y += 0.001;
+        particles.rotation.x += 0.0005;
+        
+        particles.children.forEach(p => {
+            p.rotation.y += 0.01;
+        });
+
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
 /* ─── 8. Bento Stagger ──────────────────────────────────────── */
 function initBentoStagger() {
     const bentoItems = document.querySelectorAll('.bento-stagger');
@@ -336,6 +403,7 @@ window.initScrollAnimations = function () {
     initHeroSlider();
     initMarquee();
     initShotCards();
+    initServices3D();
     updateActiveNavLink();
 };
 
