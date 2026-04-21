@@ -133,22 +133,26 @@
     font-size: 0.9rem;
 }
 
-/* Bottom Cart Bar */
+/* Floating Cart Pill */
 .cart-bottom-bar {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: var(--bg-surface);
-    padding: 1rem;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%, 150%);
+    width: 90%;
+    max-width: 420px;
+    background: #111111;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 99px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 999;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .cart-bottom-bar.visible {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
 }
 
 .cart-bar-content {
@@ -165,14 +169,16 @@
 }
 
 .cart-item-count {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .cart-total-price {
     font-size: 1.2rem;
     font-weight: 900;
+    color: white;
 }
 
 /* Checkout Page */
