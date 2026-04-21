@@ -62,7 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(addBtn) addBtn.style.display = 'none';
                     if(counterDiv) {
                         counterDiv.style.display = 'flex';
-                        counterDiv.querySelector('.qty-val').textContent = item.quantity;
+                        if (id === 'drip_custom') {
+                            counterDiv.innerHTML = `<button onclick="removeFromCart('${id}')" style="width:100%; border:none; background:transparent; font-weight:bold; color:var(--accent-primary); font-size:0.85rem; cursor:pointer;">ADDED<br><span style="font-size:0.55rem; font-weight:normal; color:var(--text-secondary);">(Remove)</span></button>`;
+                        } else {
+                            counterDiv.innerHTML = `
+                                <button onclick="removeFromCart('${id}')">-</button>
+                                <span class="qty-val">${item.quantity}</span>
+                                <button onclick="addToCart('${id}', '${item.name}', ${item.price}, '${item.type}', '${item.img}')">+</button>
+                            `;
+                        }
                     }
                 } else {
                     if(addBtn) addBtn.style.display = 'block';
@@ -90,17 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
                 
+                let qtyText = `Qty: ${item.quantity}`;
+                let priceText = `$${itemTotal}`;
+                
+                if (item.id === 'drip_custom') {
+                    qtyText = `Base amount + customized add-ons`;
+                    priceText = `Base: $175`;
+                }
+                
                 checkoutList.innerHTML += `
                     <div class="checkout-item" style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
                         <div style="display: flex; gap: 1rem; align-items: center;">
                             <img src="${item.img}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
                             <div>
                                 <h4 style="font-size: 1rem;">${item.name}</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Qty: ${item.quantity}</p>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">${qtyText}</p>
                             </div>
                         </div>
-                        <div style="font-weight: bold; align-self: center;">
-                            $${itemTotal}
+                        <div style="font-weight: bold; align-self: center; text-align:right;">
+                            ${priceText}
                         </div>
                     </div>
                 `;
@@ -115,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const bookingType = localStorage.getItem('reviveBookingType');
             const groupDetailsStr = localStorage.getItem('reviveGroupDetails');
             const discountContainer = document.getElementById('discount-container');
+            const hasCustom = cart.some(i => i.id === 'drip_custom');
 
             if (bookingType === 'group' && groupDetailsStr) {
                 groupDiscount = subtotal * 0.10;
@@ -139,7 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     advanceNote.style = "color: var(--text-secondary); font-size: 0.85rem; text-align: center; margin-top: 1rem;";
                     document.getElementById('pay-now-btn').parentElement.appendChild(advanceNote);
                 }
-                advanceNote.textContent = `Total cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.`;
+                if (hasCustom) {
+                    advanceNote.innerHTML = `Total base cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.<br><span style="color:var(--accent-primary); font-weight:bold;">Remaining base + custom health add-ons to be paid later.</span>`;
+                } else {
+                    advanceNote.textContent = `Total cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.`;
+                }
             } else {
                 if (discountContainer) discountContainer.innerHTML = '';
                 
@@ -153,7 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     advanceNote.style = "color: var(--text-secondary); font-size: 0.85rem; text-align: center; margin-top: 1rem;";
                     document.getElementById('pay-now-btn').parentElement.appendChild(advanceNote);
                 }
-                advanceNote.textContent = `Total cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.`;
+                if (hasCustom) {
+                    advanceNote.innerHTML = `Total base cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.<br><span style="color:var(--accent-primary); font-weight:bold;">Remaining base + custom health add-ons to be paid later.</span>`;
+                } else {
+                    advanceNote.textContent = `Total cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.`;
+                }
             }
 
             document.getElementById('checkout-total').textContent = `$${finalTotal.toFixed(2)}`;

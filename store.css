@@ -60,6 +60,7 @@
 
 .product-info {
     flex: 1;
+    min-width: 0; /* Critical for preventing flexbox overflow */
 }
 
 .product-info h3 {
@@ -87,7 +88,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    width: 90px;
+    width: 80px;
+    flex-shrink: 0;
 }
 
 .btn-add-initial {
@@ -283,5 +285,44 @@
 @media (max-width: 900px) {
     .checkout-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Product List Fixes */
+@media (max-width: 480px) {
+    .product-item {
+        gap: 0.6rem;
+        padding: 1.2rem 0;
+    }
+    .product-img-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+    .product-info h3 {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap; /* allow wrap if absolutely needed, but prefer single line */
+        gap: 0.3rem;
+    }
+    .product-info h3 span {
+        display: inline-block;
+        white-space: nowrap;
+        margin-top: 0;
+        margin-left: 0 !important;
+        font-size: 0.65rem !important;
+    }
+    .product-price {
+        font-size: 0.95rem;
+    }
+    .product-desc {
+        font-size: 0.75rem;
+    }
+    .btn-add-initial {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    .product-action {
+        width: 70px;
     }
 }
