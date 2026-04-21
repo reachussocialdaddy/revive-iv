@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Booking Type | Revive IV</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="store.css">
+    <style>
+        .booking-type-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            flex-direction: column;
+            text-align: center;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+        .booking-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .booking-card:hover {
+            border-color: var(--accent-gold, #D4AF37);
+            background: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .booking-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .booking-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .badge-discount {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-gold, #D4AF37);
+            color: #000;
+            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Group Form */
+        #group-form-section {
+            display: none;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 2rem;
+            background: var(--bg-surface);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .people-counter {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .people-counter button {
+            background: rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.1);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .people-counter button:hover {
+            background: var(--accent-gold, #D4AF37);
+            color: #000;
+            border-color: var(--accent-gold, #D4AF37);
+        }
+        .person-fields {
+            background: rgba(0,0,0,0.02);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .person-fields h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-gold, #D4AF37);
+        }
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            #group-form-section {
+                padding: 1.5rem;
+            }
+            .person-fields {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body style="background: var(--bg-color); color: var(--text-primary);">
+
+    <!-- Navigation -->
+    <nav class="navbar" style="position: relative; background: var(--bg-surface);">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 60px; width: auto; object-fit: contain;"></a>
+            <a href="products.html" style="color: var(--text-secondary); font-weight: 700; text-decoration: none;">← Back to Menu</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container booking-type-container">
+        
+        <div id="selection-view" style="width: 100%;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Choose Booking Type</h1>
+            <p style="color: var(--text-secondary); font-size: 1.2rem;">Select how you would like to proceed with your treatment.</p>
+            
+            <div class="options-grid">
+                <div class="booking-card" onclick="selectIndividual()">
+                    <h3>Individual Booking</h3>
+                    <p>Proceed to checkout for a single person. Fast, easy, and completely personalized.</p>
+                </div>
+                
+                <div class="booking-card" onclick="showGroupForm()">
+                    <div class="badge-discount">SAVE 10%</div>
+                    <h3>Group Booking</h3>
+                    <p>Book for 2 or more people and receive a 10% discount on your entire order. Advance payment required.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="group-form-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 style="font-size: 2rem;">Group Details</h2>
+                <button onclick="hideGroupForm()" style="background: transparent; border: none; color: var(--text-secondary); cursor: pointer; text-decoration: underline; font-weight: 600;">Cancel</button>
+            </div>
+            
+            <div class="people-counter">
+                <span style="font-size: 1.2rem; font-weight: 600;">Number of People:</span>
+                <button onclick="updatePeople(-1)">-</button>
+                <span id="people-count-display" style="font-size: 1.5rem; font-weight: bold; width: 30px; text-align: center;">2</span>
+                <button onclick="updatePeople(1)">+</button>
+            </div>
+
+            <form id="group-details-form" onsubmit="submitGroupBooking(event)">
+                <div id="dynamic-fields">
+                    <!-- Fields injected via JS -->
+                </div>
+                
+                <div style="margin-top: 3rem; text-align: right;">
+                    <p style="color: var(--accent-gold, #D4AF37); margin-bottom: 1rem; font-weight: bold;">Note: A 20% advance payment will be required at checkout.</p>
+                    <button type="submit" class="btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem; border: none; background: var(--text-primary); color: #fff; border-radius: 30px; font-weight: bold; cursor: pointer;">Proceed to Checkout →</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+        </main>
+
+    <!-- Footer -->
+    <footer class="footer new-footer">
+        <!-- Re-use footer HTML from other files here -->
+    </footer>
+
+    <script>
+        let peopleCount = 2;
+
+        function selectIndividual() {
+            localStorage.setItem('reviveBookingType', 'individual');
+            localStorage.removeItem('reviveGroupDetails');
+            window.location.href = 'checkout.html';
+        }
+
+        function showGroupForm() {
+            document.getElementById('selection-view').style.display = 'none';
+            document.getElementById('group-form-section').style.display = 'block';
+            renderFields();
+        }
+
+        function hideGroupForm() {
+            document.getElementById('selection-view').style.display = 'block';
+            document.getElementById('group-form-section').style.display = 'none';
+        }
+
+        function updatePeople(change) {
+            peopleCount += change;
+            if (peopleCount < 2) peopleCount = 2;
+            if (peopleCount > 20) peopleCount = 20; // reasonable limit
+            document.getElementById('people-count-display').textContent = peopleCount;
+            renderFields();
+        }
+
+        function renderFields() {
+            const container = document.getElementById('dynamic-fields');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= peopleCount; i++) {
+                const isMandatory = i === 1;
+                const requiredAttr = isMandatory ? 'required' : '';
+                const optionalLabel = isMandatory ? '' : '<span style="color: var(--text-secondary); font-size: 0.8rem; font-weight: normal;">(Optional)</span>';
+                
+                const html = `
+                    <div class="person-fields">
+                        <h4>Person ${i} ${i === 1 ? '(Primary Contact)' : ''}</h4>
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Full Name ${optionalLabel}</label>
+                                <input type="text" id="p${i}_name" ${requiredAttr} style="width: 100%; padding: 0.8rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; color: var(--text-primary);">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Age ${optionalLabel}</label>
+                                <input type="number" id="p${i}_age" ${requiredAttr} style="width: 100%; padding: 0.8rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; color: var(--text-primary);">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Phone Number ${optionalLabel}</label>
+                            <input type="tel" id="p${i}_phone" ${requiredAttr} style="width: 100%; padding: 0.8rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; color: var(--text-primary);">
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            }
+        }
+
+        function submitGroupBooking(e) {
+            e.preventDefault();
+            
+            const groupData = [];
+            for (let i = 1; i <= peopleCount; i++) {
+                groupData.push({
+                    name: document.getElementById(`p${i}_name`).value,
+                    age: document.getElementById(`p${i}_age`).value,
+                    phone: document.getElementById(`p${i}_phone`).value
+                });
+            }
+            
+            localStorage.setItem('reviveBookingType', 'group');
+            localStorage.setItem('reviveGroupDetails', JSON.stringify({
+                count: peopleCount,
+                members: groupData
+            }));
+            
+            window.location.href = 'checkout.html';
+        }
+    </script>
+</body>
+</html>

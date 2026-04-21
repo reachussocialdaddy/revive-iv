@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs | Revive IV</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+            padding: 2rem 0;
+            cursor: pointer;
+        }
+        .faq-question {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            transition: var(--transition-fast);
+        }
+        .faq-item.active .faq-question::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* arbitrary max height for animation */
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body data-barba="wrapper">
+    <div id="barba-curtain"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
+            <ul class="nav-links desktop-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="iv-drips.html">IV Drips</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html" class="active">FAQs</a></li>
+            </ul>
+            <a href="contact.html" class="btn-primary desktop-btn">Book Now</a>
+            
+            <!-- Mobile Actions -->
+            <div class="mobile-actions">
+                <a href="products.html" class="mobile-products-icon" aria-label="Order Now">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                </a>
+                <!-- Mobile Hamburger -->
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Slide-out -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="iv-drips.html">IV Drips</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="faq.html" class="active">FAQs</a>
+            <a href="contact.html" class="btn-solid" style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
+        </div>
+    </div>
+
+    <main data-barba="container" data-barba-namespace="faq">
+
+
+    <!-- Header -->
+        <!-- Inner Page Header -->
+    <header class="inner-page-header">
+        <div class="container">
+            <h1 class="page-title reveal"><span class="text-gradient">Questions?</span></h1>
+            <p class="page-subtitle reveal">Everything you need to know about our luxury IV hydration therapy.</p>
+        </div>
+    </header>
+
+    <!-- FAQ Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container" style="max-width: 800px;">
+            
+            <div class="faq-list reveal">
+                
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">What is IV Hydration Therapy?</div>
+                    <div class="faq-answer">IV hydration therapy is a fast and effective way to deliver necessary vitamins, minerals, and hydration directly into your bloodstream, completely bypassing the digestive system for 100% absorption.</div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">Does the IV hurt?</div>
+                    <div class="faq-answer">Most clients feel only a slight pinch during the insertion of the IV. Our highly trained registered nurses are skilled at making the process as quick, painless, and comfortable as possible.</div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">How long does a session take?</div>
+                    <div class="faq-answer">A typical IV therapy session lasts between 45 to 60 minutes, depending on the specific drip and your body's individual absorption rate. During this time, you can relax, read, or catch up on emails.</div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">Are the treatments safe?</div>
+                    <div class="faq-answer">Yes! All our treatments are administered by licensed medical professionals using sterile, single-use equipment and FDA-approved, pharmacy-grade ingredients.</div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">How quickly will I feel the effects?</div>
+                    <div class="faq-answer">Most clients report feeling a boost in energy and overall wellness immediately following their session, with the full benefits noticeable over the next 24 to 48 hours.</div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+            </main>
+
+    <!-- Footer -->
+    <footer class="footer new-footer">
+        <div class="footer-top-row reveal">
+            <div class="footer-top-left">
+                <a href="tel:+16467093698">+1 (646) 709-3698</a>
+                <a href="mailto:info@reviveiv.io">info@reviveiv.io</a>
+            </div>
+            <div class="footer-top-right">
+                <a href="https://www.instagram.com/reviveivdrip_/" target="_blank">Instagram</a>
+            </div>
+        </div>
+
+        <div class="footer-middle-row reveal">
+            <div class="footer-logo-container">
+                <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV"></a>
+            </div>
+            
+            <div class="footer-nav-container">
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="iv-drips.html">IV Drips</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+                <ul class="footer-nav-list">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-desc-container">
+                <p>Expert IV hydration and wellness treatments, delivered to your doorstep in New York.</p>
+            </div>
+        </div>
+
+        <div class="footer-massive-row reveal">
+            REVIVE IV
+        </div>
+
+        <div class="footer-bottom-row reveal">
+            <p>&copy; 2026 Revive IV Hydration.</p>
+            <p>New York, NY</p>
+        </div>
+    </footer>
+
+    
+    <!-- Three.js, Lenis, and GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+    <script src="app.js"></script>
+    <script src="barba-init.js"></script>
+
+</body>
+</html>
+

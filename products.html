@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Now | Revive IV</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="store.css">
+</head>
+<body data-barba="wrapper">
+    <div id="barba-curtain"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
+            <ul class="nav-links desktop-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="iv-drips.html">IV Drips</a></li>
+                <li><a href="products.html" class="active">Order</a></li>
+            </ul>
+            
+            <div class="mobile-actions">
+                <a href="products.html" class="mobile-products-icon" style="color: var(--accent-primary);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                </a>
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Slide-out -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="iv-drips.html">IV Drips</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQs</a>
+            <a href="contact.html" class="btn-solid" style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
+        </div>
+    </div>
+
+    <main data-barba="container" data-barba-namespace="products">
+
+
+    <!-- Store Container -->
+    <div class="container store-container">
+        
+        <h1 class="section-title reveal" style="text-align: left; font-size: 2.5rem; margin-bottom: 0.5rem;">Our Flagships</h1>
+        <p class="section-subtitle reveal" style="text-align: left; margin-bottom: 2rem; margin-left: 0;">Add IV drips and shots directly to your cart.</p>
+
+        <!-- Category Nav -->
+        <div class="category-nav reveal">
+            <a href="#iv-drips" class="category-link active">IV Drips</a>
+            <a href="#shots" class="category-link">Wellness Shots</a>
+            <a href="#weight-loss" class="category-link">Weight Loss</a>
+        </div>
+
+        <!-- IV Drips Category -->
+        <div id="iv-drips" class="product-category-section reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">IV Drips</h2>
+            
+            <!-- Custom Drips -->
+            <div class="product-item" data-id="drip_custom">
+                <div class="product-img-wrapper">
+                    <img src="assets/customdrips.webp" alt="Custom Drips">
+                </div>
+                <div class="product-info">
+                    <h3>Custom Drips <span style="font-size: 0.8rem; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;">MOST POPULAR</span></h3>
+                    <div class="product-price">$175</div>
+                    <p class="product-desc">Optimize wellness with our most comprehensive IV. Includes B-Complex, B12, C, Lipostat, Magnesium, Glutathione, Biotin, Zinc.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_custom', 'Custom Drips', 175, 'drip', 'assets/customdrips.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_custom')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_custom', 'Custom Drips', 175, 'drip', 'assets/customdrips.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Myers Cocktail -->
+            <div class="product-item" data-id="drip_myers">
+                <div class="product-img-wrapper">
+                    <img src="assets/myserscocktail.jpg" alt="Myers Cocktail">
+                </div>
+                <div class="product-info">
+                    <h3>Myers Cocktail</h3>
+                    <div class="product-price">$399</div>
+                    <p class="product-desc">The gold standard of IV therapy. Hydrate, restore, and optimize your overall wellness.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_myers', 'Myers Cocktail', 399, 'drip', 'assets/myserscocktail.jpg')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_myers')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_myers', 'Myers Cocktail', 399, 'drip', 'assets/myserscocktail.jpg')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brain Focus -->
+            <div class="product-item" data-id="drip_brain">
+                <div class="product-img-wrapper">
+                    <img src="assets/brainfocus.webp" alt="Brain Focus">
+                </div>
+                <div class="product-info">
+                    <h3>Brain Focus</h3>
+                    <div class="product-price">$400</div>
+                    <p class="product-desc">Enhance cognitive function and power through your day.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_brain', 'Brain Focus', 400, 'drip', 'assets/brainfocus.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_brain')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_brain', 'Brain Focus', 400, 'drip', 'assets/brainfocus.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revive Calm -->
+            <div class="product-item" data-id="drip_calm">
+                <div class="product-img-wrapper">
+                    <img src="assets/revivecalm.webp" alt="Revive Calm">
+                </div>
+                <div class="product-info">
+                    <h3>Revive Calm</h3>
+                    <div class="product-price">$279</div>
+                    <p class="product-desc">Replenish essential vitamins and soothe your mind.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_calm', 'Revive Calm', 279, 'drip', 'assets/revivecalm.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_calm')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_calm', 'Revive Calm', 279, 'drip', 'assets/revivecalm.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revive Defense -->
+            <div class="product-item" data-id="drip_defense">
+                <div class="product-img-wrapper">
+                    <img src="assets/revivedefense.webp" alt="Revive Defense">
+                </div>
+                <div class="product-info">
+                    <h3>Revive Defense</h3>
+                    <div class="product-price">$299</div>
+                    <p class="product-desc">Strengthen your immune system to fight off illness.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_defense', 'Revive Defense', 299, 'drip', 'assets/revivedefense.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_defense')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_defense', 'Revive Defense', 299, 'drip', 'assets/revivedefense.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beautify -->
+            <div class="product-item" data-id="drip_beautify">
+                <div class="product-img-wrapper">
+                    <img src="assets/beautify.webp" alt="Beautify">
+                </div>
+                <div class="product-info">
+                    <h3>Beautify</h3>
+                    <div class="product-price">$299</div>
+                    <p class="product-desc">Promote radiant skin, healthy hair, and strong nails.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_beautify', 'Beautify', 299, 'drip', 'assets/beautify.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_beautify')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_beautify', 'Beautify', 299, 'drip', 'assets/beautify.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liquid Gold -->
+            <div class="product-item" data-id="drip_liquidgold">
+                <div class="product-img-wrapper">
+                    <img src="assets/liquidgold.webp" alt="Liquid Gold">
+                </div>
+                <div class="product-info">
+                    <h3>Liquid Gold</h3>
+                    <div class="product-price">$259</div>
+                    <p class="product-desc">The ultimate hydration and vitamin replenishment blend (Hangover Cure).</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_liquidgold', 'Liquid Gold', 259, 'drip', 'assets/liquidgold.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_liquidgold')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_liquidgold', 'Liquid Gold', 259, 'drip', 'assets/liquidgold.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revive Recovery -->
+            <div class="product-item" data-id="drip_recovery">
+                <div class="product-img-wrapper">
+                    <img src="assets/reviverecovery.webp" alt="Revive Recovery">
+                </div>
+                <div class="product-info">
+                    <h3>Revive Recovery</h3>
+                    <div class="product-price">$279</div>
+                    <p class="product-desc">Accelerate muscle repair, reduce soreness, and bounce back fast.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('drip_recovery', 'Revive Recovery', 279, 'drip', 'assets/reviverecovery.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('drip_recovery')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('drip_recovery', 'Revive Recovery', 279, 'drip', 'assets/reviverecovery.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shots Category -->
+        <div id="shots" class="product-category-section reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Wellness Shots</h2>
+            
+            <!-- Vitamin B12 -->
+            <div class="product-item" data-id="shot_b12">
+                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
+                    <img src="assets/vitsaminb12.png" alt="Vitamin B12">
+                </div>
+                <div class="product-info">
+                    <h3>Vitamin B12</h3>
+                    <div class="product-price">$35</div>
+                    <p class="product-desc">Instant energy boost and metabolic support.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_b12', 'Vitamin B12', 35, 'shot', 'assets/vitsaminb12.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_b12')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_b12', 'Vitamin B12', 35, 'shot', 'assets/vitsaminb12.png')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vitamin D -->
+            <div class="product-item" data-id="shot_d3">
+                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
+                    <img src="assets/vitamind.png" alt="Vitamin D">
+                </div>
+                <div class="product-info">
+                    <h3>Vitamin D</h3>
+                    <div class="product-price">$45</div>
+                    <p class="product-desc">Bone health, immunity, and mood regulation.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_d3', 'Vitamin D', 45, 'shot', 'assets/vitamind.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_d3')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_d3', 'Vitamin D', 45, 'shot', 'assets/vitamind.png')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lipolean -->
+            <div class="product-item" data-id="shot_lipolean">
+                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
+                    <img src="assets/lipolean.png" alt="Lipolean">
+                </div>
+                <div class="product-info">
+                    <h3>Lipolean</h3>
+                    <div class="product-price">$40</div>
+                    <p class="product-desc">Fat metabolism and weight loss optimization.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_lipolean', 'Lipolean', 40, 'shot', 'assets/lipolean.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_lipolean')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_lipolean', 'Lipolean', 40, 'shot', 'assets/lipolean.png')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biotin -->
+            <div class="product-item" data-id="shot_biotin">
+                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
+                    <img src="assets/biotin.png" alt="Biotin">
+                </div>
+                <div class="product-info">
+                    <h3>Biotin</h3>
+                    <div class="product-price">$35</div>
+                    <p class="product-desc">Healthy hair, glowing skin, and strong nails.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_biotin', 'Biotin', 35, 'shot', 'assets/biotin.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_biotin')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_biotin', 'Biotin', 35, 'shot', 'assets/biotin.png')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Glutathione -->
+            <div class="product-item" data-id="shot_gluta">
+                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
+                    <img src="assets/glutathione.jpg" alt="Glutathione" style="object-fit: contain;">
+                </div>
+                <div class="product-info">
+                    <h3>Glutathione</h3>
+                    <div class="product-price">$50</div>
+                    <p class="product-desc">Powerful antioxidant for detoxification and skin health.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_gluta', 'Glutathione', 50, 'shot', 'assets/glutathione.jpg')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_gluta')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_gluta', 'Glutathione', 50, 'shot', 'assets/glutathione.jpg')">+</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Weight Loss Category -->
+        <div id="weight-loss" class="product-category-section reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Revive Weight Loss Injections</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">Customized for your body & goals • Dosing increases gradually • Personalized plans • Ongoing support</p>
+            
+            <!-- Semaglutide -->
+            <div class="product-item" data-id="wl_sema">
+                <div class="product-img-wrapper" style="background: var(--bg-surface);">
+                    <img src="assets/Semaglutide.webp" alt="Semaglutide" style="object-fit: contain;">
+                </div>
+                <div class="product-info">
+                    <h3>Semaglutide <span style="font-size: 0.7rem; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;">WEIGHT LOSS</span></h3>
+                    <div class="product-price">$199 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">/ month</span></div>
+                    <p class="product-desc">Effective, customized injection plan to support your sustainable weight loss journey.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('wl_sema', 'Semaglutide', 199, 'weight_loss', 'assets/Semaglutide.webp')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('wl_sema')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('wl_sema', 'Semaglutide', 199, 'weight_loss', 'assets/Semaglutide.webp')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tirzepatide -->
+            <div class="product-item" data-id="wl_tirz">
+                <div class="product-img-wrapper" style="background: var(--bg-surface);">
+                    <img src="assets/Tirzepatide.png" alt="Tirzepatide" style="object-fit: contain;">
+                </div>
+                <div class="product-info">
+                    <h3>Tirzepatide <span style="font-size: 0.7rem; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;">WEIGHT LOSS</span></h3>
+                    <div class="product-price">$249 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">/ month</span></div>
+                    <p class="product-desc">Advanced dual-action weight management protocol optimized for robust results.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('wl_tirz', 'Tirzepatide', 249, 'weight_loss', 'assets/Tirzepatide.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('wl_tirz')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('wl_tirz', 'Tirzepatide', 249, 'weight_loss', 'assets/Tirzepatide.png')">+</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </main><!-- end barba container -->
+
+    <!-- Sticky Bottom Cart Bar -->
+    <div id="cart-bottom-bar" class="cart-bottom-bar">
+        <div class="cart-bar-content">
+            <div class="cart-bar-info">
+                <span class="cart-item-count">1 ITEM</span>
+                <span class="cart-total-price">$399</span>
+            </div>
+            <a href="booking-type.html" class="btn-primary" style="padding: 0.6rem 1.5rem;">View Cart <span style="margin-left: 0.5rem;">→</span></a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <!-- Barba.js -->
+    <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+
+    <script src="app.js"></script>
+    <script src="cart.js"></script>
+    <script src="barba-init.js"></script>
+    <script>
+        // Simple scroll spy for categories
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                const offsetTop = targetEl.getBoundingClientRect().top + window.scrollY - 130;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        gsap.utils.toArray('.reveal').forEach(elem => {
+            gsap.fromTo(elem, { autoAlpha: 0, y: 30 }, { duration: 0.8, autoAlpha: 1, y: 0, ease: 'power2.out' });
+        });
+    </script>
+</body>
+</html>
