@@ -145,20 +145,34 @@ function initReviews() {
             wrapper.style.cursor = 'pointer';
 
         } else {
-            /* ─── Desktop: Horizontal Auto-Slider ─── */
-            gsap.set(cards, { opacity: 1, x: 0, y: 0, z: 0, rotation: 0, scale: 1, pointerEvents: 'auto' });
+            /* ─── Desktop: Seamless Infinite Auto-Slider ─── */
+            // 1. Clone cards for seamless loop
+            if (!track.dataset.cloned) {
+                track.innerHTML += track.innerHTML;
+                track.dataset.cloned = "true";
+            }
             
-            let scrollWidth = track.scrollWidth - wrapper.offsetWidth;
+            const allCards = track.querySelectorAll('.review-card');
+            gsap.set(allCards, { opacity: 1, x: 0, y: 0, z: 0, rotation: 0, scale: 1, pointerEvents: 'auto' });
+            
+            let cardWidth = 432; // 400px + 32px gap
+            let totalOriginalWidth = cardWidth * (allCards.length / 2);
             let currentX = 0;
 
             function autoSlideDesktop() {
-                currentX -= 432; // card width (400) + gap (32)
-                if (Math.abs(currentX) > scrollWidth) currentX = 0;
+                currentX -= cardWidth;
                 
                 gsap.to(track, {
                     x: currentX,
-                    duration: 1,
-                    ease: "power2.inOut"
+                    duration: 1.2,
+                    ease: "power3.inOut",
+                    onComplete: () => {
+                        // If we've reached the end of the first set, jump back to start
+                        if (Math.abs(currentX) >= totalOriginalWidth) {
+                            currentX = 0;
+                            gsap.set(track, { x: 0 });
+                        }
+                    }
                 });
             }
 
@@ -167,9 +181,17 @@ function initReviews() {
             if (typeof Draggable !== 'undefined') {
                 Draggable.create(track, {
                     type: "x",
-                    bounds: wrapper,
                     inertia: true,
-                    onDragStart: () => clearInterval(reviewInterval)
+                    onDragStart: () => clearInterval(reviewInterval),
+                    onDrag: function() {
+                        // Handle infinite wrap while dragging
+                        if (this.x > 0) gsap.set(this.target, { x: this.x - totalOriginalWidth });
+                        if (this.x < -totalOriginalWidth) gsap.set(this.target, { x: this.x + totalOriginalWidth });
+                    },
+                    onThrowUpdate: function() {
+                        if (this.x > 0) gsap.set(this.target, { x: this.x - totalOriginalWidth });
+                        if (this.x < -totalOriginalWidth) gsap.set(this.target, { x: this.x + totalOriginalWidth });
+                    }
                 });
             }
             wrapper.onclick = null;
