@@ -1904,9 +1904,113 @@ img {
     flex-shrink: 0;
 }
 
+/* ─── Bento & CTA Utilities ─── */
+.bento-top {
+    margin-bottom: 2rem;
+}
+
+.bento-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.bento-price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--accent-gold);
+}
+
+.bento-cta-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.bento-cta-link {
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s ease;
+}
+
+.bento-cta-link:hover {
+    gap: 0.8rem;
+}
+
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(197,160,89,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    color: white;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+.cta-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+    opacity: 0.8;
+}
+
+.cta-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.f-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.f-price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-primary);
+}
+
 /* ─── Services Page Revamp ──────────────────────────────────── */
 .services-hero {
     overflow: hidden;
+    background: transparent;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: clamp(2rem, 5vw, 6rem);
+    margin-top: 6rem;
+    padding-top: 4rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.feature-section {
+    padding: 10rem 0;
 }
 
 .feature-grid {
@@ -1916,44 +2020,166 @@ img {
     align-items: center;
 }
 
+.feature-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-image-wrapper {
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: var(--shadow-premium);
+    border: 1px solid rgba(0,0,0,0.05);
+    aspect-ratio: 4/5;
+    width: 100%;
+}
+
+.feature-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+}
+
+.feature-visual:hover img {
+    transform: scale(1.05);
+}
+
+.floating-badge {
+    position: absolute;
+    bottom: 2rem;
+    left: -2rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 2px solid var(--accent-gold);
+    z-index: 5;
+}
+
+.feature-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: all 0.3s var(--ease-out);
+}
+
 .feature-item:hover {
     transform: translateX(10px);
-    border-color: var(--accent-gold) !important;
-    background: rgba(197, 160, 89, 0.02) !important;
+    border-color: var(--accent-gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.bento-section {
+    padding: 10rem 0;
+    background: #fdfdfd;
 }
 
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 320px);
+    grid-template-rows: repeat(2, 300px);
     gap: 1.5rem;
 }
 
 .bento-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
     transition: all 0.5s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-item:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 30px 60px rgba(197, 160, 89, 0.1);
+}
+
+.process-section {
+    padding: 10rem 0;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
 }
 
 .process-card {
-    transition: all 0.5s var(--ease-out);
+    background: white;
+    padding: 4rem 3rem;
+    border-radius: 40px;
     border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s var(--ease-out);
+}
+
+.process-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+}
+
+.process-number {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(197,160,89,0.08);
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    transition: all 0.5s var(--ease-out);
 }
 
 .process-card:hover .process-number {
-    color: var(--accent-gold) !important;
-    transform: scale(1.1) translateY(-5px);
+    color: rgba(197,160,89,0.15);
+    transform: scale(1.1);
+}
+
+.cta-banner {
+    background: #0f172a;
+    color: white;
+    padding: 8rem 4rem;
+    border-radius: 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(15, 23, 42, 0.2);
 }
 
 .trust-strip {
+    padding: 4rem 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: white;
+    overflow: hidden;
     white-space: nowrap;
+}
+
+.trust-scroll {
+    display: flex;
+    gap: 5rem;
+    animation: scrollTrust 40s linear infinite;
+    width: max-content;
 }
 
 @keyframes scrollTrust {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
-}
-
-.cta-banner {
-    box-shadow: 0 40px 100px rgba(15, 23, 42, 0.2);
 }
 
 /* Responsive Overrides for Services */
@@ -1983,6 +2209,11 @@ img {
         grid-template-rows: auto;
     }
     
+    .bento-item {
+        grid-column: span 2 !important;
+        grid-row: auto !important;
+    }
+    
     .process-grid {
         grid-template-columns: 1fr;
     }
@@ -2001,6 +2232,13 @@ img {
     
     .cta-banner {
         padding: 4rem 2rem !important;
+    }
+
+    .floating-badge {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        text-align: center;
     }
 }
 
