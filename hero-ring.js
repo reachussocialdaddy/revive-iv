@@ -125,9 +125,6 @@
             });
         }
 
-        gsap.ticker.add(updateOrbit);
-    }
-
         // Sync cluster size on resize
         const syncSize = () => {
             const isMob = window.innerWidth <= 768;
@@ -136,6 +133,8 @@
         };
         window.addEventListener('resize', syncSize);
         syncSize();
+
+        gsap.ticker.add(updateOrbit);
     }
 
     /* ─── Three.js Hero Ring Scene ──────────────────────────────── */
