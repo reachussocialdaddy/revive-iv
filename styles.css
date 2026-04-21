@@ -1003,26 +1003,27 @@ img {
     }
 }
 
-/* Stacked Reviews Section */
+/* Reviews Section */
 .reviews-section {
     padding-bottom: 8rem;
     overflow: hidden;
 }
 
+/* Default: Stack for Mobile */
 .reviews-wrapper {
   margin-top: 4rem;
   position: relative;
-  height: 480px;
+  height: 520px;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  perspective: 1500px;
 }
 
 .reviews-track {
   position: relative;
   width: 90%;
-  max-width: 500px;
+  max-width: 450px;
   height: 100%;
 }
 
@@ -1031,27 +1032,21 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
   padding: 3.5rem 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
   border: 1px solid rgba(255,255,255,0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
   user-select: none;
   opacity: 0;
   pointer-events: none;
-}
-
-.review-card.active {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 10;
+  will-change: transform, opacity;
 }
 
 .review-stars {
@@ -1062,11 +1057,12 @@ img {
 }
 
 .review-text {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   line-height: 1.6;
   font-weight: 500;
   margin-bottom: 2.5rem;
   color: var(--text-primary);
+  font-style: italic;
 }
 
 .review-author {
@@ -1075,6 +1071,33 @@ img {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9rem;
+}
+
+/* Desktop: Horizontal Slider */
+@media (min-width: 1024px) {
+    .reviews-wrapper {
+        height: auto;
+        padding: 4rem 0;
+        perspective: none;
+        overflow: visible;
+    }
+    .reviews-track {
+        display: flex;
+        gap: 3rem;
+        width: max-content;
+        max-width: none;
+        height: auto;
+        padding: 0 10vw;
+    }
+    .review-card {
+        position: relative;
+        flex: 0 0 450px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none !important;
+        background: white;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    }
 }
 
 /* Animations */

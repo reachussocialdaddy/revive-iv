@@ -85,82 +85,110 @@ function initHorizontalScroll() {
     });
 }
 
-/* ─── 5. Stacked Auto-Swiping Reviews ────────────────────────── */
-function initStackedReviews() {
-    const cards = document.querySelectorAll('.review-card');
-    if (!cards.length) return;
-    
-    let currentIndex = 0;
-    let isAnimating = false;
-    
-    function updateStack() {
-        cards.forEach((card, i) => {
-            // Relative index from the front
-            let relIndex = (i - currentIndex + cards.length) % cards.length;
-            
-            if (relIndex === 0) {
-                card.classList.add('active');
-                gsap.to(card, {
-                    z: 0, y: 0, scale: 1, opacity: 1, 
-                    duration: 0.8, ease: "power3.out",
-                    zIndex: 10
-                });
-            } else if (relIndex < 3) {
-                card.classList.remove('active');
-                gsap.to(card, {
-                    z: -60 * relIndex,
-                    y: 20 * relIndex,
-                    scale: 1 - (0.05 * relIndex),
-                    opacity: 1 - (0.25 * relIndex),
-                    duration: 0.8, 
-                    ease: "power3.out",
-                    zIndex: 10 - relIndex
-                });
-            } else {
-                card.classList.remove('active');
-                gsap.to(card, {
-                    opacity: 0, z: -200, duration: 0.8, zIndex: 0
-                });
-            }
-        });
-    }
-
-    function showNext() {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const currentCard = cards[currentIndex];
-        
-        // Throw top card away
-        gsap.to(currentCard, {
-            x: -150,
-            y: 50,
-            rotation: -15,
-            opacity: 0,
-            duration: 0.7,
-            ease: "power2.inOut",
-            onComplete: () => {
-                gsap.set(currentCard, { x: 0, y: 0, rotation: 0, zIndex: 0 });
-                currentIndex = (currentIndex + 1) % cards.length;
-                updateStack();
-                setTimeout(() => { isAnimating = false; }, 100);
-            }
-        });
-    }
-
-    // Initial state
-    updateStack();
-    
-    // Auto cycle
-    if (window.reviewInterval) clearInterval(window.reviewInterval);
-    window.reviewInterval = setInterval(showNext, 5000);
-    
-    // Click to go next manually
+/* ─── 5. Responsive Reviews ─────────────────────────────────── */
+function initReviews() {
     const wrapper = document.querySelector('.reviews-wrapper');
-    if (wrapper) {
-        wrapper.style.cursor = 'pointer';
-        wrapper.onclick = showNext;
-    }
+    const track = document.querySelector('.reviews-track');
+    const cards = document.querySelectorAll('.review-card');
+    if (!wrapper || !track || !cards.length) return;
+
+    let mm = gsap.matchMedia();
+    let reviewInterval;
+
+    mm.add({
+        isDesktop: "(min-width: 1024px)",
+        isMobile: "(max-width: 1023px)"
+    }, (context) => {
+        let { isDesktop, isMobile } = context.conditions;
+
+        // Cleanup previous interval
+        if (reviewInterval) clearInterval(reviewInterval);
+
+        if (isMobile) {
+            /* ─── Mobile: 3D Stack ─── */
+            let currentIndex = 0;
+            let isAnimating = false;
+
+            function updateStack() {
+                cards.forEach((card, i) => {
+                    let relIndex = (i - currentIndex + cards.length) % cards.length;
+                    
+                    if (relIndex === 0) {
+                        gsap.to(card, {
+                            z: 0, y: 0, x: 0, rotation: 0, scale: 1, opacity: 1, 
+                            duration: 0.8, ease: "power3.out", zIndex: 10, pointerEvents: 'auto'
+                        });
+                    } else if (relIndex < 3) {
+                        // Background cards visible
+                        gsap.to(card, {
+                            z: -100 * relIndex,
+                            y: 30 * relIndex,
+                            x: 0,
+                            rotation: 0,
+                            scale: 1 - (0.08 * relIndex),
+                            opacity: 0.8 - (0.3 * relIndex),
+                            duration: 0.8, ease: "power3.out", zIndex: 10 - relIndex, pointerEvents: 'none'
+                        });
+                    } else {
+                        gsap.to(card, { opacity: 0, z: -300, duration: 0.6, zIndex: 0, pointerEvents: 'none' });
+                    }
+                });
+            }
+
+            function showNext() {
+                if (isAnimating) return;
+                isAnimating = true;
+                const currentCard = cards[currentIndex];
+                
+                gsap.to(currentCard, {
+                    x: -200, y: 100, rotation: -20, opacity: 0, scale: 0.8,
+                    duration: 0.7, ease: "power2.inOut",
+                    onComplete: () => {
+                        gsap.set(currentCard, { x: 0, y: 0, rotation: 0, zIndex: 0 });
+                        currentIndex = (currentIndex + 1) % cards.length;
+                        updateStack();
+                        setTimeout(() => { isAnimating = false; }, 100);
+                    }
+                });
+            }
+
+            updateStack();
+            reviewInterval = setInterval(showNext, 5000);
+            wrapper.onclick = showNext;
+            wrapper.style.cursor = 'pointer';
+
+        } else {
+            /* ─── Desktop: Horizontal Slider ─── */
+            gsap.set(cards, { opacity: 1, x: 0, y: 0, z: 0, rotation: 0, scale: 1, pointerEvents: 'auto' });
+            
+            // Simple Draggable
+            if (typeof Draggable !== 'undefined') {
+                Draggable.create(track, {
+                    type: "x",
+                    bounds: wrapper,
+                    inertia: true,
+                    edgeResistance: 0.65
+                });
+            }
+
+            // Optional: Auto-slide on desktop too
+            let desktopX = 0;
+            function autoSlideDesktop() {
+                // This is a bit complex with Draggable, so we'll keep it simple:
+                // Just let users drag on desktop for best UX, or use a basic marquee
+            }
+            wrapper.onclick = null;
+            wrapper.style.cursor = 'grab';
+        }
+
+        return () => {
+            if (reviewInterval) clearInterval(reviewInterval);
+            if (isDesktop && typeof Draggable !== 'undefined') {
+                const draggables = Draggable.get(track);
+                if (draggables) draggables.kill();
+            }
+        };
+    });
 }
 
 /* ─── 6. Hero Parallax ──────────────────────────────────────── */
@@ -275,7 +303,7 @@ window.initScrollAnimations = function () {
     initBentoStagger();
     initHeroParallax();
     initHorizontalScroll();
-    initStackedReviews();
+    initReviews();
     initHeroSlider();
     initMarquee();
     initShotCards();
@@ -287,6 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initLenis();
     initMarquee();
     initShotCards();
-    initStackedReviews();
+    initReviews();
     window.initScrollAnimations();
 });
