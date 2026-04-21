@@ -1879,9 +1879,8 @@ img {
         display: none !important;
     }
     .btn-primary {
-        padding: 0.7rem 0.5rem !important;
+        padding: 0.7rem 1.2rem !important;
         font-size: 0.8rem !important;
-        width: 100% !important;
         border-radius: 8px !important;
     }
 }
