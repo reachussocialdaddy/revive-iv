@@ -202,6 +202,7 @@ window.initScrollAnimations = function () {
     initHorizontalScroll();
     initDraggableReviews();
     initHeroSlider();
+    initMarquee();
 };
 
 /* ─── Boot on DOMContentLoaded ──────────────────────────────── */
