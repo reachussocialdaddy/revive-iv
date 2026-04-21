@@ -568,13 +568,17 @@ img {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  height: 450px;
+  height: 500px; /* Increased height */
+  background: rgba(255,255,255,0.03); /* Subtle backdrop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .featured-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Prevent cutting */
   transition: var(--transition-slow);
 }
 
