@@ -1735,20 +1735,159 @@ img {
     .contact-info-heading {
         font-size: 1.6rem;
     }
+/* ── MOBILE MASTER OPTIMIZATIONS ── */
+@media (max-width: 768px) {
+    /* Header Fixes */
+    .navbar {
+        padding: 0.8rem 0 !important;
+    }
+    .navbar .logo img {
+        height: 42px !important;
+    }
+    .mobile-actions {
+        display: flex !important;
+        gap: 1rem !important;
+    }
+    .hamburger .line {
+        width: 25px !important;
+        height: 2px !important;
+    }
+
+    /* Inner Page Headers */
+    .inner-page-header {
+        padding: 120px 0 40px 0 !important;
+    }
+    .page-title {
+        font-size: 2.8rem !important;
+    }
+
+    /* Featured Product Fixes */
+    .featured-product-hero {
+        padding: 2.5rem 1.25rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 3rem !important;
+        border-radius: 20px !important;
+    }
+    .featured-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    .featured-image-container {
+        height: 320px !important;
+        margin-bottom: 1rem;
+    }
+    .featured-info {
+        text-align: center;
+    }
+    .featured-title {
+        font-size: 2.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .featured-price {
+        justify-content: center !important;
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .featured-desc {
+        font-size: 1.05rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .ingredients-list {
+        justify-content: center !important;
+        gap: 0.4rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .ingredient {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+    .trust-pill-row {
+        justify-content: center !important;
+        gap: 0.4rem !important;
+        margin-bottom: 2.5rem !important;
+    }
+    .trust-pill {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+    .hero-cta {
+        display: block !important;
+        width: 100% !important;
+        padding: 1.2rem !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* Grid Cards (2-column) Fixes */
+    .drips-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.6rem !important;
+        padding: 0 !important;
+    }
+    .service-card {
+        padding: 1.2rem 1rem !important;
+        border-radius: 18px !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .service-card-image {
+        width: 100% !important;
+        height: 160px !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .service-card-image img {
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+    .service-card-info {
+        width: 100% !important;
+    }
+    .card-badge {
+        font-size: 0.55rem !important;
+        padding: 0.2rem 0.4rem !important;
+        margin-bottom: 0.5rem !important;
+        letter-spacing: 0.5px !important;
+    }
+    .service-card-info h3 {
+        font-size: 1.1rem !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.2rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    .service-card-info h3 span {
+        font-size: 1rem !important;
+        color: var(--accent-gold) !important;
+        font-weight: 800 !important;
+    }
+    .service-card-info p {
+        font-size: 0.78rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1.2rem !important;
+        -webkit-line-clamp: 2 !important;
+    }
+    .ingredients-hint {
+        display: none !important;
+    }
+    .btn-primary {
+        padding: 0.7rem 0.5rem !important;
+        font-size: 0.8rem !important;
+        width: 100% !important;
+        border-radius: 8px !important;
+    }
 }
 
 @media (max-width: 480px) {
-    .social-row {
-        gap: 0.5rem;
+    .drips-grid {
+        gap: 0.5rem !important;
     }
-    .social-chip {
-        font-size: 0.82rem;
-        padding: 0.5rem 0.9rem;
+    .service-card {
+        padding: 1rem 0.75rem !important;
     }
-    .contact-detail-card {
-        padding: 1rem 1.2rem;
+    .service-card-image {
+        height: 130px !important;
     }
-    .contact-detail-icon {
-        width: 40px; height: 40px;
+    .service-card-info h3 {
+        font-size: 1rem !important;
     }
 }
