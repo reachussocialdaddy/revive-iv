@@ -908,29 +908,38 @@ img {
   grid-row: span 1;
 }
 
-/* Shot Bar */
+/* Shot Bar Section */
+.shot-bar-section {
+    background: #fcfcfc; /* Light contrast background */
+    padding: 8rem 0;
+}
+
 .shotbar-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .shot-card {
-  flex: 0 1 380px; /* Base width for cards */
+  flex: 0 1 calc(33.333% - 2rem);
+  min-width: 350px;
   background: white;
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.06);
-  border: 2px solid var(--accent-gold); /* Golden border like reviews */
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  border: 1.5px solid rgba(0,0,0,0.12); /* More defined dark border */
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   color: var(--text-primary);
 }
 
 .shot-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    border-color: var(--accent-gold);
 }
 
 .shot-card.active {
