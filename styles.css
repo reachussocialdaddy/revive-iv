@@ -1034,10 +1034,10 @@ img {
   left: 0;
   width: 100%;
   background: white;
-  border-radius: 24px; /* More rounded for premium feel */
+  border-radius: 24px;
   padding: 3.5rem 2.5rem;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.08); /* More prominent shadow */
-  border: 1px solid rgba(0,0,0,0.06); /* Defined border */
+  box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+  border: 2px solid var(--accent-gold); /* Default golden border */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1045,8 +1045,19 @@ img {
   user-select: none;
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   will-change: transform, opacity;
+  background-clip: padding-box;
+}
+
+.review-card:hover {
+  border: 2px solid transparent;
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(to right, #9400D3, #4B0082, #0000FF, #00FF00, #FFFF00, #FF7F00, #FF0000);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transform: translateY(-10px) !important;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
 }
 
 .review-stars {
@@ -1113,12 +1124,6 @@ img {
         background: white;
         box-shadow: 0 10px 30px rgba(0,0,0,0.04);
         padding: 3.5rem;
-        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
-    }
-    .review-card:hover {
-        transform: translateY(-10px) !important;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        border-color: var(--accent-gold);
     }
 }
 
