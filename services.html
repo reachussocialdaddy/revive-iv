@@ -1,19 +1,1459 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | Revive IV</title>
+    <title>Services | Revive IV — Premium Mobile Hydration Therapy</title>
+    <meta name="description"
+        content="Premium IV hydration therapy, wellness shots, and medical-grade treatments delivered to your doorstep in NYC. Book your session today.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+        ============================================ */
+        :root {
+            --color-primary: #FAFAFC;
+            --color-secondary: #FFFFFF;
+            --color-accent: #C5A059;
+            --color-accent-light: #F3E5AB;
+            --color-accent-dark: #B58D45;
+            --color-text: #0F172A;
+            --color-text-muted: #64748B;
+            --color-text-dim: #94A3B8;
+            --color-surface: rgba(255, 255, 255, 0.7);
+            --color-surface-solid: #FFFFFF;
+            --color-border: rgba(197, 160, 89, 0.15);
+            --color-border-hover: rgba(197, 160, 89, 0.4);
+            --font-body: 'Red Hat Display', sans-serif;
+            --font-display: 'Red Hat Display', sans-serif;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --radius-xl: 48px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 40px -10px rgba(197, 160, 89, 0.2);
+            --shadow-lg: 0 25px 80px -20px rgba(197, 160, 89, 0.2);
+            --shadow-gold: 0 0 40px rgba(197, 160, 89, 0.15);
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        /* ============================================
+           ANIMATED MESH GRADIENT BACKGROUND
+        ============================================ */
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(250, 250, 252, 1) 0%, transparent 100%);
+            animation: ambientPulse 20s ease-in-out infinite alternate;
+        }
+
+        .ambient-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 70%, rgba(197, 160, 89, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 30%, rgba(100, 116, 139, 0.03) 0%, transparent 40%);
+            animation: ambientFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes ambientPulse {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes ambientFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            33% {
+                transform: translate(-2%, 2%);
+            }
+
+            66% {
+                transform: translate(2%, -1%);
+            }
+        }
+
+        /* Noise texture overlay */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ============================================
+           SCROLL PROGRESS BAR
+        ============================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px var(--color-accent);
+        }
+
+        /* ============================================
+           NAVIGATION
+        ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            transition: var(--transition-base);
+            backdrop-filter: blur(0px);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(250, 250, 252, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.875rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-fast);
+        }
+
+        .logo:hover {
+            color: var(--color-accent);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            font-size: 0.875rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition-fast);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: var(--transition-base);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-text);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            border-radius: 99px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
+            opacity: 0;
+            transition: var(--transition-base);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary span,
+        .btn-primary i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            background: transparent;
+            color: var(--color-text);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            border-radius: 99px;
+            text-decoration: none;
+            border: 1.5px solid var(--color-border);
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .btn-ghost:hover {
+            gap: 0.75rem;
+            color: var(--color-accent-light);
+        }
+
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--color-text);
+            transition: var(--transition-base);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:first-child {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:last-child {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(250, 250, 252, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-base);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu-content a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            font-family: var(--font-display);
+            transition: var(--transition-fast);
+        }
+
+        .mobile-menu-content a:hover,
+        .mobile-menu-content a.active {
+            color: var(--color-accent);
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+        ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--color-border);
+            border-radius: 99px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 50%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% center;
+            }
+
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        /* ============================================
+           HERO SECTION
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatShape 20s ease-in-out infinite;
+        }
+
+        .hero-shape-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.2), transparent 70%);
+            top: -10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .hero-shape-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(100, 116, 139, 0.15), transparent 70%);
+            bottom: -5%;
+            left: -5%;
+            animation-delay: -5s;
+        }
+
+        .hero-shape-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.1), transparent 70%);
+            top: 40%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatShape {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1.25rem;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--color-border);
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-dim);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================
+           FLOATING DIVIDER
+        ============================================ */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* ============================================
+           IV DRIPS SECTION (FEATURED)
+        ============================================ */
+        .feature-section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .feature-content {
+            max-width: 540px;
+        }
+
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-text {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: var(--transition-base);
+        }
+
+        .feature-item:hover {
+            border-color: var(--color-border-hover);
+            transform: translateX(8px);
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            font-size: 1.25rem;
+            transition: var(--transition-base);
+        }
+
+        .feature-item:hover .feature-icon {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+            color: var(--color-primary);
+            border-color: transparent;
+        }
+
+        .feature-item h4 {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--color-text);
+        }
+
+        .feature-item p {
+            font-size: 0.9375rem;
+            color: var(--color-text-dim);
+            line-height: 1.6;
+        }
+
+        .feature-visual {
+            position: relative;
+        }
+
+        .feature-image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .feature-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.6) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .feature-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .feature-visual:hover .feature-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .feature-image-frame {
+            position: absolute;
+            inset: -12px;
+            border: 1px solid var(--color-border);
+            border-radius: calc(var(--radius-lg) + 12px);
+            pointer-events: none;
+            transition: var(--transition-base);
+        }
+
+        .feature-visual:hover .feature-image-frame {
+            inset: -16px;
+            border-color: var(--color-border-hover);
+        }
+
+        .feature-floating-card {
+            position: absolute;
+            bottom: 2rem;
+            left: -2rem;
+            background: var(--color-surface-solid);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            backdrop-filter: blur(20px);
+            z-index: 2;
+            box-shadow: var(--shadow-lg);
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .feature-floating-card .card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-dim);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-floating-card .card-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        /* ============================================
+           WELLNESS SHOTS BENTO GRID
+        ============================================ */
+        .bento-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, transparent, rgba(30, 41, 59, 0.3), transparent);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 280px);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bento-item {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-base);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.1), transparent 50%);
+            opacity: 0;
+            transition: var(--transition-base);
+            pointer-events: none;
+        }
+
+        .bento-item:hover::before {
+            opacity: 1;
+        }
+
+        .bento-item:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .bento-item-tall {
+            grid-row: span 2;
+            grid-column: span 1;
+        }
+
+        .bento-item-wide {
+            grid-column: span 2;
+        }
+
+        .bento-item-featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .bento-badge {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 0.375rem 0.875rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--color-border);
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .bento-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .bento-content p {
+            font-size: 0.9375rem;
+            color: var(--color-text-dim);
+            line-height: 1.6;
+        }
+
+        .bento-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            margin-top: auto;
+            transition: var(--transition-base);
+        }
+
+        .bento-item:hover .bento-icon {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+            color: var(--color-primary);
+            border-color: transparent;
+            transform: scale(1.1);
+        }
+
+        .bento-price {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           PROCESS SECTION
+        ============================================ */
+        .process-section {
+            padding: 8rem 0;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .process-card {
+            position: relative;
+            padding: 3rem 2rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            transition: var(--transition-base);
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .process-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .process-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .process-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(212, 175, 55, 0.15);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-base);
+        }
+
+        .process-card:hover .process-number {
+            color: var(--color-accent);
+            transform: scale(1.1);
+        }
+
+        .process-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .process-card p {
+            font-size: 0.9375rem;
+            color: var(--color-text-dim);
+            line-height: 1.7;
+        }
+
+        .process-arrow {
+            position: absolute;
+            top: 50%;
+            right: -1.5rem;
+            transform: translateY(-50%);
+            color: var(--color-border);
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+
+        /* ============================================
+           TESTIMONIAL STRIP
+        ============================================ */
+        .trust-strip {
+            padding: 4rem 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            overflow: hidden;
+        }
+
+        .trust-scroll {
+            display: flex;
+            gap: 4rem;
+            animation: scrollTrust 30s linear infinite;
+            width: max-content;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            white-space: nowrap;
+            color: var(--color-text-dim);
+            font-size: 0.9375rem;
+        }
+
+        .trust-item i {
+            color: var(--color-accent);
+            font-size: 1.25rem;
+        }
+
+        @keyframes scrollTrust {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ============================================
+           CTA SECTION
+        ============================================ */
+        .cta-section {
+            padding: 8rem 0;
+        }
+
+        .cta-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 6rem 4rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-card .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-card h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            line-height: 1.15;
+        }
+
+        .cta-card p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            padding: 6rem 0 2rem;
+            border-top: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+        }
+
+        .footer-brand p {
+            color: var(--color-text-dim);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-links h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-dim);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+            transform: translateX(4px);
+        }
+
+        .footer-contact {
+            text-align: right;
+        }
+
+        .footer-contact a {
+            display: block;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-contact a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-contact .socials {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: var(--transition-base);
+            font-size: 0.9375rem;
+        }
+
+        .socials a:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-bottom p {
+            font-size: 0.875rem;
+            color: var(--color-text-dim);
+        }
+
+        .footer-massive {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--color-border);
+            text-align: center;
+            line-height: 1;
+            margin: 2rem 0;
+            user-select: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1024px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .feature-visual {
+                order: -1;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .bento-item-tall,
+            .bento-item-wide,
+            .bento-item-featured {
+                grid-row: span 1;
+                grid-column: span 1;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 4rem auto 0;
+            }
+
+            .process-arrow {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+
+            .footer-contact {
+                text-align: left;
+                grid-column: span 2;
+            }
+
+            .footer-contact .socials {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .desktop-btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-card {
+                padding: 4rem 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+            }
+
+            .footer-contact {
+                text-align: center;
+                grid-column: span 1;
+            }
+
+            .footer-contact .socials {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .feature-floating-card {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+
+        /* ============================================
+           REDUCED MOTION
+        ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .trust-scroll {
+                animation: none;
+            }
+        }
+    </style>
 </head>
-<body data-barba="wrapper">
-    <div id="barba-curtain"></div>
+
+<body>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
-            <ul class="nav-links desktop-links">
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">R</div>
+                Revive IV
+            </a>
+
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="iv-drips.html">IV Drips</a></li>
@@ -21,28 +1461,21 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="faq.html">FAQs</a></li>
             </ul>
-            <a href="contact.html" class="btn-primary desktop-btn">Book Now</a>
-            
-            <!-- Mobile Actions -->
-            <div class="mobile-actions">
-                <a href="products.html" class="mobile-products-icon" aria-label="Order Now">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                </a>
-                <!-- Mobile Hamburger -->
-                <div class="hamburger">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                </div>
+
+            <a href="contact.html" class="btn-primary desktop-btn">
+                <span>Book Now</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu Slide-out -->
-    <div class="mobile-menu">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
             <a href="index.html">Home</a>
             <a href="services.html" class="active">Services</a>
@@ -50,35 +1483,37 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="faq.html">FAQs</a>
-            <a href="contact.html" class="btn-solid" style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
+            <a href="contact.html" class="btn-primary" style="margin-top: 1rem;">
+                <span>Book Now</span>
+            </a>
         </div>
     </div>
 
-    <main data-barba="container" data-barba-namespace="services">
-        
-        <!-- Three.js Background Canvas for Services Only -->
-        <canvas id="services-bg-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.4;"></canvas>
-
-        <!-- Ambient Lighting Overlay -->
-        <div class="services-ambient-light" style="position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 20% 20%, rgba(197,160,89,0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.8) 0%, transparent 50%); pointer-events: none;"></div>
-
+    <main>
         <!-- Hero Section -->
-        <section class="hero services-hero">
-            <div class="container hero-content">
+        <section class="hero">
+            <div class="hero-bg-shapes">
+                <div class="hero-shape hero-shape-1"></div>
+                <div class="hero-shape hero-shape-2"></div>
+                <div class="hero-shape hero-shape-3"></div>
+            </div>
+
+            <div class="hero-content">
                 <div class="hero-badge reveal">
-                    <i class="fas fa-sparkles"></i>
-                    <span>Premium Mobile Care</span>
+                    <i class="fas fa-sparkles" style="font-size: 0.75rem;"></i>
+                    Revive Services
                 </div>
-                
-                <h1 class="hero-title reveal">
-                    <span class="text-gradient">Optimize</span><br>Your Life.
+
+                <h1 class="hero-title reveal reveal-delay-1">
+                    <span class="text-gradient">Optimize</span> Your Life.
                 </h1>
-                
-                <p class="hero-subtitle reveal">
-                    Medical-grade hydration and wellness treatments, delivered directly to your doorstep by licensed New York nurses.
+
+                <p class="hero-subtitle reveal reveal-delay-2">
+                    From rapid recovery to long-term health optimization, our medical-grade treatments are delivered
+                    directly to your doorstep by licensed professionals.
                 </p>
-                
-                <div class="hero-cta-group reveal">
+
+                <div class="hero-cta-group reveal reveal-delay-3">
                     <a href="products.html" class="btn-primary">
                         <span>View Full Menu</span>
                         <i class="fas fa-arrow-right"></i>
@@ -87,8 +1522,8 @@
                         <span>How It Works</span>
                     </a>
                 </div>
-                
-                <div class="hero-stats reveal">
+
+                <div class="hero-stats reveal reveal-delay-4">
                     <div class="stat-item">
                         <div class="stat-number">100%</div>
                         <div class="stat-label">Absorption</div>
@@ -105,262 +1540,456 @@
             </div>
         </section>
 
-        <!-- Featured Section: IV Drips -->
+        <div class="section-divider"></div>
+
+        <!-- IV Drips Feature Section -->
         <section class="feature-section">
             <div class="container">
                 <div class="feature-grid">
                     <div class="feature-content">
-                        <span class="badge reveal">Core Service</span>
-                        <h2 class="feature-title reveal">
+                        <div class="badge reveal">Core Service</div>
+                        <h2 class="feature-title reveal reveal-delay-1">
                             IV Hydration <span class="text-gradient">Drips.</span>
                         </h2>
-                        <p class="feature-text reveal">
-                            Our signature IV treatments bypass the digestive system to deliver 100% absorption of essential vitamins and nutrients directly into your bloodstream.
+                        <p class="feature-text reveal reveal-delay-2">
+                            Our signature IV treatments bypass the digestive system to deliver 100% absorption of
+                            essential vitamins and nutrients. Whether you're recovering from a long night, preparing for
+                            an event, or managing chronic fatigue, we have a formula designed for you.
                         </p>
-                        
+
                         <div class="feature-list">
-                            <div class="feature-item reveal">
+                            <div class="feature-item reveal reveal-delay-1">
                                 <div class="feature-icon">
                                     <i class="fas fa-bolt"></i>
                                 </div>
-                                <div class="feature-item-text">
-                                    <h4>Immediate Results</h4>
-                                    <p>Feel the effects within minutes, not hours.</p>
+                                <div>
+                                    <h4>Immediate Absorption</h4>
+                                    <p>Direct-to-bloodstream delivery for instant results you can feel within minutes.
+                                    </p>
                                 </div>
                             </div>
-                            
-                            <div class="feature-item reveal">
+
+                            <div class="feature-item reveal reveal-delay-2">
                                 <div class="feature-icon">
                                     <i class="fas fa-flask"></i>
                                 </div>
-                                <div class="feature-item-text">
-                                    <h4>Tailored Precision</h4>
-                                    <p>Custom formulas designed for your specific biomarkers.</p>
+                                <div>
+                                    <h4>Custom Formulas</h4>
+                                    <p>Tailored vitamin blends based on your unique health goals and biomarkers.</p>
+                                </div>
+                            </div>
+
+                            <div class="feature-item reveal reveal-delay-3">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div>
+                                    <h4>Medical Grade</h4>
+                                    <p>Administered by licensed RNs with hospital-level precision and care.</p>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="reveal" style="margin-top: 3rem;">
+
+                        <div style="margin-top: 2.5rem;" class="reveal reveal-delay-4">
                             <a href="iv-drips.html" class="btn-ghost">
-                                <span>Explore All Formulas</span>
+                                <span>Explore All Drips</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="feature-visual reveal">
                         <div class="feature-image-wrapper">
-                            <img src="assets/drip-close.png" alt="Close-up of IV Drip treatment" loading="lazy">
+                            <img src="assets/drip-close.png" alt="Premium IV Drip Treatment"
+                                onerror="this.src='https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80'; this.onerror=null;">
                         </div>
-                        <div class="floating-badge">
-                            <div class="f-label">Starting at</div>
-                            <div class="f-price">$199</div>
+                        <div class="feature-image-frame"></div>
+
+                        <div class="feature-floating-card">
+                            <div class="card-label">Starting at</div>
+                            <div class="card-value">$199</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- Wellness Shots Bento Grid -->
         <section class="bento-section">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="badge">Quick Boosters</span>
-                    <h2 class="section-title">Wellness <span class="text-gradient">Shots.</span></h2>
-                    <p class="section-subtitle">Rapid intramuscular injections for targeted health benefits. Delivered in under 15 minutes.</p>
+                <div class="section-header">
+                    <div class="badge reveal">Quick Boosters</div>
+                    <h2 class="section-title reveal reveal-delay-1">
+                        Wellness <span class="text-gradient">Shots.</span>
+                    </h2>
+                    <p class="section-subtitle reveal reveal-delay-2">
+                        Quick intramuscular shots for targeted health benefits. In and out in 15 minutes.
+                    </p>
                 </div>
-                
-                <div class="bento-grid">
+
+                <div class="bento-grid" id="bentoGrid">
                     <!-- B12 - Tall -->
-                    <div class="bento-item reveal" style="grid-row: span 2;">
-                        <div class="bento-top">
-                            <span class="bento-tag">Top Rated</span>
-                            <h3>Vitamin B12</h3>
-                            <p>Pure energy. Combats brain fog, fatigue, and supports the nervous system.</p>
+                    <div class="bento-item bento-item-tall reveal reveal-delay-1">
+                        <div>
+                            <span class="bento-badge">Most Popular</span>
+                            <div class="bento-content">
+                                <h3>Vitamin B12</h3>
+                                <p>Pure energy in a shot. Perfect for combating brain fog, chronic fatigue, and
+                                    supporting nervous system health.</p>
+                                <div class="bento-price">$49</div>
+                            </div>
                         </div>
-                        <div class="bento-bottom">
-                            <div class="bento-price">$49</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Biotin - Wide -->
-                    <div class="bento-item reveal" style="grid-column: span 2;">
-                        <div class="bento-top">
-                            <h3>Biotin & Glow</h3>
-                            <p>Enhance your natural beauty. Promotes healthy hair, skin, and nails from the inside out.</p>
-                        </div>
-                        <div class="bento-bottom">
-                            <div class="bento-price">$59</div>
-                        </div>
-                    </div>
-                    
-                    <!-- D3 -->
-                    <div class="bento-item reveal">
-                        <div class="bento-top">
-                            <h3>Vitamin D3</h3>
-                            <p>Immune support and mood regulation for daily wellness.</p>
-                        </div>
-                        <div class="bento-bottom">
-                            <div class="bento-price">$45</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Lipo -->
-                    <div class="bento-item reveal" style="grid-column: span 2;">
-                        <div class="bento-top">
-                            <h3>Lipo-Lean</h3>
-                            <p>Metabolism booster to support your weight management journey and energy levels.</p>
-                        </div>
-                        <div class="bento-bottom">
-                            <div class="bento-price">$55</div>
+                        <div class="bento-icon">
+                            <i class="fas fa-bolt"></i>
                         </div>
                     </div>
 
-                    <!-- Extra -->
-                    <div class="bento-item reveal bento-cta-item">
-                        <a href="products.html" class="bento-cta-link">
-                            <span>View All</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                    <!-- Biotin - Wide -->
+                    <div class="bento-item bento-item-wide reveal reveal-delay-2">
+                        <div class="bento-content">
+                            <h3>Biotin & Skin Health</h3>
+                            <p>Enhance your natural glow with our beauty-focused vitamin shots. Promotes healthy hair,
+                                skin, and nails from the inside out with pharmaceutical-grade biotin.</p>
+                            <div class="bento-price">$59</div>
+                        </div>
+                        <div class="bento-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                    </div>
+
+                    <!-- Vitamin D -->
+                    <div class="bento-item reveal reveal-delay-3">
+                        <div class="bento-content">
+                            <h3>Vitamin D3</h3>
+                            <p>The "sunshine vitamin" for immune support and mood regulation.</p>
+                            <div class="bento-price">$45</div>
+                        </div>
+                        <div class="bento-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                    </div>
+
+                    <!-- Lipo-Lean -->
+                    <div class="bento-item reveal reveal-delay-4">
+                        <div class="bento-content">
+                            <h3>Lipo-Lean</h3>
+                            <p>Metabolism booster to support your weight management journey.</p>
+                            <div class="bento-price">$55</div>
+                        </div>
+                        <div class="bento-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- Trust Strip -->
         <div class="trust-strip">
             <div class="trust-scroll">
-                <div class="trust-item"><i class="fas fa-shield-halved"></i> HIPAA COMPLIANT</div>
-                <div class="trust-item"><i class="fas fa-certificate"></i> LICENSED RNs ONLY</div>
-                <div class="trust-item"><i class="fas fa-truck-medical"></i> SAME-DAY DELIVERY</div>
-                <div class="trust-item"><i class="fas fa-star"></i> 500+ REVIEWS</div>
-                <!-- Duplicate for loop -->
-                <div class="trust-item"><i class="fas fa-shield-halved"></i> HIPAA COMPLIANT</div>
-                <div class="trust-item"><i class="fas fa-certificate"></i> LICENSED RNs ONLY</div>
-                <div class="trust-item"><i class="fas fa-truck-medical"></i> SAME-DAY DELIVERY</div>
-                <div class="trust-item"><i class="fas fa-star"></i> 500+ REVIEWS</div>
+                <div class="trust-item"><i class="fas fa-shield-halved"></i> HIPAA Compliant</div>
+                <div class="trust-item"><i class="fas fa-certificate"></i> Licensed RNs Only</div>
+                <div class="trust-item"><i class="fas fa-truck-medical"></i> Same-Day Delivery</div>
+                <div class="trust-item"><i class="fas fa-star"></i> 500+ 5-Star Reviews</div>
+                <div class="trust-item"><i class="fas fa-location-dot"></i> NYC Metro Area</div>
+                <div class="trust-item"><i class="fas fa-clock"></i> 24/7 Availability</div>
+                <!-- Duplicate for seamless loop -->
+                <div class="trust-item"><i class="fas fa-shield-halved"></i> HIPAA Compliant</div>
+                <div class="trust-item"><i class="fas fa-certificate"></i> Licensed RNs Only</div>
+                <div class="trust-item"><i class="fas fa-truck-medical"></i> Same-Day Delivery</div>
+                <div class="trust-item"><i class="fas fa-star"></i> 500+ 5-Star Reviews</div>
+                <div class="trust-item"><i class="fas fa-location-dot"></i> NYC Metro Area</div>
+                <div class="trust-item"><i class="fas fa-clock"></i> 24/7 Availability</div>
             </div>
         </div>
 
-        <!-- Experience Section -->
+        <div class="section-divider"></div>
+
+        <!-- Process Section -->
         <section class="process-section" id="experience">
             <div class="container">
-                <div class="section-header reveal">
-                    <span class="badge">Seamless Care</span>
-                    <h2 class="section-title">The <span class="text-gradient">Experience.</span></h2>
-                    <p class="section-subtitle">Three simple steps to feeling your absolute best. We bring the clinic to you.</p>
+                <div class="section-header">
+                    <div class="badge reveal">Simple & Seamless</div>
+                    <h2 class="section-title reveal reveal-delay-1">
+                        The <span class="text-gradient">Experience.</span>
+                    </h2>
+                    <p class="section-subtitle reveal reveal-delay-2">
+                        Three steps to feeling your absolute best. We handle everything.
+                    </p>
                 </div>
-                
+
                 <div class="process-grid">
-                    <div class="process-card reveal">
+                    <div class="process-card reveal reveal-delay-1">
                         <div class="process-number">01</div>
                         <h4>Book Online</h4>
-                        <p>Select your treatment and schedule a time. Our concierge team confirms your appointment within minutes.</p>
+                        <p>Select your treatment and schedule a time that works for you. Our concierge team confirms
+                            within minutes.</p>
+                        <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
                     </div>
-                    
-                    <div class="process-card reveal">
+
+                    <div class="process-card reveal reveal-delay-2">
                         <div class="process-number">02</div>
                         <h4>Nurse Arrives</h4>
-                        <p>A licensed RN arrives at your location with all medical equipment. Relax in the comfort of your own space.</p>
+                        <p>A licensed RN arrives at your location with all medical equipment. Sit back in the comfort of
+                            your home or office.</p>
+                        <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
                     </div>
-                    
-                    <div class="process-card reveal">
+
+                    <div class="process-card reveal reveal-delay-3">
                         <div class="process-number">03</div>
                         <h4>Revive</h4>
-                        <p>Enjoy your 45-minute treatment. Feel re-energized and revitalized immediately afterward.</p>
+                        <p>Relax for 45 minutes while you receive your personalized treatment. Feel the results
+                            immediately.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA -->
+        <div class="section-divider"></div>
+
+        <!-- CTA Section -->
         <section class="cta-section">
             <div class="container">
-                <div class="cta-banner reveal">
-                    <div class="cta-overlay"></div>
+                <div class="cta-card reveal">
                     <div class="cta-content">
-                        <h2 class="cta-title">Ready to <span class="text-gradient">Revive?</span></h2>
-                        <p class="cta-subtitle">Same-day appointments available throughout the NYC Metro area.</p>
-                        <div class="cta-actions">
-                            <a href="contact.html" class="btn-primary">Book Your First Drip</a>
-                            <a href="tel:+16467093698" class="btn-secondary">Call (646) 709-3698</a>
+                        <h2>Ready to <span class="text-gradient">Revive?</span></h2>
+                        <p>Our nurses are ready to serve you in the NYC Metro area. Same-day appointments available.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="contact.html" class="btn-primary">
+                                <span>Book Your First Drip</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="tel:+16467093698" class="btn-secondary">
+                                <i class="fas fa-phone"></i>
+                                <span>(646) 709-3698</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <style>
-            @keyframes scrollTrust {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
-            }
-            .bento-item:hover {
-                transform: translateY(-8px);
-                border-color: var(--accent-gold) !important;
-                box-shadow: 0 30px 60px rgba(0,0,0,0.05) !important;
-            }
-            .process-card:hover {
-                transform: translateY(-10px);
-                border-color: var(--accent-gold) !important;
-            }
-            @media (max-width: 1024px) {
-                .feature-grid, .process-grid { grid-template-columns: 1fr !important; }
-                .bento-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: auto !important; }
-                .bento-item { grid-column: span 2 !important; grid-row: auto !important; }
-            }
-        </style>
-
     </main>
 
     <!-- Footer -->
-    <footer class="footer new-footer">
-        <div class="footer-top-row reveal">
-            <div class="footer-top-left">
-                <a href="tel:+16467093698">+1 (646) 709-3698</a>
-                <a href="mailto:info@reviveiv.io">info@reviveiv.io</a>
-            </div>
-            <div class="footer-top-right">
-                <a href="https://www.instagram.com/reviveivdrip_/" target="_blank">Instagram</a>
-            </div>
-        </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">R</div>
+                        Revive IV
+                    </a>
+                    <p>Expert IV hydration and wellness treatments, delivered to your doorstep in New York City.</p>
+                </div>
 
-        <div class="footer-middle-row reveal">
-            <div class="footer-logo-container">
-                <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV"></a>
-            </div>
-            
-            <div class="footer-nav-container">
-                <ul class="footer-nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="iv-drips.html">IV Drips</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                </ul>
-                <ul class="footer-nav-list">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                <div class="footer-links">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="iv-drips.html">IV Drips</a></li>
+                        <li><a href="services.html">Wellness Shots</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="products.html">Shop Supplements</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <a href="tel:+16467093698">+1 (646) 709-3698</a>
+                    <a href="mailto:info@reviveiv.io">info@reviveiv.io</a>
+                    <p style="color: var(--color-text-dim); font-size: 0.9375rem; margin-top: 0.5rem;">New York, NY</p>
+
+                    <div class="socials">
+                        <a href="https://www.instagram.com/reviveivdrip_/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="footer-desc-container">
-                <p>Expert IV hydration and wellness treatments, delivered to your doorstep in New York.</p>
+            <div class="footer-massive">REVIVE IV</div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Revive IV Hydration. All rights reserved.</p>
+                <p>New York, NY</p>
             </div>
-        </div>
-
-        <div class="footer-massive-row reveal">
-            REVIVE IV
-        </div>
-
-        <div class="footer-bottom-row reveal">
-            <p>&copy; 2026 Revive IV Hydration.</p>
-            <p>New York, NY</p>
         </div>
     </footer>
 
-    
-    <!-- Three.js, Lenis, and GSAP -->
+    <script>
+        // ============================================
+        // SCROLL PROGRESS BAR
+        // ============================================
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // ============================================
+        // NAVBAR SCROLL EFFECT
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ============================================
+        // SCROLL REVEAL ANIMATIONS
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // BENTO GRID MOUSE GLOW EFFECT
+        // ============================================
+        const bentoItems = document.querySelectorAll('.bento-item');
+
+        bentoItems.forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                item.style.setProperty('--mouse-x', x + '%');
+                item.style.setProperty('--mouse-y', y + '%');
+            });
+        });
+
+        // ============================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // PARALLAX EFFECT FOR HERO SHAPES
+        // ============================================
+        const heroShapes = document.querySelectorAll('.hero-shape');
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            heroShapes.forEach((shape, index) => {
+                const speed = 0.1 + (index * 0.05);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // ============================================
+        // COUNTER ANIMATION FOR STATS
+        // ============================================
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let counted = false;
+
+        const countUp = (el, target, suffix = '') => {
+            let current = 0;
+            const increment = target / 60;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    el.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(current) + suffix;
+                }
+            }, 16);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counted) {
+                    counted = true;
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const num = parseInt(text);
+                        const suffix = text.replace(/[0-9]/g, '');
+                        if (!isNaN(num)) {
+                            stat.textContent = '0';
+                            setTimeout(() => countUp(stat, num, suffix), 200);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) statsObserver.observe(heroStats);
+    </script>
+
+    <!-- Essential Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -368,7 +1997,6 @@
     <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
     <script src="app.js"></script>
     <script src="barba-init.js"></script>
-
 </body>
-</html>
 
+</html>
