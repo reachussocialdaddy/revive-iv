@@ -110,7 +110,7 @@
                     x: x,
                     y: y,
                     rotation: angle * 10,
-                    force3D: true
+                    force3D: !isMob
                 });
             });
         }
