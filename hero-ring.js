@@ -17,7 +17,11 @@
         const loaderBar = document.getElementById('loader-bar-fill');
         const loaderText = document.getElementById('loader-text');
 
-        if (!loader) return;
+        if (!loader) {
+            // If there's no intro loader, run entrance animations immediately
+            setTimeout(animateHeroEntrance, 100);
+            return;
+        }
 
         // Animate loader bar
         gsap.to(loaderBar, { width: '100%', duration: 1.4, ease: 'power2.inOut' });
