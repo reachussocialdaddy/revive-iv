@@ -328,25 +328,29 @@ img {
 }
 
 .mobile-menu-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   padding: 120px 2rem 40px;
   width: 100%;
-  max-width: 500px;
 }
 
 .mobile-menu-content a {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 900;
   color: var(--text-primary);
   text-align: center;
 }
 
 .mobile-menu-content .btn-solid {
-  grid-column: span 2;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 300px;
   font-size: 1.1rem;
   text-align: center;
+  padding: 1.2rem;
+  border-radius: 99px;
 }
 
 /* Hero Section */
