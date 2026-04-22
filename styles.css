@@ -806,6 +806,12 @@ img {
   -webkit-text-fill-color: transparent;
 }
 
+@media (max-width: 768px) {
+  .marquee-section {
+    padding: 0.8rem 0;
+  }
+}
+
 /* Formulation 3D Section */
 .formulation-grid {
   display: grid;
