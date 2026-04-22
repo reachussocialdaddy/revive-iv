@@ -809,6 +809,10 @@ img {
   border-radius: var(--radius-lg);
 }
 
+.formulation-mobile-visual {
+  display: none;
+}
+
 #iv-bag-canvas {
   width: 100%;
   height: 100%;
@@ -1588,7 +1592,77 @@ img {
     background: rgba(255, 255, 255, 0.98);
   }
   .formulation-3d-container {
+    display: none !important;
+  }
+  .formulation-mobile-visual {
+    display: flex;
+    position: relative;
+    width: 100%;
     height: 300px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .mobile-core-glow {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
+    border-radius: 50%;
+    animation: mobilePulseGlow 4s infinite alternate ease-in-out;
+  }
+  .mobile-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(197, 160, 89, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3), inset 0 0 15px rgba(197, 160, 89, 0.3);
+    animation: mobileRingSpin 10s infinite linear;
+  }
+  .mobile-ring::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #C5A059;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #C5A059;
+  }
+  .mobile-icon {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    animation: mobileFloatIcon 6s infinite alternate ease-in-out;
+  }
+  .m-icon-1 { top: 10%; left: 20%; animation-delay: 0s; }
+  .m-icon-2 { top: 70%; left: 15%; animation-delay: -1s; }
+  .m-icon-3 { top: 40%; right: 10%; animation-delay: -2s; }
+  .m-icon-4 { bottom: 10%; right: 25%; animation-delay: -3s; }
+  .m-icon-5 { top: 5%; right: 35%; animation-delay: -4s; }
+
+  @keyframes mobilePulseGlow {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+  }
+  @keyframes mobileRingSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes mobileFloatIcon {
+    0% { transform: translateY(0px) rotate(-5deg); }
+    100% { transform: translateY(-15px) rotate(5deg); }
   }
 }
 @media (max-width: 480px) {
