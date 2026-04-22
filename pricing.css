@@ -1,0 +1,202 @@
+/* ── Pricing Page Specific CSS ── */
+
+.pricing-highlights {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-bottom: 6rem;
+    padding-top: 2rem;
+}
+
+.highlight-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 250px;
+}
+
+.highlight-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+}
+
+.highlight-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.highlight-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.pricing-category {
+    margin-bottom: 6rem;
+}
+
+.pricing-category-title {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.pricing-card {
+    background: white;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 30px;
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+    border-color: var(--accent-gold);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-gold);
+    color: white;
+    padding: 0.6rem 2rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+    white-space: nowrap;
+}
+
+.pricing-card-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.pricing-card-price {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+    line-height: 1;
+}
+
+.pricing-card-price span {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem 0;
+    flex-grow: 1;
+}
+
+.pricing-features li {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pricing-features li svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-gold);
+    margin-right: 0.8rem;
+    flex-shrink: 0;
+}
+
+.btn-pricing {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 99px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-pricing-outline {
+    border: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+    background: transparent;
+}
+
+.btn-pricing-outline:hover {
+    background: var(--accent-gold);
+    color: white;
+}
+
+.btn-pricing-solid {
+    background: var(--accent-gold);
+    color: white;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+}
+
+.btn-pricing-solid:hover {
+    background: #1a2e35;
+    box-shadow: 0 10px 20px rgba(26, 46, 53, 0.3);
+}
+
+/* Weight Loss Specific Grid */
+.pricing-grid.two-cols {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    .pricing-grid.two-cols {
+        grid-template-columns: 1fr;
+    }
+    .pricing-highlights {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    .highlight-item {
+        max-width: 100%;
+    }
+}

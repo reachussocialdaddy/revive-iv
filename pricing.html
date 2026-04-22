@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing | Revive IV</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pricing.css">
 </head>
 <body data-barba="wrapper">
     <!-- Navigation -->
@@ -64,45 +65,106 @@
         </div>
     </header>
 
+    <!-- Pricing Highlights -->
+    <section class="section" style="padding-top: 0; padding-bottom: 2rem;">
+        <div class="container">
+            <div class="pricing-highlights reveal">
+                <div class="highlight-item">
+                    <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <h3 class="highlight-title">Licensed RNs</h3>
+                    <p class="highlight-desc">Administered by experts</p>
+                </div>
+                <div class="highlight-item">
+                    <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <h3 class="highlight-title">FDA-Approved</h3>
+                    <p class="highlight-desc">Premium pharmacy sourced</p>
+                </div>
+                <div class="highlight-item">
+                    <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="6.5"/></svg>
+                    <h3 class="highlight-title">Medical Director</h3>
+                    <p class="highlight-desc">Complete safety oversight</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section class="section" style="padding-top: 0;">
         <div class="container">
             
-            <h2 style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">Weight Management Plans</h2>
-            <div class="services-grid" style="margin-bottom: 5rem;">
-                <div class="service-card reveal">
-                    <h3>Semaglutide</h3>
-                    <h4 style="font-size: 2.5rem; margin: 1rem 0; font-family: var(--font-body); font-weight: 300;">$199<span style="font-size: 1rem; color: var(--text-secondary);"> / month</span></h4>
-                    <p>Effective, customized injection plan to support your sustainable weight loss journey.</p>
-                    <a href="book.html" class="btn-primary" style="width: 100%; text-align: center;">Book Treatment</a>
-                </div>
-                <div class="service-card reveal">
-                    <h3>Tirzepatide</h3>
-                    <h4 style="font-size: 2.5rem; margin: 1rem 0; font-family: var(--font-body); font-weight: 300;">$249<span style="font-size: 1rem; color: var(--text-secondary);"> / month</span></h4>
-                    <p>Advanced dual-action weight management protocol optimized for robust results.</p>
-                    <a href="book.html" class="btn-primary btn-solid" style="width: 100%; text-align: center;">Book Treatment</a>
+            <!-- IV Hydration Category -->
+            <div class="pricing-category reveal">
+                <h2 class="pricing-category-title">IV Hydration Drips</h2>
+                
+                <div class="pricing-grid">
+                    <!-- Myers Cocktail -->
+                    <div class="pricing-card">
+                        <h3 class="pricing-card-title">Myers Cocktail</h3>
+                        <div class="pricing-card-price">$175<span>/session</span></div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> B-Complex Vitamins</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Vitamin B12 & C</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Magnesium & Calcium</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Antioxidant Boost</li>
+                        </ul>
+                        <a href="book.html" class="btn-pricing btn-pricing-outline">Book Now</a>
+                    </div>
+                    
+                    <!-- Custom Revive -->
+                    <div class="pricing-card" style="border-color: var(--accent-gold); box-shadow: 0 20px 40px rgba(197, 160, 89, 0.1);">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3 class="pricing-card-title">Custom Revive</h3>
+                        <div class="pricing-card-price">$175<span>/session</span></div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Fully customized blend</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 5 premium additives</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Personalized medical consult</li>
+                        </ul>
+                        <a href="book.html" class="btn-pricing btn-pricing-solid">Book Now</a>
+                    </div>
+                    
+                    <!-- NAD+ Boost -->
+                    <div class="pricing-card">
+                        <h3 class="pricing-card-title">NAD+ Boost</h3>
+                        <div class="pricing-card-price">$500<span>/session</span></div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> High-dose NAD+</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Cellular repair focus</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Cognitive enhancement</li>
+                        </ul>
+                        <a href="book.html" class="btn-pricing btn-pricing-outline">Book Now</a>
+                    </div>
                 </div>
             </div>
 
-            <h2 id="shots" style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">Vitamin Shots</h2>
-            <p style="margin-bottom: 3rem; color: var(--text-secondary);">Rapid wellness boosts delivered in under 15 minutes. Add to any IV or book standalone.</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 5rem;">
-                <div style="background: var(--bg-surface); padding: 1.5rem; border: 1px solid var(--border-light);">
-                    <h4 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Vitamin B12</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Instant energy boost and metabolic support.</p>
-                </div>
-                <div style="background: var(--bg-surface); padding: 1.5rem; border: 1px solid var(--border-light);">
-                    <h4 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Vitamin D</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Bone health, immunity, and mood regulation.</p>
-                </div>
-                <div style="background: var(--bg-surface); padding: 1.5rem; border: 1px solid var(--border-light);">
-                    <h4 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Lipolean</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Fat metabolism and weight loss optimization.</p>
-                </div>
-                <div style="background: var(--bg-surface); padding: 1.5rem; border: 1px solid var(--border-light);">
-                    <h4 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Biotin & Glutathione</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Powerful antioxidants for hair, skin, and detox.</p>
+            <!-- Weight Loss Category -->
+            <div class="pricing-category reveal" style="margin-bottom: 0;">
+                <h2 class="pricing-category-title">Weight Loss Protocols</h2>
+                
+                <div class="pricing-grid two-cols">
+                    <!-- Semaglutide -->
+                    <div class="pricing-card">
+                        <h3 class="pricing-card-title">Semaglutide</h3>
+                        <div class="pricing-card-price">$199<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Monthly injection supply</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Medical oversight</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Gradual dosage titration</li>
+                        </ul>
+                        <a href="book.html" class="btn-pricing btn-pricing-outline">Start Plan</a>
+                    </div>
+                    
+                    <!-- Tirzepatide -->
+                    <div class="pricing-card" style="border-color: var(--accent-gold); box-shadow: 0 20px 40px rgba(197, 160, 89, 0.1);">
+                        <h3 class="pricing-card-title">Tirzepatide</h3>
+                        <div class="pricing-card-price">$249<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dual-action GLP-1/GIP</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Enhanced metabolic focus</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Continuous monitoring</li>
+                        </ul>
+                        <a href="book.html" class="btn-pricing btn-pricing-solid">Start Plan</a>
+                    </div>
                 </div>
             </div>
 
