@@ -7,22 +7,6 @@
 (function () {
     'use strict';
 
-    /* ── Loader cleanup (MUST run regardless of Barba/GSAP) ── */
-    function cleanupLoader() {
-        const loader = document.getElementById('intro-loader');
-        if (loader && !loader.classList.contains('fade-out')) {
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 800); // Small buffer for initial paint
-        }
-    }
-
-    // Always attempt cleanup on DOMContentLoaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', cleanupLoader);
-    } else {
-        cleanupLoader();
-    }
 
     // Dependency check for animations
     if (typeof barba === 'undefined' || typeof gsap === 'undefined') {
@@ -237,14 +221,6 @@
             if (typeof initOrbitAnimation === 'function') initOrbitAnimation();
         }
 
-        // Loader cleanup
-        const loader = document.getElementById('intro-loader');
-        if (loader) {
-            // Give scripts a moment to breathe
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 1000);
-        }
     });
 
 })();

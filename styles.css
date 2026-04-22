@@ -1520,41 +1520,6 @@ img {
   pointer-events: none;
 }
 
-/* ── Intro loader ── */
-#intro-loader {
-  position: fixed;
-  inset: 0;
-  background: #0F172A;
-  z-index: 9998;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.loader-logo-text {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: transparent;
-  background: linear-gradient(135deg, #C5A059, #F3E5AB);
-  -webkit-background-clip: text;
-  background-clip: text;
-  line-height: 1;
-}
-.loader-bar {
-  width: 180px;
-  height: 2px;
-  background: rgba(197,160,89,0.2);
-  border-radius: 99px;
-  overflow: hidden;
-}
-.loader-bar-fill {
-  height: 100%;
-  background: linear-gradient(135deg, #C5A059, #F3E5AB);
-  width: 0%;
-  border-radius: 99px;
-}
 
 /* ── Hero Three.js ring canvas ── */
 #hero-ring-scene {
