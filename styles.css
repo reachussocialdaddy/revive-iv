@@ -328,17 +328,25 @@ img {
 }
 
 .mobile-menu-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding-top: 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2.5rem;
+  padding: 120px 2rem 40px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .mobile-menu-content a {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 900;
   color: var(--text-primary);
+  text-align: center;
+}
+
+.mobile-menu-content .btn-solid {
+  grid-column: span 2;
+  font-size: 1.1rem;
+  text-align: center;
 }
 
 /* Hero Section */
@@ -1360,14 +1368,15 @@ img {
     margin-bottom: 2.5rem;
   }
   .footer-nav-container {
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     margin-bottom: 2.5rem;
+    width: 100%;
   }
   .footer-nav-list a {
-    font-size: 1.5rem;
-    line-height: 1.5;
+    font-size: 1.3rem;
+    line-height: 1.3;
   }
   .footer-desc-container {
     text-align: left;
