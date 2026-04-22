@@ -192,6 +192,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Expose globally for Barba re-init
+    window.updateCartUI = updateCartUI;
+
     // Initial UI update
     updateCartUI();
 });
+
+// Fallback if script loads after DOM
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    if (typeof updateCartUI === 'function') updateCartUI();
+}

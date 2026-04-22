@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Now | Revive IV</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="store.css">
 </head>
 <body data-barba="wrapper">
     <div id="barba-curtain"></div>
@@ -409,28 +408,5 @@
     <script src="app.js"></script>
     <script src="cart.js"></script>
     <script src="barba-init.js"></script>
-    <script>
-        // Simple scroll spy for categories
-        document.querySelectorAll('.category-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-                
-                const targetId = this.getAttribute('href').substring(1);
-                const targetEl = document.getElementById(targetId);
-                const offsetTop = targetEl.getBoundingClientRect().top + window.scrollY - 130;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        gsap.utils.toArray('.reveal').forEach(elem => {
-            gsap.fromTo(elem, { autoAlpha: 0, y: 30 }, { duration: 0.8, autoAlpha: 1, y: 0, ease: 'power2.out' });
-        });
-    </script>
 </body>
 </html>

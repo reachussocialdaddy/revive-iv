@@ -386,6 +386,30 @@ function initShotCards() {
     });
 }
 
+/* ─── 11. Product Category Nav (Scroll Spy) ────────────────── */
+function initProductCategories() {
+    const categoryLinks = document.querySelectorAll('.category-link');
+    if (!categoryLinks.length) return;
+
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            categoryLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
+            const offsetTop = targetEl.getBoundingClientRect().top + window.scrollY - 130;
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
 /* ─── Exported: initScrollAnimations ────────────────────────
  * Called by Barba.js after each page transition.
  * Re-initializes ScrollTriggers, Sliders, and 3D scenes.
@@ -404,6 +428,7 @@ window.initScrollAnimations = function () {
     initMarquee();
     initShotCards();
     initServices3D();
+    initProductCategories();
     updateActiveNavLink();
 };
 

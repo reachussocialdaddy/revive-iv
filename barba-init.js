@@ -217,6 +217,14 @@
                             initOrbitAnimation();
                         }
                     }
+
+                    // Re-init Cart UI for products page
+                    if (next.namespace === 'products') {
+                        if (typeof updateCartUI === 'function') {
+                            updateCartUI();
+                        }
+                    }
+
                     // Always re-init REVIVE IV reveal
                     initReviveIVReveal();
                     if (typeof updateActiveNavLink === 'function') {
