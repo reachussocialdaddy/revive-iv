@@ -1569,7 +1569,6 @@ img {
   font-size: 22px;
   top: 0; left: 0;
   will-change: transform;
-  opacity: 0; /* JS animates in */
 }
 
 /* ── Extra mobile fixes ── */

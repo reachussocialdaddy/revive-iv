@@ -55,7 +55,6 @@
         }
     }
 
-    /* ─── Hero entrance animations ─────────────────────────────── */
     function animateHeroEntrance() {
         const heroContent = document.querySelector('.hero-content');
         if (!heroContent) return;
@@ -66,19 +65,6 @@
             {
                 autoAlpha: 1, y: 0, filter: 'blur(0px)',
                 duration: 1.4, stagger: 0.15, ease: 'power4.out', delay: 0.05
-            }
-        );
-
-        // Animate orbit icons in
-        gsap.fromTo('.orbit-icon',
-            { opacity: 0, scale: 0 },
-            { 
-                opacity: 1, 
-                scale: 1, 
-                duration: 1, 
-                stagger: 0.15, 
-                ease: 'elastic.out(1, 0.75)', 
-                delay: 0.5 
             }
         );
     }
