@@ -2652,16 +2652,16 @@ img {
 
 /* Service Card Title and Price Animations */
 .service-card-info h3 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
 }
 .service-card-info h3 span {
-    display: inline-block;
-    color: var(--accent-primary);
-    font-weight: 800;
-    animation: pricePulse 2.5s infinite alternate ease-in-out;
+    display: block !important;
+    color: var(--accent-primary) !important;
+    font-weight: 800 !important;
+    animation: pricePulse 2.5s infinite alternate ease-in-out !important;
 }
 @keyframes pricePulse {
     0% { transform: scale(1); text-shadow: 0 0 0px rgba(197, 160, 89, 0); }
