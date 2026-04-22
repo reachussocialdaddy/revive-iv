@@ -5,43 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQs | Revive IV</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .faq-item {
-            border-bottom: 1px solid var(--border-light);
-            padding: 2rem 0;
-            cursor: pointer;
-        }
-        .faq-question {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            transition: var(--transition-fast);
-        }
-        .faq-item.active .faq-question::after {
-            content: '−';
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height var(--transition-slow);
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-top: 0;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 200px; /* arbitrary max height for animation */
-            margin-top: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="faq.css">
 </head>
 <body data-barba="wrapper">
     <!-- Navigation -->
@@ -103,35 +67,62 @@
 
     <!-- FAQ Section -->
     <section class="section" style="padding-top: 0;">
-        <div class="container" style="max-width: 800px;">
+        <div class="container faq-container">
             
             <div class="faq-list reveal">
                 
                 <div class="faq-item" onclick="this.classList.toggle('active')">
                     <div class="faq-question">What is IV Hydration Therapy?</div>
-                    <div class="faq-answer">IV hydration therapy is a fast and effective way to deliver necessary vitamins, minerals, and hydration directly into your bloodstream, completely bypassing the digestive system for 100% absorption.</div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">IV hydration therapy is a fast and effective way to deliver necessary vitamins, minerals, and hydration directly into your bloodstream, completely bypassing the digestive system for 100% absorption.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="faq-item" onclick="this.classList.toggle('active')">
                     <div class="faq-question">Does the IV hurt?</div>
-                    <div class="faq-answer">Most clients feel only a slight pinch during the insertion of the IV. Our highly trained registered nurses are skilled at making the process as quick, painless, and comfortable as possible.</div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">Most clients feel only a slight pinch during the insertion of the IV. Our highly trained registered nurses are skilled at making the process as quick, painless, and comfortable as possible.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="faq-item" onclick="this.classList.toggle('active')">
                     <div class="faq-question">How long does a session take?</div>
-                    <div class="faq-answer">A typical IV therapy session lasts between 45 to 60 minutes, depending on the specific drip and your body's individual absorption rate. During this time, you can relax, read, or catch up on emails.</div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">A typical IV therapy session lasts between 45 to 60 minutes, depending on the specific drip and your body's individual absorption rate. During this time, you can relax, read, or catch up on emails.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="faq-item" onclick="this.classList.toggle('active')">
                     <div class="faq-question">Are the treatments safe?</div>
-                    <div class="faq-answer">Yes! All our treatments are administered by licensed medical professionals using sterile, single-use equipment and FDA-approved, pharmacy-grade ingredients.</div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">Yes! All our treatments are administered by licensed medical professionals using sterile, single-use equipment and FDA-approved, pharmacy-grade ingredients.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="faq-item" onclick="this.classList.toggle('active')">
                     <div class="faq-question">How quickly will I feel the effects?</div>
-                    <div class="faq-answer">Most clients report feeling a boost in energy and overall wellness immediately following their session, with the full benefits noticeable over the next 24 to 48 hours.</div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">Most clients report feeling a boost in energy and overall wellness immediately following their session, with the full benefits noticeable over the next 24 to 48 hours.</div>
+                        </div>
+                    </div>
                 </div>
 
+            </div>
+
+            <!-- FAQ CTA -->
+            <div class="faq-cta reveal">
+                <h3>Still have questions?</h3>
+                <p>Our medical team is available to answer any specific questions you have about our treatments and protocols.</p>
+                <a href="book.html" class="btn-white">Contact Us</a>
             </div>
 
         </div>
