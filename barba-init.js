@@ -196,6 +196,8 @@
     });
 
     /* ── Barba init ── */
+    /* ── Barba init (DISABLED for stability) ── */
+    /* 
     barba.init({
         sync: true,
         transitions: [{
@@ -209,6 +211,7 @@
             }
         }]
     });
+    */
 
     /* ── Run on load (Standard Navigation) ── */
     document.addEventListener('DOMContentLoaded', () => {
