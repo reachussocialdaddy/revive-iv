@@ -30,16 +30,18 @@
             <div class="loader-bar-fill" id="loader-bar-fill"></div>
         </div>
     </div>
-
     <script>
-        // Failsafe: Hide loader after 4 seconds no matter what
-        setTimeout(() => {
-            const loader = document.getElementById('intro-loader');
-            if (loader && !loader.classList.contains('fade-out')) {
-                loader.classList.add('fade-out');
-                console.log("Loader failsafe triggered.");
+        // Failsafe: Ensure loader fades out after 3 seconds even if main scripts fail
+        (function() {
+            var l = document.getElementById('intro-loader');
+            if (l) {
+                setTimeout(function() { 
+                    if (!l.classList.contains('fade-out')) {
+                        l.classList.add('fade-out');
+                    }
+                }, 3000);
             }
-        }, 4000);
+        })();
     </script>
 
     <!-- Navigation -->

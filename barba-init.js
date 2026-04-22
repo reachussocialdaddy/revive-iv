@@ -7,7 +7,28 @@
 (function () {
     'use strict';
 
-    if (typeof barba === 'undefined' || typeof gsap === 'undefined') return;
+    /* ── Loader cleanup (MUST run regardless of Barba/GSAP) ── */
+    function cleanupLoader() {
+        const loader = document.getElementById('intro-loader');
+        if (loader && !loader.classList.contains('fade-out')) {
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 800); // Small buffer for initial paint
+        }
+    }
+
+    // Always attempt cleanup on DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cleanupLoader);
+    } else {
+        cleanupLoader();
+    }
+
+    // Dependency check for animations
+    if (typeof barba === 'undefined' || typeof gsap === 'undefined') {
+        console.warn('Barba or GSAP not found. Animations disabled.');
+        return;
+    }
 
     /* ── Curtain element ── */
     const curtain = document.getElementById('barba-curtain');
