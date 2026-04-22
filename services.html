@@ -1391,7 +1391,10 @@
     </style>
 </head>
 
-<body>
+<body data-barba="wrapper">
+
+    <!-- Barba curtain (page transition overlay) -->
+    <div id="barba-curtain"></div>
 
     <!-- Ambient Background -->
     <div class="ambient-bg"></div>
@@ -1441,7 +1444,7 @@
         </div>
     </div>
 
-    <main>
+    <main data-barba="container" data-barba-namespace="services">
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-bg-shapes">
