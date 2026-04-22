@@ -467,6 +467,33 @@
         width: 100%;
         justify-content: center;
     }
+
+    /* Mobile-Specific Continuous Animations */
+    .booking-page-wrapper::before,
+    .booking-page-wrapper::after {
+        width: 300px;
+        height: 300px;
+        filter: blur(80px);
+    }
+
+    .booking-card {
+        /* Mobile doesn't have hover, so give it a continuous subtle glow */
+        animation: gentleFloatMobile 5s ease-in-out infinite alternate, mobileGlowPulse 4s ease-in-out infinite alternate !important;
+    }
+    
+    .booking-card:nth-child(2) {
+        animation-delay: -2.5s, -2s !important;
+    }
+
+    @keyframes gentleFloatMobile {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-5px); }
+    }
+
+    @keyframes mobileGlowPulse {
+        0% { border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        100% { border-color: rgba(197, 160, 89, 0.3); box-shadow: 0 15px 30px rgba(197, 160, 89, 0.15); }
+    }
 }
 
 /* Entrance Animations */
