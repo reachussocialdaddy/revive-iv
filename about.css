@@ -29,7 +29,7 @@
 .wellness-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    border-color: var(--accent-gold);
+    border-color: var(--accent-primary);
 }
 
 .wellness-icon {
@@ -38,7 +38,7 @@
     min-width: 48px;
     min-height: 48px;
     margin-bottom: 1.5rem;
-    color: var(--accent-gold);
+    color: var(--accent-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,7 +81,7 @@
 }
 
 .wellness-card:hover .wellness-arrow {
-    background: var(--accent-gold);
+    background: var(--accent-primary);
     transform: scale(1.1);
 }
 
