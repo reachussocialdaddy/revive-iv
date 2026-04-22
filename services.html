@@ -112,250 +112,7 @@
 
         /* Scroll progress bar removed for performance */
 
-        /* ============================================
-           NAVIGATION
-        ============================================ */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.25rem 0;
-            transition: var(--transition-base);
-            backdrop-filter: blur(0px);
-            background: transparent;
-        }
-
-        .navbar.scrolled {
-            background: rgba(250, 250, 252, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--color-border);
-            padding: 0.875rem 0;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--color-text);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition-fast);
-        }
-
-        .logo:hover {
-            color: var(--color-accent);
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-primary);
-            font-size: 0.875rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--color-text-muted);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            position: relative;
-            transition: var(--transition-fast);
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-accent);
-            transition: var(--transition-base);
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--color-text);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 2rem;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
-            color: var(--color-primary);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            border-radius: 99px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
-            opacity: 0;
-            transition: var(--transition-base);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-
-        .btn-primary span,
-        .btn-primary i {
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 2rem;
-            background: transparent;
-            color: var(--color-text);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            border-radius: 99px;
-            text-decoration: none;
-            border: 1.5px solid var(--color-border);
-            cursor: pointer;
-            transition: var(--transition-base);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--color-accent);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            text-decoration: none;
-            transition: var(--transition-fast);
-        }
-
-        .btn-ghost:hover {
-            gap: 0.75rem;
-            color: var(--color-accent-light);
-        }
-
-        /* Mobile menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--color-text);
-            transition: var(--transition-base);
-            border-radius: 2px;
-        }
-
-        .hamburger.active span:first-child {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:last-child {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            inset: 0;
-            background: rgba(250, 250, 252, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-base);
-        }
-
-        .mobile-menu.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .mobile-menu-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .mobile-menu-content a {
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-            font-family: var(--font-display);
-            transition: var(--transition-fast);
-        }
-
-        .mobile-menu-content a:hover,
-        .mobile-menu-content a.active {
-            color: var(--color-accent);
-        }
+        /* Global Navbar & Mobile Menu Styles from styles.css */
 
         /* ============================================
            UTILITY CLASSES
@@ -1118,154 +875,7 @@
             line-height: 1.7;
         }
 
-        /* ============================================
-           FOOTER
-        ============================================ */
-        .footer {
-            padding: 6rem 0 2rem;
-            border-top: 1px solid var(--color-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            background: radial-gradient(ellipse, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 2fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 1.5rem;
-            display: inline-flex;
-        }
-
-        .footer-brand p {
-            color: var(--color-text-dim);
-            font-size: 0.9375rem;
-            line-height: 1.7;
-            max-width: 300px;
-        }
-
-        .footer-links h5 {
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-text);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.875rem;
-        }
-
-        .footer-links a {
-            color: var(--color-text-dim);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            transition: var(--transition-fast);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-accent);
-            transform: translateX(4px);
-        }
-
-        .footer-contact {
-            text-align: right;
-        }
-
-        .footer-contact a {
-            display: block;
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            transition: var(--transition-fast);
-        }
-
-        .footer-contact a:hover {
-            color: var(--color-accent);
-        }
-
-        .footer-contact .socials {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            margin-top: 1.5rem;
-        }
-
-        .socials a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-muted);
-            text-decoration: none;
-            transition: var(--transition-base);
-            font-size: 0.9375rem;
-        }
-
-        .socials a:hover {
-            background: var(--color-accent);
-            border-color: var(--color-accent);
-            color: var(--color-primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-border);
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-bottom p {
-            font-size: 0.875rem;
-            color: var(--color-text-dim);
-        }
-
-        .footer-massive {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 700;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--color-border);
-            text-align: center;
-            line-height: 1;
-            margin: 2rem 0;
-            user-select: none;
-            position: relative;
-            z-index: 1;
-        }
+        /* Global Footer Styles from styles.css */
 
         /* ============================================
            RESPONSIVE REFINEMENTS
@@ -1351,14 +961,11 @@
     <div class="noise-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">R</div>
-                Revive IV
-            </a>
-
-            <ul class="nav-links">
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
+            
+            <ul class="nav-links desktop-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="iv-drips.html">IV Drips</a></li>
@@ -1366,21 +973,27 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="faq.html">FAQs</a></li>
             </ul>
+            <a href="contact.html" class="btn-primary desktop-btn">Book Now</a>
 
-            <a href="contact.html" class="btn-primary desktop-btn">
-                <span>Book Now</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
+            <!-- Mobile Actions -->
+            <div class="mobile-actions">
+                <a href="products.html" class="mobile-products-icon" aria-label="Order Now">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                </a>
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
+    <!-- Mobile Menu Slide-out -->
+    <div class="mobile-menu">
         <div class="mobile-menu-content">
             <a href="index.html">Home</a>
             <a href="services.html" class="active">Services</a>
@@ -1388,9 +1001,7 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="faq.html">FAQs</a>
-            <a href="contact.html" class="btn-primary" style="margin-top: 1rem;">
-                <span>Book Now</span>
-            </a>
+            <a href="contact.html" class="btn-solid" style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
         </div>
     </div>
 
@@ -1505,7 +1116,7 @@
 
                     <div class="feature-visual reveal">
                         <div class="feature-image-wrapper">
-                            <img src="assets/replacesurger.webp" alt="Premium IV Drip Treatment">
+                            <img src="assets/replacesurgery.webp" alt="Premium IV Drip Treatment">
                         </div>
                         <div class="feature-image-frame"></div>
 
@@ -1534,16 +1145,13 @@
                 </div>
 
                 <div class="bento-grid" id="bentoGrid">
-                    <!-- B12 - Tall -->
-                    <div class="bento-item bento-item-tall reveal reveal-delay-1">
-                        <div>
-                            <span class="bento-badge">Most Popular</span>
-                            <div class="bento-content">
-                                <h3>Vitamin B12</h3>
-                                <p>Pure energy in a shot. Perfect for combating brain fog, chronic fatigue, and
-                                    supporting nervous system health.</p>
-                                <div class="bento-price">$49</div>
-                            </div>
+                    <!-- Vitamin B12 - Tall -->
+                    <div class="bento-item bento-item-tall reveal">
+                        <span class="bento-badge">Most Popular</span>
+                        <div class="bento-content">
+                            <h3>Vitamin B12</h3>
+                            <p>Instant energy boost and metabolic support. Perfect for combating brain fog and chronic fatigue.</p>
+                            <div class="bento-price">$35</div>
                         </div>
                         <div class="bento-icon">
                             <i class="fas fa-bolt"></i>
@@ -1551,11 +1159,10 @@
                     </div>
 
                     <!-- Biotin - Wide -->
-                    <div class="bento-item bento-item-wide reveal reveal-delay-2">
+                    <div class="bento-item bento-item-wide reveal">
                         <div class="bento-content">
                             <h3>Biotin & Skin Health</h3>
-                            <p>Enhance your natural glow with our beauty-focused vitamin shots. Promotes healthy hair,
-                                skin, and nails from the inside out with pharmaceutical-grade biotin.</p>
+                            <p>Enhance your natural glow with our beauty-focused vitamin shots. Promotes healthy hair, skin, and nails from the inside out.</p>
                             <div class="bento-price">$59</div>
                         </div>
                         <div class="bento-icon">
@@ -1564,10 +1171,10 @@
                     </div>
 
                     <!-- Vitamin D -->
-                    <div class="bento-item reveal reveal-delay-3">
+                    <div class="bento-item reveal">
                         <div class="bento-content">
                             <h3>Vitamin D3</h3>
-                            <p>The "sunshine vitamin" for immune support and mood regulation.</p>
+                            <p>The "sunshine vitamin" for immune support, bone health, and mood regulation.</p>
                             <div class="bento-price">$45</div>
                         </div>
                         <div class="bento-icon">
@@ -1576,11 +1183,11 @@
                     </div>
 
                     <!-- Lipo-Lean -->
-                    <div class="bento-item reveal reveal-delay-4">
+                    <div class="bento-item reveal">
                         <div class="bento-content">
                             <h3>Lipo-Lean</h3>
-                            <p>Metabolism booster to support your weight management journey.</p>
-                            <div class="bento-price">$55</div>
+                            <p>Fat metabolism and weight loss optimization to support your journey.</p>
+                            <div class="bento-price">$40</div>
                         </div>
                         <div class="bento-icon">
                             <i class="fas fa-fire"></i>
@@ -1679,62 +1286,41 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">R</div>
-                        Revive IV
-                    </a>
-                    <p>Expert IV hydration and wellness treatments, delivered to your doorstep in New York City.</p>
-                </div>
-
-                <div class="footer-links">
-                    <h5>Services</h5>
-                    <ul>
-                        <li><a href="iv-drips.html">IV Drips</a></li>
-                        <li><a href="services.html">Wellness Shots</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="products.html">Shop Supplements</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-links">
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="faq.html">FAQs</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-contact">
-                    <a href="tel:+16467093698">+1 (646) 709-3698</a>
-                    <a href="mailto:info@reviveiv.io">info@reviveiv.io</a>
-                    <p style="color: var(--color-text-dim); font-size: 0.9375rem; margin-top: 0.5rem;">New York, NY</p>
-
-                    <div class="socials">
-                        <a href="https://www.instagram.com/reviveivdrip_/" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" aria-label="Twitter">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                    </div>
-                </div>
+    <footer class="footer new-footer">
+        <div class="footer-top-row reveal">
+            <div class="footer-top-left">
+                <a href="tel:+16467093698">+1 (646) 709-3698</a>
+                <a href="mailto:info@reviveiv.io">info@reviveiv.io</a>
             </div>
-
-            <div class="footer-massive">REVIVE IV</div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Revive IV Hydration. All rights reserved.</p>
-                <p>New York, NY</p>
+            <div class="footer-top-right">
+                <a href="https://www.instagram.com/reviveivdrip_/" target="_blank">Instagram</a>
             </div>
+        </div>
+        <div class="footer-middle-row reveal">
+            <div class="footer-logo-container">
+                <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV"></a>
+            </div>
+            <div class="footer-nav-container">
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="iv-drips.html">IV Drips</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+                <ul class="footer-nav-list">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-desc-container">
+                <p>Expert IV hydration and wellness treatments, delivered to your doorstep in New York.</p>
+            </div>
+        </div>
+        <div class="footer-massive-row reveal">REVIVE IV</div>
+        <div class="footer-bottom-row reveal">
+            <p>&copy; 2026 Revive IV Hydration.</p>
+            <p>New York, NY</p>
         </div>
     </footer>
 
@@ -1761,8 +1347,8 @@
         // ============================================
         // MOBILE MENU
         // ============================================
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
