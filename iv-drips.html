@@ -102,35 +102,28 @@
         <div class="container">
             
             <!-- Featured Product: Custom Drips -->
-            <div class="featured-product-hero reveal">
-                <div class="featured-grid">
-                    <div class="featured-image-container">
-                        <img src="assets/customdrips.webp" alt="Custom Drips" class="featured-img">
-                        <div class="floating-badge">MOST POPULAR</div>
+            <div class="featured-product-hero reveal" style="background: #111; color: white; border-radius: 32px; overflow: hidden; margin-bottom: 6rem; border: 1px solid rgba(255,255,255,0.1);">
+                <div class="featured-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); align-items: center;">
+                    <div class="featured-image-container" style="background: #1a1a1a; padding: 4rem; display: flex; justify-content: center; align-items: center; min-height: 400px; position: relative;">
+                        <img src="assets/customdrips.webp" alt="Custom Drips" class="featured-img" style="max-width: 100%; height: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));">
+                        <div class="floating-badge" style="position: absolute; top: 2rem; right: 2rem; background: var(--accent-gold); color: white; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.75rem; letter-spacing: 1px;">MOST POPULAR</div>
                     </div>
-                    <div class="featured-info">
-                        <h2 class="featured-title">Custom Drips</h2>
-                        <div class="featured-price">$175 <span class="all-inc">All-Inclusive</span></div>
-                        <p class="featured-desc">Optimize your unique biology with our most comprehensive IV blend, customized for your specific health goals.</p>
+                    <div class="featured-info" style="padding: 4rem;">
+                        <div style="color: var(--accent-gold); font-weight: 700; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 1.5rem;">SIGNATURE TREATMENT</div>
+                        <h2 class="featured-title" style="font-size: 3.5rem; margin-bottom: 1rem; font-weight: 900;">Custom Drips</h2>
+                        <div class="featured-price" style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 1.5rem; font-weight: 400;">$175 <span class="all-inc" style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">All-Inclusive</span></div>
+                        <p class="featured-desc" style="font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 2.5rem;">The ultimate signature experience. We tailor every nutrient to your unique biology, creating a comprehensive restorative blend for peak performance.</p>
                         
-                        <div class="ingredients-list">
-                            <span class="ingredient">B-Complex</span>
-                            <span class="ingredient">B12</span>
-                            <span class="ingredient">Vitamin C</span>
-                            <span class="ingredient">Lipostat</span>
-                            <span class="ingredient">Magnesium</span>
-                            <span class="ingredient">Glutathione</span>
-                            <span class="ingredient">Biotin</span>
-                            <span class="ingredient">Zinc</span>
+                        <div class="ingredients-list" style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 3rem;">
+                            <span class="ingredient" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem;">B-Complex</span>
+                            <span class="ingredient" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem;">Vitamin B12</span>
+                            <span class="ingredient" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem;">Vitamin C</span>
+                            <span class="ingredient" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem;">Magnesium</span>
+                            <span class="ingredient" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem;">Glutathione</span>
+                            <span class="ingredient" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem;">Zinc</span>
                         </div>
                         
-                        <div class="trust-pill-row">
-                            <div class="trust-pill"><span class="icon">✨</span> High Demand</div>
-                            <div class="trust-pill"><span class="icon">👩‍⚕️</span> Licensed RNs</div>
-                            <div class="trust-pill"><span class="icon">🛡️</span> FDA-Approved</div>
-                        </div>
-                        
-                        <a href="products.html" class="btn-solid hero-cta">Book Treatment &rarr;</a>
+                        <a href="products.html" class="btn-solid" style="background: var(--accent-gold); color: white; padding: 1.2rem 3rem; border-radius: 99px; display: inline-block; font-weight: 700; transition: transform 0.3s ease;">Book Treatment &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -264,59 +257,86 @@
     </section>
 
     <!-- Shots Menu -->
-    <section class="section" style="background: rgba(0,0,0,0.2);">
+    <section class="section" style="background: var(--bg-surface); position: relative; overflow: hidden;">
         <div class="container">
-            <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 1rem;">The Shot Bar</h2>
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary);">Add to any IV drip • Quick 5-minute injections • Wellness made easy</h3>
+            <div class="reveal" style="text-align: center; margin-bottom: 5rem;">
+                <div class="header-badge" style="margin: 0 auto 1.5rem;">QUICK BOOSTS</div>
+                <h2 style="color: var(--text-primary); font-size: 3rem; margin-bottom: 1rem; font-weight: 900;">The Shot Bar</h2>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Rapid wellness boosts delivered in under 15 minutes. Add to any IV drip or book as a standalone restorative.</p>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <div class="bento-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
                 
                 <!-- Vitamin B12 -->
-                <div class="reveal" style="background: var(--bg-surface); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="assets/vitsaminb12.png" alt="Vitamin B12" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Vitamin B12</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">$35</p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Instant energy boost and metabolic support.</p>
-                    <a href="products.html" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Book Shot</a>
-                </div>
-
-                <!-- Vitamin D -->
-                <div class="reveal" style="background: var(--bg-surface); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="assets/vitamind.png" alt="Vitamin D" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Vitamin D</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">$45</p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Bone health, immunity, and mood regulation.</p>
-                    <a href="products.html" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Book Shot</a>
-                </div>
-
-                <!-- Lipolean -->
-                <div class="reveal" style="background: var(--bg-surface); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="assets/lipolean.png" alt="Lipolean" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Lipolean</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">$40</p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Fat metabolism and weight loss optimization.</p>
-                    <a href="products.html" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Book Shot</a>
+                <div class="bento-item reveal" style="background: #fafafa; border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; position: relative; overflow: hidden;">
+                    <div class="bento-content">
+                        <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">ENERGY</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Vitamin B12</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Instant energy boost and metabolic support to power your day.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 1.5rem; font-weight: 900; color: var(--text-primary);">$35</div>
+                            <a href="products.html" class="btn-primary" style="padding: 0.6rem 1.2rem; border-radius: 99px; font-size: 0.85rem;">Book Shot</a>
+                        </div>
+                    </div>
+                    <img src="assets/vitsaminb12.png" alt="B12" style="position: absolute; right: -20px; top: -20px; width: 120px; opacity: 0.1; pointer-events: none;">
                 </div>
 
                 <!-- Biotin -->
-                <div class="reveal" style="background: var(--bg-surface); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="assets/biotin.png" alt="Biotin" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Biotin</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">$35</p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Healthy hair, glowing skin, and strong nails.</p>
-                    <a href="products.html" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Book Shot</a>
+                <div class="bento-item reveal" style="background: #fafafa; border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; position: relative; overflow: hidden;">
+                    <div class="bento-content">
+                        <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">GLOW</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Biotin</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Healthy hair, glowing skin, and strong nails from the inside out.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 1.5rem; font-weight: 900; color: var(--text-primary);">$35</div>
+                            <a href="products.html" class="btn-primary" style="padding: 0.6rem 1.2rem; border-radius: 99px; font-size: 0.85rem;">Book Shot</a>
+                        </div>
+                    </div>
+                    <img src="assets/biotin.png" alt="Biotin" style="position: absolute; right: -20px; top: -20px; width: 120px; opacity: 0.1; pointer-events: none;">
+                </div>
+
+                <!-- Vitamin D3 -->
+                <div class="bento-item reveal" style="background: #fafafa; border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; position: relative; overflow: hidden;">
+                    <div class="bento-content">
+                        <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">IMMUNE</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Vitamin D3</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">The sunshine vitamin for immune support, bone health, and mood.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 1.5rem; font-weight: 900; color: var(--text-primary);">$45</div>
+                            <a href="products.html" class="btn-primary" style="padding: 0.6rem 1.2rem; border-radius: 99px; font-size: 0.85rem;">Book Shot</a>
+                        </div>
+                    </div>
+                    <img src="assets/vitamind.png" alt="D3" style="position: absolute; right: -20px; top: -20px; width: 120px; opacity: 0.1; pointer-events: none;">
                 </div>
 
                 <!-- Glutathione -->
-                <div class="reveal" style="background: var(--bg-surface); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="assets/glutathione.jpg" alt="Glutathione" style="width: 80px; height: 80px; object-fit: contain; border-radius: 8px; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Glutathione</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">$50</p>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Powerful antioxidant for detoxification and skin health.</p>
-                    <a href="products.html" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Book Shot</a>
+                <div class="bento-item reveal" style="background: #fafafa; border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; position: relative; overflow: hidden;">
+                    <div class="bento-content">
+                        <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">DETOX</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Glutathione</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Powerful master antioxidant for deep detoxification and skin health.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 1.5rem; font-weight: 900; color: var(--text-primary);">$50</div>
+                            <a href="products.html" class="btn-primary" style="padding: 0.6rem 1.2rem; border-radius: 99px; font-size: 0.85rem;">Book Shot</a>
+                        </div>
+                    </div>
+                    <img src="assets/glutathione.jpg" alt="Glutathione" style="position: absolute; right: -20px; top: -20px; width: 120px; opacity: 0.05; pointer-events: none;">
                 </div>
+
+                <!-- Lipo-Lean -->
+                <div class="bento-item reveal" style="background: #fafafa; border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; position: relative; overflow: hidden;">
+                    <div class="bento-content">
+                        <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">METABOLISM</div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Lipo-Lean</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Fat metabolism and weight loss optimization to support your journey.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 1.5rem; font-weight: 900; color: var(--text-primary);">$40</div>
+                            <a href="products.html" class="btn-primary" style="padding: 0.6rem 1.2rem; border-radius: 99px; font-size: 0.85rem;">Book Shot</a>
+                        </div>
+                    </div>
+                    <img src="assets/lipolean.png" alt="Lipo-Lean" style="position: absolute; right: -20px; top: -20px; width: 120px; opacity: 0.1; pointer-events: none;">
+                </div>
+
             </div>
         </div>
     </section>
@@ -349,27 +369,15 @@
                 <!-- Tirzepatide -->
                 <div class="service-card reveal card-reverse">
                     <div class="service-card-image">
-                        <img src="assets/Tirzepatide.webp" alt="Tirzepatide">
+                        <img src="assets/Tirzepatide.png" alt="Tirzepatide">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">WEIGHT LOSS</div>
-                        <h3>Tirzepatide <span>Starting at $299</span></h3>
-                        <p>Advanced metabolic support for enhanced weight management and vitality.</p>
+                        <h3>Tirzepatide <span>Starting at $249</span></h3>
+                        <p>Advanced dual-action weight management protocol optimized for robust results.</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
                     </div>
                 </div>
-            </div>
-                    <div style="flex: 1; min-width: 250px;">
-                        <img src="assets/Tirzepatide.png" alt="Tirzepatide" style="width: 100%; height: 280px; border-radius: 8px; object-fit: contain; display: block; margin: 0 auto;">
-                    </div>
-                    <div style="flex: 2; min-width: 250px;">
-                        <div style="display: inline-block; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 1px;">WEIGHT LOSS</div>
-                        <h3 style="font-size: 2rem; color: var(--accent-gold); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">Tirzepatide <span style="font-size: 1.2rem; color: #fff;">Starting at $249 / month only</span></h3>
-                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">Advanced dual-action weight management protocol optimized for robust results.</p>
-                        <a href="products.html" class="btn-primary">Book Treatment</a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
