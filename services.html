@@ -371,9 +371,15 @@
             position: relative;
         }
 
+        /* Reveal elements are visible by default to prevent lag */
         .reveal {
-            opacity: 1;
-            transform: none;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        .reveal.visible {
+            opacity: 1 !important;
+            transform: none !important;
         }
 
         .reveal.visible {
@@ -1773,24 +1779,7 @@
             });
         });
 
-        // ============================================
-        // SCROLL REVEAL ANIMATIONS
-        // ============================================
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
+        // Scroll Reveal Animations Removed for Performance
 
         // ============================================
         // BENTO GRID MOUSE GLOW EFFECT
