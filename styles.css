@@ -1462,13 +1462,21 @@ img {
   .horizontal-pin-container {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 100px;
+    padding-top: 2rem;
     height: auto !important;
   }
   #process-pin .container {
     position: relative !important;
     top: 0 !important;
     margin-bottom: 2rem;
+    text-align: center;
+  }
+  #process-pin .section-title,
+  #process-pin .section-subtitle {
+    text-align: center !important;
+  }
+  .horizontal-panel .panel-content p {
+    text-align: justify;
   }
   .horizontal-track {
     display: flex;
