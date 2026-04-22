@@ -375,15 +375,33 @@ function initHeroSlider() {
 /* ─── 10. Shot Card Toggle ─────────────────────────────────────── */
 function initShotCards() {
     const shotCards = document.querySelectorAll('.shot-card');
-    shotCards.forEach(card => {
-        card.onclick = () => {
-            // Optional: Close others
-            shotCards.forEach(other => {
-                if (other !== card) other.classList.remove('active');
+    if (!shotCards.length) return;
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile && typeof ScrollTrigger !== 'undefined') {
+        // Mobile: Automatically expand on scroll
+        shotCards.forEach(card => {
+            ScrollTrigger.create({
+                trigger: card,
+                start: "top 75%", // Triggers when top of card is 75% down the viewport
+                end: "bottom 25%", // Ends when bottom is 25% down the viewport
+                toggleClass: "active"
             });
-            card.classList.toggle('active');
-        };
-    });
+            // Allow manual toggle as well
+            card.onclick = () => card.classList.toggle('active');
+        });
+    } else {
+        // Desktop: Click to expand
+        shotCards.forEach(card => {
+            card.onclick = () => {
+                shotCards.forEach(other => {
+                    if (other !== card) other.classList.remove('active');
+                });
+                card.classList.toggle('active');
+            };
+        });
+    }
 }
 
 /* ─── 11. Product Category Nav (Scroll Spy) ────────────────── */
