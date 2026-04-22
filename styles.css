@@ -1359,43 +1359,53 @@ img {
   }
 
   /* Brutalist Footer Mobile */
+  .new-footer {
+    overflow: visible;
+  }
   .footer-top-row {
     padding: 1.5rem;
     flex-direction: column;
     gap: 0.5rem;
+    align-items: center;
+    text-align: center;
   }
   .footer-middle-row {
+    display: flex;
     flex-direction: column;
-    padding: 2.5rem 1.5rem;
+    padding: 3rem 1.5rem;
+    gap: 3rem;
+    align-items: center;
+    text-align: center;
   }
   .footer-logo-container {
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
   }
   .footer-nav-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    margin-bottom: 2.5rem;
     width: 100%;
   }
   .footer-nav-list a {
-    font-size: 1.3rem;
-    line-height: 1.3;
+    font-size: 1.2rem;
+    line-height: 1.2;
   }
   .footer-desc-container {
-    text-align: left;
-    margin-left: 0;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
   }
   .footer-massive-row {
-    font-size: 14.5vw;
-    padding-bottom: 2rem;
+    font-size: 12vw;
+    padding: 2rem 0;
     white-space: nowrap;
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
   .footer-bottom-row {
     padding: 1.5rem;
     flex-direction: column;
     text-align: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 }
 
