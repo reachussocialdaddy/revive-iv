@@ -148,6 +148,8 @@ img {
 .footer .logo img {
   height: 80px !important;
   width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .logo span {
