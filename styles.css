@@ -9,6 +9,7 @@
   
   --accent-primary: #C5A059; /* Premium Gold */
   --accent-secondary: #F3E5AB; /* Light Gold / Champagne */
+  --accent-gold: #D4AF37; /* Bright Gold */
   --gradient-theme: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   --gradient-hover: linear-gradient(135deg, #B58D45, #E2CE82);
   
