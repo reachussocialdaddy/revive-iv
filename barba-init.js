@@ -196,12 +196,19 @@
     });
 
     /* ── Barba init ── */
-    /* ── Barba init (DISABLED for stability) ── */
-    /* 
     barba.init({
-        ...
+        sync: true,
+        transitions: [{
+            name: 'curtain-transition',
+            leave(data) {
+                return curtainIn();
+            },
+            enter(data) {
+                runPageAnimations(data.next.container);
+                return curtainOut();
+            }
+        }]
     });
-    */
 
     /* ── Run on load (Standard Navigation) ── */
     document.addEventListener('DOMContentLoaded', () => {
