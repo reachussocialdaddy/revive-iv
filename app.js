@@ -447,8 +447,35 @@ window.initScrollAnimations = function () {
     initShotCards();
     initServices3D();
     initProductCategories();
+    initGroupModal();
     updateActiveNavLink();
 };
+
+/* ─── Group Session Modal ──────────────────────────────── */
+function initGroupModal() {
+    const btnKnowMore = document.getElementById('btn-know-more');
+    const modal = document.getElementById('group-modal');
+    const btnClose = document.getElementById('btn-close-modal');
+
+    if (!btnKnowMore || !modal || !btnClose) return;
+
+    btnKnowMore.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // lock scroll
+    });
+
+    btnClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
 
 /* ─── Boot on DOMContentLoaded ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -457,6 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMarquee();
     initShotCards();
     initReviews();
+    initGroupModal();
     updateActiveNavLink();
     window.initScrollAnimations();
 });
