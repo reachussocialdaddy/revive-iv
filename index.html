@@ -7,156 +7,14 @@
     <meta name="description" content="Expert mobile IV therapy and wellness treatments delivered to your doorstep in New York. Experience ultimate luxury and rejuvenation.">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* ── Barba page transition overlay ── */
         #barba-curtain {
             position: fixed;
             inset: 0;
-            background: var(--text-primary);
+            background: #0F172A;
             z-index: 9999;
             transform: scaleY(0);
             transform-origin: bottom;
             pointer-events: none;
-        }
-
-        /* ── Hero Three.js Ring Canvas ── */
-        #hero-ring-scene {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ── Orbiting Icons cluster ── */
-        .icon-orbit-cluster {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            height: 320px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        @media (max-width: 768px) {
-            .icon-orbit-cluster {
-                width: 220px;
-                height: 220px;
-                top: 38%;
-                left: 50%;
-            }
-        }
-
-        .orbit-icon {
-            position: absolute;
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.25), 0 2px 5px rgba(0,0,0,0.05);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            font-size: 24px;
-            z-index: 10;
-            user-select: none;
-            transition: transform 0.3s ease;
-        }
-        @media (max-width: 768px) {
-            .orbit-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-                border-radius: 10px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .orbit-icon {
-                width: 38px;
-                height: 38px;
-                font-size: 17px;
-                border-radius: 11px;
-            }
-        }
-
-        /* ── Hero content z-index ── */
-        .hero .container {
-            z-index: 5;
-            position: relative;
-        }
-
-        /* ── Animated "REVIVE IV" split-text ── */
-        .brand-split {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: top;
-        }
-        .brand-split-inner {
-            display: inline-block;
-        }
-
-        /* ── Intro loader/splash ── */
-        #intro-loader {
-            position: fixed;
-            inset: 0;
-            background: #0F172A; /* Match the new premium dark theme */
-            z-index: 999999; /* Absolute top */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1.5rem;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-        #intro-loader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .loader-logo-text {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            color: transparent;
-            background: linear-gradient(135deg, #C5A059, #F3E5AB);
-            -webkit-background-clip: text;
-            background-clip: text;
-            line-height: 1;
-            overflow: hidden;
-        }
-        .loader-bar {
-            width: 180px;
-            height: 2px;
-            background: rgba(197,160,89,0.2);
-            border-radius: 99px;
-            overflow: hidden;
-        }
-        .loader-bar-fill {
-            height: 100%;
-            background: linear-gradient(135deg, #C5A059, #F3E5AB);
-            width: 0%;
-            border-radius: 99px;
-        }
-
-        /* ── Footer massive word fix mobile ── */
-        @media (max-width: 480px) {
-            .footer-massive-row {
-                font-size: 17.5vw;
-                letter-spacing: -0.04em;
-            }
-        }
-
-        /* ── Formulation section mobile fix ── */
-        @media (max-width: 768px) {
-            .formulation-3d-container {
-                height: 300px;
-            }
         }
     </style>
 </head>
@@ -230,6 +88,96 @@
     </div>
 
     <main data-barba="container" data-barba-namespace="home">
+        <style>
+            /* ── Hero Three.js Ring Canvas ── */
+            #hero-ring-scene {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            /* ── Orbiting Icons cluster ── */
+            .icon-orbit-cluster {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 320px;
+                height: 320px;
+                z-index: 2;
+                pointer-events: none;
+            }
+
+            @media (max-width: 768px) {
+                .icon-orbit-cluster {
+                    width: 220px;
+                    height: 220px;
+                    top: 38%;
+                    left: 50%;
+                }
+            }
+
+            .orbit-icon {
+                position: absolute;
+                width: 48px;
+                height: 48px;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 10px 25px rgba(197, 160, 89, 0.25), 0 2px 5px rgba(0,0,0,0.05);
+                border: 1px solid rgba(197, 160, 89, 0.3);
+                font-size: 24px;
+                z-index: 10;
+                user-select: none;
+                transition: transform 0.3s ease;
+            }
+            @media (max-width: 768px) {
+                .orbit-icon {
+                    width: 38px;
+                    height: 38px;
+                    font-size: 17px;
+                    border-radius: 11px;
+                }
+            }
+
+            /* ── Hero content z-index ── */
+            .hero .container {
+                z-index: 5;
+                position: relative;
+            }
+
+            /* ── Animated "REVIVE IV" split-text ── */
+            .brand-split {
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: top;
+            }
+            .brand-split-inner {
+                display: inline-block;
+            }
+
+            /* ── Footer massive word fix mobile ── */
+            @media (max-width: 480px) {
+                .footer-massive-row {
+                    font-size: 17.5vw;
+                    letter-spacing: -0.04em;
+                }
+            }
+
+            /* ── Formulation section mobile fix ── */
+            @media (max-width: 768px) {
+                .formulation-3d-container {
+                    height: 300px;
+                }
+            }
+        </style>
 
     <!-- Hero Section -->
     <header class="hero">
@@ -652,6 +600,7 @@
             <p>New York, NY</p>
         </div>
     </footer>
+    </main>
 
 
     <!-- Libraries -->

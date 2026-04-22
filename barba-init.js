@@ -191,70 +191,38 @@
     });
 
     /* ── Barba init ── */
+    /* ── Barba init (DISABLED for stability) ── */
+    /* 
     barba.init({
-        preventRunning: true,
-        transitions: [
-            {
-                name: 'curtain-transition',
-
-                async leave({ current }) {
-                    await curtainIn();
-                    current.container.style.visibility = 'hidden';
-                },
-
-                async enter({ next }) {
-                    await curtainOut();
-                    // Basic container animations
-                    runPageAnimations(next.container);
-                },
-
-                after({ next }) {
-                    // Re-init core logic from app.js
-                    if (typeof window.initScrollAnimations === 'function') {
-                        window.initScrollAnimations();
-                    }
-
-                    // Re-init hero ring if navigating to home
-                    if (next.namespace === 'home') {
-                        if (typeof initHeroRingScene === 'function') {
-                            initHeroRingScene();
-                        }
-                        if (typeof initOrbitAnimation === 'function') {
-                            initOrbitAnimation();
-                        }
-                    }
-
-                    // Re-init Cart UI for products page
-                    if (next.namespace === 'products') {
-                        if (typeof updateCartUI === 'function') {
-                            updateCartUI();
-                        }
-                    }
-
-                    // Always re-init REVIVE IV reveal and active link
-                    if (typeof initReviveIVReveal === 'function') {
-                        initReviveIVReveal();
-                    }
-                    if (typeof updateActiveNavLink === 'function') {
-                        updateActiveNavLink();
-                    }
-
-                    // Force refresh ScrollTrigger after a short delay for layout stability
-                    setTimeout(() => {
-                        if (typeof ScrollTrigger !== 'undefined') {
-                            ScrollTrigger.refresh();
-                        }
-                    }, 300);
-                }
-            }
-        ]
+        ...
     });
+    */
 
-    /* ── Run on first load ── */
+    /* ── Run on load (Standard Navigation) ── */
     document.addEventListener('DOMContentLoaded', () => {
+        // Run entrance animations for the whole page
+        runPageAnimations(document.body);
+        
+        // Init specialized animations
         initReviveIVReveal();
+        
         if (typeof updateActiveNavLink === 'function') {
             updateActiveNavLink();
+        }
+
+        // Hero specialized inits
+        if (document.querySelector('[data-barba-namespace="home"]')) {
+            if (typeof initHeroRingScene === 'function') initHeroRingScene();
+            if (typeof initOrbitAnimation === 'function') initOrbitAnimation();
+        }
+
+        // Loader cleanup
+        const loader = document.getElementById('intro-loader');
+        if (loader) {
+            // Give scripts a moment to breathe
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 1000);
         }
     });
 
