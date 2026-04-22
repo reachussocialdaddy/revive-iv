@@ -137,19 +137,19 @@ img {
 .navbar .logo img {
   height: 60px !important;
   width: auto;
-  animation: logoBreathe 4s infinite alternate ease-in-out;
+  transform-origin: center;
+  animation: logoFloat 4s ease-in-out infinite;
 }
 
-@keyframes logoBreathe {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(197, 160, 89, 0)); }
-  100% { transform: scale(1.04); filter: drop-shadow(0 0 12px rgba(197, 160, 89, 0.5)); }
+@keyframes logoFloat {
+  0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 0px rgba(197, 160, 89, 0)); }
+  50% { transform: translateY(-3px) scale(1.05); filter: drop-shadow(0 5px 15px rgba(197, 160, 89, 0.6)); }
+  100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 0px rgba(197, 160, 89, 0)); }
 }
 
 .footer .logo img {
   height: 80px !important;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
 }
 
 .logo span {
