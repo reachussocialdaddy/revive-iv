@@ -1430,12 +1430,12 @@ img {
   }
   
   .hero {
-    min-height: 85vh !important;
-    padding-bottom: 3rem;
+    min-height: 75vh !important;
+    padding-bottom: 1.5rem;
   }
   .hero-content {
     padding-top: 100px;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     text-align: center;
   }
   .hero-title {
