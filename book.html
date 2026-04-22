@@ -155,49 +155,11 @@
 
                     <!-- Right: Form -->
                     <div class="contact-form-card reveal">
-                        <h3>Request an Appointment</h3>
-                        <p class="form-subtitle">We'll confirm within 2 hours.</p>
-                        <form onsubmit="handleContactSubmit(event)">
-                            <div class="form-grid">
-                                <div class="form-field">
-                                    <label for="contact-fname">First Name</label>
-                                    <input type="text" id="contact-fname" placeholder="Jane" required>
-                                </div>
-                                <div class="form-field">
-                                    <label for="contact-lname">Last Name</label>
-                                    <input type="text" id="contact-lname" placeholder="Doe" required>
-                                </div>
-                                <div class="form-field form-full">
-                                    <label for="contact-email">Email Address</label>
-                                    <input type="email" id="contact-email" placeholder="jane@example.com" required>
-                                </div>
-                                <div class="form-field form-full">
-                                    <label for="contact-phone">Phone Number</label>
-                                    <input type="tel" id="contact-phone" placeholder="+1 (555) 000-0000" required>
-                                </div>
-                                <div class="form-field form-full">
-                                    <label for="contact-service">Select Service</label>
-                                    <select id="contact-service" required>
-                                        <option value="">Choose a treatment...</option>
-                                        <option value="myers">Myers Cocktail</option>
-                                        <option value="liquid-gold">Liquid Gold (Hangover)</option>
-                                        <option value="beautify">Beautify</option>
-                                        <option value="defense">Revive Defense</option>
-                                        <option value="weight-loss">Weight Management Consult</option>
-                                        <option value="nad">NAD+ Infusion</option>
-                                        <option value="custom">Custom / Not Sure</option>
-                                    </select>
-                                </div>
-                                <div class="form-field form-full">
-                                    <label for="contact-message">Message (optional)</label>
-                                    <textarea id="contact-message" placeholder="Any special requests or questions..."></textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="form-submit-btn" id="contact-submit-btn">
-                                ✦ Submit Booking Request
-                            </button>
-                            <p class="form-note">🔒 Your information is secure and never shared.</p>
-                        </form>
+                        <h3>Book Your Appointment</h3>
+                        <p class="form-subtitle">Schedule your session directly with our medical team below.</p>
+                        <div class="charm-widget-container" style="border-radius: 12px; overflow: hidden; background: white; width: 100%;">
+                            <iframe width="100%" height="1000" src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=01389c02584758d10e185777908d11fdc38efcf12142eeef2dd731e79ce971fc2fc9c2738e1cf54daa69605fce4db66ad95fcbc3b76e32a2" style="overflow:hidden; border: none;" frameborder="0"></iframe>
+                        </div>
                     </div>
 
                 </div>
