@@ -204,10 +204,16 @@
 
                 async enter({ next }) {
                     await curtainOut();
+                    // Basic container animations
                     runPageAnimations(next.container);
                 },
 
                 after({ next }) {
+                    // Re-init core logic from app.js
+                    if (typeof window.initScrollAnimations === 'function') {
+                        window.initScrollAnimations();
+                    }
+
                     // Re-init hero ring if navigating to home
                     if (next.namespace === 'home') {
                         if (typeof initHeroRingScene === 'function') {
@@ -225,11 +231,20 @@
                         }
                     }
 
-                    // Always re-init REVIVE IV reveal
-                    initReviveIVReveal();
+                    // Always re-init REVIVE IV reveal and active link
+                    if (typeof initReviveIVReveal === 'function') {
+                        initReviveIVReveal();
+                    }
                     if (typeof updateActiveNavLink === 'function') {
                         updateActiveNavLink();
                     }
+
+                    // Force refresh ScrollTrigger after a short delay for layout stability
+                    setTimeout(() => {
+                        if (typeof ScrollTrigger !== 'undefined') {
+                            ScrollTrigger.refresh();
+                        }
+                    }, 300);
                 }
             }
         ]
