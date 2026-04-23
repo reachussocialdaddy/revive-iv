@@ -1927,7 +1927,7 @@ img {
 
   .horizontal-panel {
     scroll-snap-align: center;
-    width: 85vw;
+    width: 95vw;
     flex-shrink: 0;
     height: auto;
     min-height: 40vh;
