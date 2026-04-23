@@ -1,13 +1,6 @@
 const { Client, Environment } = require('square');
 const crypto = require('crypto');
 
-// Initialize Square Client
-// Note: Vercel functions use Environment Variables. 
-const client = new Client({
-    environment: Environment.Production,
-    accessToken: process.env.SQUARE_ACCESS_TOKEN,
-});
-
 module.exports = async (req, res) => {
     // Handle CORS (preflight request)
     if (req.method === 'OPTIONS') {
@@ -20,6 +13,17 @@ module.exports = async (req, res) => {
     }
 
     try {
+        if (!process.env.SQUARE_ACCESS_TOKEN) {
+            console.error('Missing SQUARE_ACCESS_TOKEN environment variable');
+            return res.status(500).json({ error: 'Server configuration error: Missing Square Token. Did you add it to Vercel and redeploy?' });
+        }
+
+        // Initialize Square Client inside the handler to catch initialization errors
+        const client = new Client({
+            environment: Environment.Production,
+            accessToken: process.env.SQUARE_ACCESS_TOKEN,
+        });
+
         const { sourceId, amount, currency } = req.body;
 
         if (!sourceId || !amount) {
@@ -34,8 +38,8 @@ module.exports = async (req, res) => {
             sourceId,
             idempotencyKey,
             amountMoney: {
-                // Square expects amount in cents/lowest denomination. Convert from dollars.
-                amount: Math.round(amount * 100), 
+                // Square SDK expects BigInt for the amount
+                amount: BigInt(Math.round(amount * 100)), 
                 currency: currency || 'USD',
             },
         });
