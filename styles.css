@@ -600,8 +600,7 @@ img {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 120vh !important;
-    background-color: #0F172A; /* Fallback to match marquee */
+    min-height: 100vh !important;
   }
 
   .hero-content {
