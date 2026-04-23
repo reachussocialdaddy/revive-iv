@@ -518,7 +518,7 @@ img {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 80vh !important;
+    min-height: 85vh !important;
   }
   .hero-content {
     text-align: center;
