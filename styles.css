@@ -516,10 +516,44 @@ img {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 80vh !important;
+  }
+  .hero-content {
+    text-align: center;
+    padding-top: 120px;
+    max-width: 100%;
+  }
+  .hero-title {
+    font-size: 1.8rem !important;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+  .hero-desc {
+    font-size: 1rem !important;
+    margin: 0 auto 2rem auto;
+    max-width: 90%;
+  }
+  .hero-btns {
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  .btn-primary {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.8rem !important;
+  }
   .hero-rating {
-    flex-direction: column;
-    align-items: flex-start !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 0.5rem !important;
+    margin-top: 1.5rem !important;
+  }
+  .rating-stars {
+    font-size: 0.9rem !important;
+  }
+  .rating-text {
+    font-size: 0.85rem !important;
   }
 }
 
