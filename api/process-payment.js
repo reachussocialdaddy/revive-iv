@@ -3,10 +3,9 @@ const crypto = require('crypto');
 
 // Initialize Square Client
 // Note: Vercel functions use Environment Variables. 
-// For local testing, we'll use the ones the user provided, but typically they go in process.env.
 const client = new Client({
     environment: Environment.Production,
-    accessToken: process.env.SQUARE_ACCESS_TOKEN || 'EAAAl40BZTEqkPCjiFKpeqFDBHILIDKGunczPziwiVyD7vN_qKd0UuL9zwCcFjlU',
+    accessToken: process.env.SQUARE_ACCESS_TOKEN,
 });
 
 module.exports = async (req, res) => {
