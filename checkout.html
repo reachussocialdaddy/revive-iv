@@ -6,7 +6,49 @@
     <title>Checkout | Revive IV</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="store.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* Custom Flatpickr Theme to match Revive IV */
+        .flatpickr-calendar {
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            font-family: var(--font-body);
+            width: 100% !important;
+            max-width: 350px;
+        }
+        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.selected:focus, .flatpickr-day.selected:hover, .flatpickr-day.prevMonthDay.selected, .flatpickr-day.nextMonthDay.selected {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: #fff;
+        }
+        .flatpickr-day.today {
+            border-color: var(--accent-primary);
+        }
+        .flatpickr-day.today:hover {
+            background: var(--accent-primary);
+            color: #fff;
+        }
+        .flatpickr-months .flatpickr-month {
+            color: var(--text-primary);
+            fill: var(--text-primary);
+        }
+        .flatpickr-weekday {
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        .flatpickr-current-month .flatpickr-monthDropdown-months {
+            font-weight: 900;
+        }
+        .flatpickr-calendar.inline {
+            margin-top: 1rem;
+            box-shadow: none;
+            border: 1px solid var(--border-light);
+        }
+    </style>
     <script src="https://web.squarecdn.com/v1/square.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body data-barba="wrapper">
     <div id="barba-curtain"></div>
@@ -52,26 +94,22 @@
                 <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Select Date & Timeslot</h3>
                 <div class="form-group" style="margin-bottom: 1.5rem;">
                     <label>Appointment Date</label>
-                    <input type="date" id="selected-date" required>
+                    <div id="inline-calendar"></div>
+                    <input type="hidden" id="selected-date" required>
                 </div>
                 <div class="timeslot-grid">
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">8:00 AM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">9:00 AM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">10:00 AM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">11:00 AM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">12:00 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">1:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">1:30 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">2:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">2:30 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">3:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">3:30 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">4:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">4:30 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">5:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">5:30 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">6:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">6:30 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">7:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">7:30 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">8:00 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">8:30 PM</button>
-                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">9:00 PM</button>
                 </div>
                 <input type="hidden" id="selected-timeslot" required>
             </div>
@@ -187,6 +225,16 @@
         // Call initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             initializeSquare();
+            
+            // Initialize Flatpickr (Inline Calendar)
+            flatpickr("#inline-calendar", {
+                inline: true,
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr, instance) {
+                    document.getElementById('selected-date').value = dateStr;
+                }
+            });
         });
 
         async function processPayment() {
