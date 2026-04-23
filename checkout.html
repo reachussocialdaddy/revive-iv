@@ -241,37 +241,46 @@
                 card = await payments.card();
                 await card.attach('#card-container');
 
-                // Apple Pay initialization
-                const totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
-                const finalTotal = parseFloat(totalStr) || 0;
-                const advanceAmount = (finalTotal * 0.20).toFixed(2);
-
-                const paymentRequest = payments.paymentRequest({
-                    countryCode: 'US',
-                    currencyCode: 'USD',
-                    total: {
-                        amount: advanceAmount,
-                        label: 'Revive IV Advance',
-                    },
-                });
-
-                try {
-                    applePay = await payments.applePay(paymentRequest);
-                    await applePay.attach('#apple-pay-button');
+                // Apple Pay initialization - Wait for valid total if necessary
+                const initApplePay = async () => {
+                    const totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
+                    const finalTotal = parseFloat(totalStr) || 0;
                     
-                    applePay.addEventListener('ontokenization', async (event) => {
-                        const { tokenResult } = event;
-                        if (tokenResult.status === 'OK') {
-                            await handlePayment(tokenResult.token);
-                        } else {
-                            const error = tokenResult.errors[0];
-                            document.getElementById('payment-status-container').innerText = error.message;
-                        }
+                    if (finalTotal <= 0) {
+                        setTimeout(initApplePay, 1000); // Retry in 1s
+                        return;
+                    }
+
+                    const advanceAmount = (finalTotal * 0.20).toFixed(2);
+                    const paymentRequest = payments.paymentRequest({
+                        countryCode: 'US',
+                        currencyCode: 'USD',
+                        total: {
+                            amount: advanceAmount,
+                            label: 'Revive IV Advance',
+                        },
                     });
-                } catch (applePayError) {
-                    console.error('Apple Pay not available:', applePayError);
-                    document.getElementById('apple-pay-button').style.display = 'none';
-                }
+
+                    try {
+                        applePay = await payments.applePay(paymentRequest);
+                        await applePay.attach('#apple-pay-button');
+                        
+                        applePay.addEventListener('ontokenization', async (event) => {
+                            const { tokenResult } = event;
+                            if (tokenResult.status === 'OK') {
+                                await handlePayment(tokenResult.token);
+                            } else {
+                                const error = tokenResult.errors[0];
+                                document.getElementById('payment-status-container').innerText = error.message;
+                            }
+                        });
+                    } catch (applePayError) {
+                        console.error('Apple Pay not available:', applePayError);
+                        document.getElementById('apple-pay-button').style.display = 'none';
+                    }
+                };
+
+                initApplePay();
 
             } catch (e) {
                 console.error('Initializing Square failed', e);
