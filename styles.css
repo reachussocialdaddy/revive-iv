@@ -558,11 +558,11 @@ img {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin-bottom: 0.8rem;
   letter-spacing: -0.04em;
   color: #fff;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .hero-desc {
