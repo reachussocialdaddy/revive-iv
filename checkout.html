@@ -48,7 +48,11 @@
             </div>
 
             <div class="checkout-section">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Select Timeslot</h3>
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Select Date & Timeslot</h3>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label>Appointment Date</label>
+                    <input type="date" id="selected-date" required>
+                </div>
                 <div class="timeslot-grid">
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">1:00 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">1:30 PM</button>
