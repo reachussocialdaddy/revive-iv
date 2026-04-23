@@ -1,5 +1,6 @@
 const { Client, Environment } = require('square');
 const crypto = require('crypto');
+const { Resend } = require('resend');
 
 module.exports = async (req, res) => {
     // Handle CORS (preflight request)
@@ -24,7 +25,7 @@ module.exports = async (req, res) => {
             accessToken: process.env.SQUARE_ACCESS_TOKEN,
         });
 
-        const { sourceId, amount, currency } = req.body;
+        const { sourceId, amount, currency, customerInfo } = req.body;
 
         if (!sourceId || !amount) {
             return res.status(400).json({ error: 'Missing required parameters' });
@@ -43,6 +44,52 @@ module.exports = async (req, res) => {
                 currency: currency || 'USD',
             },
         });
+
+        // DISPATCH EMAILS
+        if (process.env.RESEND_API_KEY && customerInfo) {
+            const resend = new Resend(process.env.RESEND_API_KEY);
+            
+            const cartItemsHtml = customerInfo.cart && customerInfo.cart.length > 0 
+                ? customerInfo.cart.map(item => `<li>${item.name} - $${item.price.toFixed(2)}</li>`).join('') 
+                : '<li>No items (Custom Booking)</li>';
+            
+            const emailHtml = `
+                <h2>New Booking & Deposit Received</h2>
+                <p><strong>Name:</strong> ${customerInfo.fname} ${customerInfo.lname}</p>
+                <p><strong>Email:</strong> ${customerInfo.email}</p>
+                <p><strong>Phone:</strong> ${customerInfo.phone}</p>
+                <p><strong>Date & Time:</strong> ${customerInfo.date} at ${customerInfo.timeslot}</p>
+                <p><strong>Location:</strong> ${customerInfo.street}, ${customerInfo.city} ${customerInfo.zip}</p>
+                <p><strong>Instructions:</strong> ${customerInfo.instructions || 'None'}</p>
+                <p><strong>Deposit Paid:</strong> $${amount.toFixed(2)}</p>
+                <h3>Cart Items:</h3>
+                <ul>${cartItemsHtml}</ul>
+            `;
+
+            try {
+                // Send to Clinic
+                await resend.emails.send({
+                    from: 'Revive IV <onboarding@resend.dev>',
+                    to: ['info@reviveiv.io'],
+                    subject: 'New Booking & Payment Received',
+                    html: emailHtml
+                });
+                
+                // Send Receipt to Customer
+                await resend.emails.send({
+                    from: 'Revive IV <onboarding@resend.dev>',
+                    to: [customerInfo.email],
+                    subject: 'Your Booking Confirmation - Revive IV',
+                    html: `<h2>Your Booking is Confirmed!</h2>
+                    <p>Hi ${customerInfo.fname},</p>
+                    <p>Thank you for booking with Revive IV Hydration. We have successfully received your 20% advance deposit of $${amount.toFixed(2)}.</p>
+                    <p>Our concierge will contact you shortly to confirm the final details for your appointment on <strong>${customerInfo.date} at ${customerInfo.timeslot}</strong>.</p>
+                    <p>We look forward to seeing you!</p>`
+                });
+            } catch (emailError) {
+                console.error('Email sending failed:', emailError);
+            }
+        }
 
         // Send success response
         res.status(200).json({ 

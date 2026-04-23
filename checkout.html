@@ -31,20 +31,20 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" placeholder="Jane" required>
+                        <input type="text" id="checkout-fname" placeholder="Jane" required>
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" placeholder="Doe" required>
+                        <input type="text" id="checkout-lname" placeholder="Doe" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" placeholder="jane@example.com" required>
+                    <input type="email" id="checkout-email" placeholder="jane@example.com" required>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="(555) 123-4567" required>
+                    <input type="tel" id="checkout-phone" placeholder="(555) 123-4567" required>
                 </div>
             </div>
 
@@ -80,21 +80,21 @@
                 <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Service Location</h3>
                 <div class="form-group">
                     <label>Street Address</label>
-                    <input type="text" placeholder="123 Wellness Ave, Apt 4B" required>
+                    <input type="text" id="checkout-street" placeholder="123 Wellness Ave, Apt 4B" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>City</label>
-                        <input type="text" placeholder="New York" required>
+                        <input type="text" id="checkout-city" placeholder="New York" required>
                     </div>
                     <div class="form-group">
                         <label>Zip Code</label>
-                        <input type="text" placeholder="10001" required>
+                        <input type="text" id="checkout-zip" placeholder="10001" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Special Instructions (Optional)</label>
-                    <input type="text" placeholder="E.g. Buzz 402, elevator is on the right.">
+                    <input type="text" id="checkout-instructions" placeholder="E.g. Buzz 402, elevator is on the right.">
                 </div>
             </div>
 
@@ -215,6 +215,21 @@
                     let totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
                     let amount = parseFloat(totalStr);
 
+                    let cartItems = JSON.parse(localStorage.getItem('reviveCart') || '[]');
+                    let customerInfo = {
+                        fname: document.getElementById('checkout-fname').value,
+                        lname: document.getElementById('checkout-lname').value,
+                        email: document.getElementById('checkout-email').value,
+                        phone: document.getElementById('checkout-phone').value,
+                        street: document.getElementById('checkout-street').value,
+                        city: document.getElementById('checkout-city').value,
+                        zip: document.getElementById('checkout-zip').value,
+                        instructions: document.getElementById('checkout-instructions').value,
+                        date: date,
+                        timeslot: timeslot,
+                        cart: cartItems
+                    };
+
                     // Send token to our Vercel backend
                     const response = await fetch('/api/process-payment', {
                         method: 'POST',
@@ -223,7 +238,8 @@
                         },
                         body: JSON.stringify({
                             sourceId: result.token,
-                            amount: amount
+                            amount: amount,
+                            customerInfo: customerInfo
                         })
                     });
 
