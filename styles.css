@@ -98,8 +98,14 @@ img {
 }
 
 .section {
-  padding: 120px 0;
+  padding: 100px 0;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .section.formulation-section {
+    padding-top: 0 !important;
+  }
 }
 
 .section-title {
@@ -594,7 +600,8 @@ img {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 140vh !important;
+    min-height: 120vh !important;
+    background-color: #0F172A; /* Fallback to match marquee */
   }
 
   .hero-content {
