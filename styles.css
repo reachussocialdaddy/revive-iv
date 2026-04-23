@@ -600,13 +600,12 @@ img {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 100vh !important;
+    min-height: 130vh !important;
   }
 
   .hero-content {
     text-align: center;
-    padding-top: 100px;
-    padding-bottom: 60px; /* Room for marquee */
+    padding-top: 160px;
     max-width: 100%;
   }
 
@@ -1015,9 +1014,6 @@ img {
 @media (max-width: 768px) {
   .marquee-section {
     padding: 0.8rem 0;
-    margin-top: -60px;
-    position: relative;
-    z-index: 10;
   }
 }
 
