@@ -442,7 +442,7 @@ window.initScrollAnimations = function () {
     initHeroParallax();
     initHorizontalScroll();
     initReviews();
-    initHeroSlider();
+    // initHeroSlider(); // Disabled for static hero
     initMarquee();
     initShotCards();
     initServices3D();
