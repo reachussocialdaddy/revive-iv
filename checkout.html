@@ -46,6 +46,15 @@
             box-shadow: none;
             border: 1px solid var(--border-light);
         }
+        /* Make disabled dates red and visible */
+        .flatpickr-day.flatpickr-disabled, 
+        .flatpickr-day.flatpickr-disabled:hover,
+        .flatpickr-day.prevMonthDay,
+        .flatpickr-day.nextMonthDay {
+            color: #ff4444 !important;
+            opacity: 1 !important;
+            cursor: not-allowed;
+        }
     </style>
     <script src="https://web.squarecdn.com/v1/square.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -110,6 +119,11 @@
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">5:00 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">6:00 PM</button>
                     <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">7:00 PM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">8:00 PM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">9:00 PM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">10:00 PM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">11:00 PM</button>
+                    <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">12:00 AM</button>
                 </div>
                 <input type="hidden" id="selected-timeslot" required>
             </div>
@@ -141,6 +155,9 @@
                 <div style="background: rgba(197, 160, 89, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
                     <p style="font-size: 0.9rem; color: var(--accent-primary); font-weight: 700;">🔒 Secure Encrypted Checkout</p>
                 </div>
+                <!-- Apple Pay Container -->
+                <div id="apple-pay-button" style="margin-bottom: 1rem; min-height: 48px;"></div>
+                
                 <!-- Square Web Payments SDK Container -->
                 <div id="card-container" style="min-height: 80px;"></div>
                 <div id="payment-status-container" style="color: red; margin-top: 1rem; font-size: 0.9rem;"></div>
@@ -205,6 +222,7 @@
         const appId = 'sq0idp-PlI25Ew1HbLqpuY8PeSkFw';
         const locationId = 'LVJDYJ83APB0F'; 
         let card;
+        let applePay;
 
         async function initializeSquare() {
             if (!window.Square) {
@@ -214,8 +232,43 @@
             
             try {
                 const payments = window.Square.payments(appId, locationId);
+                
+                // Card initialization
                 card = await payments.card();
                 await card.attach('#card-container');
+
+                // Apple Pay initialization
+                const totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
+                const finalTotal = parseFloat(totalStr) || 0;
+                const advanceAmount = (finalTotal * 0.20).toFixed(2);
+
+                const paymentRequest = payments.paymentRequest({
+                    countryCode: 'US',
+                    currencyCode: 'USD',
+                    total: {
+                        amount: advanceAmount,
+                        label: 'Revive IV Advance',
+                    },
+                });
+
+                try {
+                    applePay = await payments.applePay(paymentRequest);
+                    await applePay.attach('#apple-pay-button');
+                    
+                    applePay.addEventListener('ontokenization', async (event) => {
+                        const { tokenResult } = event;
+                        if (tokenResult.status === 'OK') {
+                            await handlePayment(tokenResult.token);
+                        } else {
+                            const error = tokenResult.errors[0];
+                            document.getElementById('payment-status-container').innerText = error.message;
+                        }
+                    });
+                } catch (applePayError) {
+                    console.error('Apple Pay not available:', applePayError);
+                    document.getElementById('apple-pay-button').style.display = 'none';
+                }
+
             } catch (e) {
                 console.error('Initializing Square failed', e);
                 document.getElementById('payment-status-container').innerText = 'Failed to load secure payment form. Please refresh.';
@@ -259,57 +312,67 @@
                 // Tokenize the card via Square
                 const result = await card.tokenize();
                 if (result.status === 'OK') {
-                    // Get the final total from cart
-                    let totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
-                    let amount = parseFloat(totalStr);
-
-                    let cartItems = JSON.parse(localStorage.getItem('reviveCart') || '[]');
-                    let customerInfo = {
-                        fname: document.getElementById('checkout-fname').value,
-                        lname: document.getElementById('checkout-lname').value,
-                        email: document.getElementById('checkout-email').value,
-                        phone: document.getElementById('checkout-phone').value,
-                        street: document.getElementById('checkout-street').value,
-                        city: document.getElementById('checkout-city').value,
-                        zip: document.getElementById('checkout-zip').value,
-                        instructions: document.getElementById('checkout-instructions').value,
-                        date: date,
-                        timeslot: timeslot,
-                        cart: cartItems
-                    };
-
-                    // Send token to our Vercel backend
-                    const response = await fetch('/api/process-payment', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            sourceId: result.token,
-                            amount: amount,
-                            customerInfo: customerInfo
-                        })
-                    });
-
-                    const paymentResult = await response.json();
-                    
-                    if (paymentResult.success) {
-                        document.getElementById('success-modal').style.display = 'flex';
-                    } else {
-                        statusContainer.innerText = 'Payment failed: ' + paymentResult.error;
-                        btn.textContent = 'Pay Now';
-                        btn.style.opacity = '1';
-                        btn.disabled = false;
-                    }
+                    await handlePayment(result.token);
                 } else {
-                    statusContainer.innerText = 'Failed to secure card details. Please check your card info.';
+                    statusContainer.innerText = result.errors[0].message;
                     btn.textContent = 'Pay Now';
                     btn.style.opacity = '1';
                     btn.disabled = false;
                 }
             } catch (e) {
-                console.error(e);
-                statusContainer.innerText = 'An unexpected error occurred.';
+                console.error('Payment tokenization failed', e);
+                statusContainer.innerText = 'Payment failed. Please try again.';
+                btn.textContent = 'Pay Now';
+                btn.style.opacity = '1';
+                btn.disabled = false;
+            }
+        }
+
+        async function handlePayment(token) {
+            const btn = document.getElementById('pay-now-btn');
+            const statusContainer = document.getElementById('payment-status-container');
+            const date = document.getElementById('selected-date').value;
+            const timeslot = document.getElementById('selected-timeslot').value;
+
+            try {
+                let cartItems = JSON.parse(localStorage.getItem('reviveCart') || '[]');
+                let customerInfo = {
+                    fname: document.getElementById('checkout-fname').value,
+                    lname: document.getElementById('checkout-lname').value,
+                    email: document.getElementById('checkout-email').value,
+                    phone: document.getElementById('checkout-phone').value,
+                    street: document.getElementById('checkout-street').value,
+                    city: document.getElementById('checkout-city').value,
+                    zip: document.getElementById('checkout-zip').value,
+                    instructions: document.getElementById('checkout-instructions').value,
+                    date: date,
+                    timeslot: timeslot,
+                    cart: cartItems
+                };
+
+                const response = await fetch('/api/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sourceId: token,
+                        customerInfo: customerInfo
+                    })
+                });
+
+                const paymentResult = await response.json();
+                if (paymentResult.success) {
+                    document.getElementById('success-modal').style.display = 'flex';
+                } else {
+                    statusContainer.innerText = 'Payment error: ' + (paymentResult.error || 'Unknown error');
+                    btn.textContent = 'Pay Now';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error('Network or server error', err);
+                statusContainer.innerText = 'Server error. Please check your connection.';
                 btn.textContent = 'Pay Now';
                 btn.style.opacity = '1';
                 btn.disabled = false;
