@@ -3163,3 +3163,10 @@ img {
       grid-template-columns: 1fr;
     }
   }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0 !important;
+  }
+}
