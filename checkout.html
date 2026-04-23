@@ -50,11 +50,15 @@
         .flatpickr-day.flatpickr-disabled, 
         .flatpickr-day.flatpickr-disabled:hover,
         .flatpickr-day.prevMonthDay,
-        .flatpickr-day.nextMonthDay {
+        .flatpickr-day.nextMonthDay,
+        .flatpickr-day.disabled,
+        .flatpickr-day.disabled:hover {
             color: #ff4444 !important;
             opacity: 1 !important;
-            cursor: not-allowed;
+            cursor: not-allowed !important;
+            background: transparent !important;
         }
+
     </style>
     <script src="https://web.squarecdn.com/v1/square.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
