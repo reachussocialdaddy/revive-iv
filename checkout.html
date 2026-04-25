@@ -215,6 +215,7 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="cart.js"></script>
     <script>
         function selectTimeslot(btn) {
@@ -363,7 +364,10 @@
                     cart: cartItems
                 };
 
-                const response = await fetch('/api/process-payment', {
+                const bookingType = localStorage.getItem('reviveBookingType') || 'individual';
+                customerInfo.bookingType = bookingType;
+
+                const response = await fetch(`${window.REVIVE_CONFIG.API_URL}/api/process-payment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

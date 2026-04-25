@@ -266,19 +266,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+    <script src="config.js"></script>
     <script src="app.js"></script>
     <script src="barba-init.js"></script>
     <script>
-        function handleContactSubmit(e) {
+        async function handleContactSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('contact-submit-btn');
-            btn.textContent = '✓ Request Sent!';
-            btn.style.background = 'linear-gradient(135deg, #16a34a, #4ade80)';
-            setTimeout(() => {
-                btn.textContent = '✦ Submit Booking Request';
-                btn.style.background = '';
-                e.target.reset();
-            }, 3500);
+            
+            const formData = {
+                name: document.getElementById('contact-fname').value + ' ' + document.getElementById('contact-lname').value,
+                email: document.getElementById('contact-email').value,
+                subject: 'New Booking Inquiry: ' + document.getElementById('contact-service').value,
+                message: document.getElementById('contact-message').value + '\nPhone: ' + document.getElementById('contact-phone').value
+            };
+
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(`${window.REVIVE_CONFIG.API_URL}/api/enquiries`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    btn.textContent = '✓ Request Sent!';
+                    btn.style.background = 'linear-gradient(135deg, #16a34a, #4ade80)';
+                    setTimeout(() => {
+                        btn.textContent = '✦ Submit Booking Request';
+                        btn.style.background = '';
+                        btn.disabled = false;
+                        e.target.reset();
+                    }, 3500);
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                btn.textContent = '✕ Error Sending';
+                btn.style.background = 'linear-gradient(135deg, #dc2626, #f87171)';
+                setTimeout(() => {
+                    btn.textContent = '✦ Submit Booking Request';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3500);
+            }
         }
     </script>
 </body>
