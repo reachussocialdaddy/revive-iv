@@ -157,9 +157,72 @@
                     <div class="contact-form-card reveal">
                         <h3>Book Your Appointment</h3>
                         <p class="form-subtitle">Schedule your session directly with our medical team below.</p>
-                        <div class="charm-widget-container" style="border-radius: 12px; overflow: hidden; background: white; width: 100%;">
-                            <iframe width="100%" height="1000" src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=01389c02584758d10e185777908d11fdc38efcf12142eeef2dd731e79ce971fc2fc9c2738e1cf54daa69605fce4db66ad95fcbc3b76e32a2" style="overflow:hidden; border: none;" frameborder="0"></iframe>
-                        </div>
+                        
+                        <form id="booking-form" class="contact-form" onsubmit="handleBookingSubmit(event)">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date">Preferred Date</label>
+                                    <input type="date" id="date" name="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Preferred Time</label>
+                                    <select id="time" name="time" required>
+                                        <option value="">Select a time</option>
+                                        <option value="08:00 AM">08:00 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="04:00 PM">04:00 PM</option>
+                                        <option value="06:00 PM">06:00 PM</option>
+                                        <option value="08:00 PM">08:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Select Treatment</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Choose a treatment...</option>
+                                    <option value="Custom Drips">Custom Drips ($175+)</option>
+                                    <option value="Myers Cocktail">Myers Cocktail ($399)</option>
+                                    <option value="Brain Focus">Brain Focus ($400)</option>
+                                    <option value="Revive Calm">Revive Calm ($279)</option>
+                                    <option value="Revive Defense">Revive Defense ($299)</option>
+                                    <option value="Beautify">Beautify ($299)</option>
+                                    <option value="Liquid Gold">Liquid Gold ($259)</option>
+                                    <option value="Revive Recovery">Revive Recovery ($279)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Your Location (NYC Area)</label>
+                                <input type="text" id="location" name="location" placeholder="Street Address, Apt, City" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instructions">Special Instructions (Optional)</label>
+                                <textarea id="instructions" name="instructions" rows="3" placeholder="Any details for our nurse?"></textarea>
+                            </div>
+
+                            <button type="submit" id="booking-submit-btn" class="btn-primary w-100">✦ Request Booking</button>
+                            <p class="form-note">No payment required now. Our team will contact you to confirm.</p>
+                        </form>
                     </div>
 
                 </div>
@@ -225,17 +288,55 @@
     <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
     <script src="app.js"></script>
     <script src="barba-init.js"></script>
+    <script src="config.js"></script>
     <script>
-        function handleContactSubmit(e) {
+        async function handleBookingSubmit(e) {
             e.preventDefault();
-            const btn = document.getElementById('contact-submit-btn');
-            btn.textContent = '✓ Request Sent!';
-            btn.style.background = 'linear-gradient(135deg, #16a34a, #4ade80)';
-            setTimeout(() => {
-                btn.textContent = '✦ Submit Booking Request';
-                btn.style.background = '';
-                e.target.reset();
-            }, 3500);
+            const btn = document.getElementById('booking-submit-btn');
+            const originalText = btn.textContent;
+            
+            // Collect form data
+            const formData = new FormData(e.target);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: `New Booking Inquiry: ${formData.get('service')}`,
+                message: `Service: ${formData.get('service')}\nDate: ${formData.get('date')}\nTime: ${formData.get('time')}\nLocation: ${formData.get('location')}\n\nNotes: ${formData.get('instructions')}\nPhone: ${formData.get('phone')}`
+            };
+
+            try {
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                // Send to backend (as an inquiry for now since it's a request)
+                const response = await fetch(`${API_URL}/api/enquiries`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error('Failed to send');
+
+                btn.textContent = '✓ Request Sent!';
+                btn.style.background = 'linear-gradient(135deg, #16a34a, #4ade80)';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 3500);
+
+            } catch (error) {
+                console.error('Error:', error);
+                btn.textContent = '❌ Failed to send';
+                btn.style.background = 'linear-gradient(135deg, #dc2626, #ef4444)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }
         }
     </script>
 </body>
