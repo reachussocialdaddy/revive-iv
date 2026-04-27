@@ -339,8 +339,19 @@
             if (!card) initializeSquare();
         }
 
-        function closePaymentModal() {
+        async function closePaymentModal() {
             document.getElementById('payment-modal').style.display = 'none';
+            if (currentBookingId) {
+                try {
+                    await fetch(`${window.REVIVE_CONFIG.API_URL}/api/bookings/${currentBookingId}/status`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ status: 'Payment Failed' })
+                    });
+                } catch (err) {
+                    console.error("Failed to update status on cancel", err);
+                }
+            }
         }
 
         async function initializeSquare() {
