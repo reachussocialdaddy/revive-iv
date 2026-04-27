@@ -612,8 +612,8 @@ img {
   }
 
   .hero-title {
-    font-size: 2.3rem !important;
-    line-height: 1.2;
+    font-size: 1.8rem !important;
+    line-height: 1.1;
     margin-bottom: 1rem;
   }
 
@@ -694,11 +694,11 @@ img {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 2.2rem;
   margin-bottom: 0.8rem;
   letter-spacing: -0.02em;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.1;
   font-weight: 800;
 }
 
