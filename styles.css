@@ -4,6 +4,7 @@
 
 :root {
   color-scheme: light;
+  supported-color-schemes: light;
   --bg-color: #FAFAFC;
   --bg-surface: #FFFFFF;
   --text-primary: #0F172A;
