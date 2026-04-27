@@ -1355,6 +1355,20 @@ img {
   transform: translateY(0);
 }
 
+.coverage-item {
+  background: rgba(197, 160, 89, 0.03);
+  padding: 1.2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(197, 160, 89, 0.1);
+  transition: all 0.3s ease;
+}
+
+.coverage-item:hover {
+  background: rgba(197, 160, 89, 0.08);
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+}
+
 .group-modal-close {
   position: absolute;
   top: 1.5rem;

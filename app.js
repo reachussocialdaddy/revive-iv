@@ -461,6 +461,7 @@ window.initScrollAnimations = function () {
     initServices3D();
     initProductCategories();
     initGroupModal();
+    initCoverageModal();
     updateActiveNavLink();
 };
 
@@ -490,6 +491,32 @@ function initGroupModal() {
     });
 }
 
+/* ── Coverage Modal ──────────────────────────────── */
+function initCoverageModal() {
+    const btn = document.getElementById('btn-coverage-modal');
+    const modal = document.getElementById('coverage-modal');
+    const btnClose = document.getElementById('btn-close-coverage');
+
+    if (!btn || !modal || !btnClose) return;
+
+    btn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    btnClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
 /* ─── Boot on DOMContentLoaded ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
@@ -498,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initShotCards();
     initReviews();
     initGroupModal();
+    initCoverageModal();
     updateActiveNavLink();
     window.initScrollAnimations();
 });

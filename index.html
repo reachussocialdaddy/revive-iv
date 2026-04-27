@@ -376,7 +376,7 @@
                                 <p style="max-width: 400px;">Why travel to a clinic when the clinic can come to you? We
                                     serve New York City and nearby areas.</p>
                             </div>
-                            <a href="products.html" class="btn-primary barba-link">View Coverage Area</a>
+                            <button class="btn-primary" id="btn-coverage-modal">View Coverage Area</button>
                         </div>
                     </div>
                 </div>
@@ -727,6 +727,47 @@
             <p>Ready to book your group session? Click below to reserve your date and time.</p>
             <a href="products.html" class="btn-primary barba-link" style="margin-top: 1rem; width: 100%;">Book a Group
                 Session</a>
+        </div>
+    </div>
+
+    <!-- Coverage Area Modal -->
+    <div class="group-modal-overlay" id="coverage-modal">
+        <div class="group-modal-content">
+            <button class="group-modal-close" id="btn-close-coverage">&times;</button>
+            <h3 class="text-gradient">Our Service Areas</h3>
+            <p>We bring premium IV hydration and wellness treatments directly to your doorstep. Our team of licensed professionals currently serves the following areas:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏙️</div>
+                    <strong style="display: block; color: var(--accent-primary);">New York City</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Manhattan, Brooklyn, Staten Island</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏖️</div>
+                    <strong style="display: block; color: var(--accent-primary);">Long Island</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Nassau & Suffolk Counties</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏡</div>
+                    <strong style="display: block; color: var(--accent-primary);">Middletown</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Orange County & Surrounding</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌆</div>
+                    <strong style="display: block; color: var(--accent-primary);">Bronx</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Full Borough Coverage</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌉</div>
+                    <strong style="display: block; color: var(--accent-primary);">Queens</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Full Borough Coverage</span>
+                </div>
+                <div class="coverage-item" style="background: rgba(197, 160, 89, 0.05); padding: 1rem; border-radius: 12px; border: 1px dashed var(--accent-primary);">
+                    <strong style="display: block; color: var(--accent-primary);">Other Areas?</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Contact us for special requests.</span>
+                </div>
+            </div>
+            <a href="products.html" class="btn-primary" style="margin-top: 2.5rem; width: 100%; text-align: center;">Book Your Session Now</a>
         </div>
     </div>
 
