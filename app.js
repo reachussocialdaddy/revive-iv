@@ -393,22 +393,26 @@ function initShotCards() {
         shotCards.forEach(card => {
             ScrollTrigger.create({
                 trigger: card,
-                start: "top 75%", // Triggers when top of card is 75% down the viewport
-                end: "bottom 25%", // Ends when bottom is 25% down the viewport
+                start: "top 75%",
+                end: "bottom 25%",
                 toggleClass: "active"
             });
-            // Allow manual toggle as well
-            card.onclick = () => card.classList.toggle('active');
+            // Allow manual toggle but don't block links
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                card.classList.toggle('active');
+            });
         });
     } else {
         // Desktop: Click to expand
         shotCards.forEach(card => {
-            card.onclick = () => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
                 shotCards.forEach(other => {
                     if (other !== card) other.classList.remove('active');
                 });
                 card.classList.toggle('active');
-            };
+            });
         });
     }
 }
