@@ -424,6 +424,18 @@
                 statusContainer.innerText = 'Server error. Please try again.';
             }
         }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            flatpickr("#inline-calendar", {
+                inline: true,
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr, instance) {
+                    document.getElementById('selected-date').value = dateStr;
+                }
+            });
+        });
     </script>
 </body>
 </html>
