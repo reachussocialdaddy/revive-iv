@@ -100,7 +100,7 @@
                                 </div>
                             </a>
 
-                            <div class="contact-detail-card reveal" style="pointer-events:none;">
+                            <div class="contact-detail-card reveal" id="btn-coverage-modal" style="cursor: pointer;">
                                 <div class="contact-detail-icon">
                                     <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
@@ -110,6 +110,7 @@
                                 <div class="contact-detail-info">
                                     <strong>Service Area</strong>
                                     <span>New York City and nearby areas</span>
+                                    <span style="font-size: 0.7rem; color: var(--accent-primary); font-weight: 700; margin-top: 0.2rem; display: block;">VIEW COVERAGE →</span>
                                 </div>
                             </div>
 
@@ -259,6 +260,48 @@
             <p>New York, NY</p>
         </div>
     </footer>
+    </main>
+
+    <!-- Coverage Area Modal -->
+    <div class="group-modal-overlay" id="coverage-modal">
+        <div class="group-modal-content">
+            <button class="group-modal-close" id="btn-close-coverage">&times;</button>
+            <h3 class="text-gradient">Our Service Areas</h3>
+            <p>We bring premium IV hydration and wellness treatments directly to your doorstep. Our team of licensed professionals currently serves the following areas:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏙️</div>
+                    <strong style="display: block; color: var(--accent-primary);">New York City</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Manhattan, Brooklyn, Staten Island</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏖️</div>
+                    <strong style="display: block; color: var(--accent-primary);">Long Island</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Nassau & Suffolk Counties</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏡</div>
+                    <strong style="display: block; color: var(--accent-primary);">Middletown</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Orange County & Surrounding</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌆</div>
+                    <strong style="display: block; color: var(--accent-primary);">Bronx</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Full Borough Coverage</span>
+                </div>
+                <div class="coverage-item">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌉</div>
+                    <strong style="display: block; color: var(--accent-primary);">Queens</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Full Borough Coverage</span>
+                </div>
+                <div class="coverage-item" style="background: rgba(197, 160, 89, 0.05); padding: 1rem; border-radius: 12px; border: 1px dashed var(--accent-primary);">
+                    <strong style="display: block; color: var(--accent-primary);">Other Areas?</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Contact us for special requests.</span>
+                </div>
+            </div>
+            <a href="products.html" class="btn-primary" style="margin-top: 2.5rem; width: 100%; text-align: center;">Book Your Session Now</a>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
