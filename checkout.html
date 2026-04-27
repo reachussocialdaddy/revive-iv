@@ -114,6 +114,24 @@
                     </div>
                 </div>
 
+                <!-- Additional Guest Section (Visible only for Group Bookings) -->
+                <div id="guest-details-section" class="checkout-section" style="display: none;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Guest Details (Group Member)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">Please provide details for the second person in your group.</p>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Full Name</label>
+                        <input type="text" id="guest-name" placeholder="John Smith">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Email Address</label>
+                        <input type="email" id="guest-email" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="guest-phone" placeholder="(555) 987-6543">
+                    </div>
+                </div>
+
                 <div class="checkout-section">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Select Date & Timeslot</h3>
                     <div class="form-group" style="margin-bottom: 1.5rem;">
@@ -185,6 +203,7 @@
                     <span style="color: var(--text-secondary);">Subtotal</span>
                     <span id="checkout-subtotal" style="font-weight: 700;">$0</span>
                 </div>
+                <div id="discount-container"></div>
                 <div class="summary-row">
                     <span style="color: var(--text-secondary);">Taxes & Fees</span>
                     <span style="font-weight: 700;">Included</span>
@@ -282,11 +301,37 @@
                 let cartItems = JSON.parse(localStorage.getItem('reviveCart') || '[]');
                 const bookingType = localStorage.getItem('reviveBookingType') || 'individual';
                 
+                // Group booking must have at least 2 items (treatments)
+                const totalQty = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                if (bookingType === 'group' && totalQty < 2) {
+                    statusContainer.innerText = 'Group bookings require at least 2 treatments in your cart.';
+                    btn.textContent = 'Continue to Payment';
+                    btn.disabled = false;
+                    return;
+                }
+                
+                // Guest info for group
+                let guestInfo = null;
+                if (bookingType === 'group') {
+                    const gname = document.getElementById('guest-name').value;
+                    const gemail = document.getElementById('guest-email').value;
+                    const gphone = document.getElementById('guest-phone').value;
+                    
+                    if (!gname || !gemail || !gphone) {
+                        statusContainer.innerText = 'Please fill in the Guest Details for your group booking.';
+                        btn.textContent = 'Continue to Payment';
+                        btn.disabled = false;
+                        return;
+                    }
+                    guestInfo = { name: gname, email: gemail, phone: gphone };
+                }
+
                 let customerInfo = {
                     fname, lname, email, phone, street, city,
                     zip: document.getElementById('checkout-zip').value,
                     instructions: document.getElementById('checkout-instructions').value,
-                    date, timeslot, cart: cartItems, bookingType
+                    date, timeslot, cart: cartItems, bookingType,
+                    guestInfo
                 };
 
                 const response = await fetch(`${window.REVIVE_CONFIG.API_URL}/api/bookings`, {

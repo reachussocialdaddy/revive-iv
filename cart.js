@@ -135,18 +135,20 @@ document.addEventListener('DOMContentLoaded', () => {
             let groupDiscount = 0;
 
             const bookingType = localStorage.getItem('reviveBookingType');
-            const groupDetailsStr = localStorage.getItem('reviveGroupDetails');
             const discountContainer = document.getElementById('discount-container');
+            const guestSection = document.getElementById('guest-details-section');
             const hasCustom = cart.some(i => i.id === 'drip_custom');
 
-            if (bookingType === 'group' && groupDetailsStr) {
+            if (bookingType === 'group') {
+                if (guestSection) guestSection.style.display = 'block';
+                
                 groupDiscount = subtotal * 0.10;
                 finalTotal = subtotal - groupDiscount;
                 const advance = finalTotal * 0.20;
                 
                 if (discountContainer) {
                     discountContainer.innerHTML = `
-                        <div class="summary-row" style="color: var(--accent-secondary);">
+                        <div class="summary-row" style="color: var(--accent-secondary); margin-bottom: 0.5rem;">
                             <span>Group Booking Discount (10%)</span>
                             <span style="font-weight: 700;">-$${groupDiscount.toFixed(2)}</span>
                         </div>
@@ -163,11 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('pay-now-btn').parentElement.appendChild(advanceNote);
                 }
                 if (hasCustom) {
-                    advanceNote.innerHTML = `Total base cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.<br><span style="color:var(--accent-primary); font-weight:bold;">Remaining base + custom health add-ons to be paid later.</span>`;
+                    advanceNote.innerHTML = `Total base cost (after 10% off) is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.<br><span style="color:var(--accent-primary); font-weight:bold;">Remaining base + custom health add-ons to be paid later.</span>`;
                 } else {
-                    advanceNote.textContent = `Total cost is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.`;
+                    advanceNote.textContent = `Total cost (after 10% off) is $${finalTotal.toFixed(2)}. You are paying a 20% advance today.`;
                 }
             } else {
+                if (guestSection) guestSection.style.display = 'none';
                 if (discountContainer) discountContainer.innerHTML = '';
                 
                 const advance = finalTotal * 0.20;
