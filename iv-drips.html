@@ -30,15 +30,22 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
+            <a href="index.html" class="logo"><img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
             <ul class="nav-links desktop-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="iv-drips.html" class="active">IV Drips</a></li>
+                <li class="dropdown">
+                    <a href="iv-drips.html" class="active">IV Menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="iv-drips.html#iv-drips">IV Drips</a></li>
+                        <li><a href="iv-drips.html#shot-bar">Shot Bar</a></li>
+                        <li><a href="iv-drips.html#weight-loss">Weight Loss</a></li>
+                        <li><a href="iv-drips.html#microneedling">Microneedling</a></li>
+                    </ul>
+                </li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="faq.html">FAQs</a></li>
-            </ul>
+                </ul>
             <a href="products.html" class="btn-primary desktop-btn">Book Now</a>
             
             <!-- Mobile Actions -->
@@ -64,10 +71,9 @@
         <div class="mobile-menu-content">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
-            <a href="iv-drips.html" class="active">IV Drips</a>
+            <a href="iv-drips.html" class="active" class="active">IV Drips</a>
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
-            <a href="faq.html">FAQs</a>
             <a href="products.html" class="btn-solid" style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
         </div>
     </div>
@@ -92,13 +98,13 @@
         </div>
     </header>
 
-    <section class="section" style="padding-top: 2rem;">
+    <section id="iv-drips" class="section" style="padding-top: 2rem;">
         <div class="container">
             
             <!-- Featured Product: Custom Drips -->
             <div class="featured-product-hero reveal" style="background: white; border-radius: 20px; padding: 2rem; border: 1px solid var(--border-light); margin-bottom: 4rem; text-align: center;">
                 <div style="max-width: 800px; margin: 0 auto;">
-                    <img src="assets/customdrips.webp" alt="Custom Drips" style="width: 250px; height: auto; margin-bottom: 2rem; display: block; margin-left: auto; margin-right: auto;">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/customdrips.webp" alt="Custom Drips" style="width: 250px; height: auto; margin-bottom: 2rem; display: block; margin-left: auto; margin-right: auto;">
                     <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Custom Drips</h2>
                     <div style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 1rem;">$175 <span style="font-size: 0.9rem; color: var(--text-secondary);">All-Inclusive</span></div>
                     <p style="color: var(--text-secondary); margin-bottom: 2rem;">Optimize your unique biology with our most comprehensive IV blend, customized for your specific health goals.</p>
@@ -135,11 +141,11 @@
                 <!-- Myers Cocktail -->
                 <div class="service-card reveal" id="myers-cocktail">
                     <div class="service-card-image">
-                        <img src="assets/myserscocktail.jpg" alt="Myers Cocktail">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/myserscocktail.jpg" alt="Myers Cocktail">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">ALL-INCLUSIVE</div>
-                        <h3>Myers Cocktail <span>$399</span></h3>
+                        <h3>Myers Cocktail <span>$235</span></h3>
                         <p>The gold standard of IV therapy. Hydrate, restore, and optimize your overall wellness.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> Vitamin C, B-Complex, B12, Magnesium, Calcium</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -149,11 +155,11 @@
                 <!-- Brain Focus -->
                 <div class="service-card reveal card-reverse" id="brain-focus">
                     <div class="service-card-image">
-                        <img src="assets/brainfocus.webp" alt="Brain Focus">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/brainfocus.webp" alt="Brain Focus">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">TARGETED</div>
-                        <h3>Brain Focus <span>$400</span></h3>
+                        <h3>Brain Focus <span>$235</span></h3>
                         <p>Enhance cognitive function and power through your day with mental clarity.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> B-Complex, B12, ALA, L-Carnitine, Taurine</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -163,11 +169,11 @@
                 <!-- Revive Calm -->
                 <div class="service-card reveal" id="revive-calm">
                     <div class="service-card-image">
-                        <img src="assets/revivecalm.webp" alt="Revive Calm">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/revivecalm.webp" alt="Revive Calm">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">RECOVERY</div>
-                        <h3>Revive Calm <span>$279</span></h3>
+                        <h3>Revive Calm <span>$195</span></h3>
                         <p>Replenish essential vitamins and soothe your mind for deep relaxation.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> Magnesium, B-Complex, Vitamin C, Taurine</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -177,11 +183,11 @@
                 <!-- Revive Defense -->
                 <div class="service-card reveal card-reverse" id="revive-defense">
                     <div class="service-card-image">
-                        <img src="assets/revivedefense.webp" alt="Revive Defense">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/revivedefense.webp" alt="Revive Defense">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">IMMUNITY</div>
-                        <h3>Revive Defense <span>$299</span></h3>
+                        <h3>Revive Defense <span>$215</span></h3>
                         <p>Strengthen your immune system to fight off illness and seasonal threats.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> Vitamin C, Zinc, B-Complex, Glutathione</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -191,11 +197,11 @@
                 <!-- Beautify -->
                 <div class="service-card reveal" id="beautify">
                     <div class="service-card-image">
-                        <img src="assets/beautify.webp" alt="Beautify">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/beautify.webp" alt="Beautify">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">BEAUTY</div>
-                        <h3>Beautify <span>$299</span></h3>
+                        <h3>Beautify <span>$215</span></h3>
                         <p>Promote radiant skin, healthy hair, and strong nails with our glow blend.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> Glutathione, Vitamin C, Biotin, B-Complex</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -205,11 +211,11 @@
                 <!-- Liquid Gold -->
                 <div class="service-card reveal card-reverse" id="liquid-gold">
                     <div class="service-card-image">
-                        <img src="assets/liquidgold.webp" alt="Liquid Gold">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/liquidgold.webp" alt="Liquid Gold">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">HANGOVER CURE</div>
-                        <h3>Liquid Gold <span>$259</span></h3>
+                        <h3>Liquid Gold <span>$175</span></h3>
                         <p>The ultimate hydration and vitamin replenishment blend for rapid recovery.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> B-Complex, B12, Vitamin C, Magnesium</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -219,11 +225,11 @@
                 <!-- Revive Recovery -->
                 <div class="service-card reveal" id="revive-recovery">
                     <div class="service-card-image">
-                        <img src="assets/reviverecovery.webp" alt="Revive Recovery">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviverecovery.webp" alt="Revive Recovery">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">ATHLETIC RECOVERY</div>
-                        <h3>Revive Recovery <span>$279</span></h3>
+                        <h3>Revive Recovery <span>$195</span></h3>
                         <p>Accelerate muscle repair and bounce back fast from intense physical exertion.</p>
                         <p class="ingredients-hint"><strong>Key Ingredients:</strong> Amino Acids, Magnesium, B12, Taurine</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
@@ -235,7 +241,7 @@
     </section>
 
     <!-- Shots Menu -->
-    <section class="section" style="background: #fdfdfd; position: relative;">
+    <section id="shot-bar" class="section" style="background: #fdfdfd; position: relative;">
         <div class="container">
             <div class="reveal" style="text-align: center; margin-bottom: 5rem;">
                 <div class="header-badge" style="margin: 0 auto 1.5rem;">QUICK BOOSTS</div>
@@ -248,7 +254,7 @@
                 <!-- Vitamin B12 -->
                 <div class="bento-item reveal" style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center;">
                     <div style="margin-bottom: 1.5rem; height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <img src="assets/vitaminb12.png" alt="Vitamin B12" style="max-height: 100%; width: auto; object-fit: contain;">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitaminb12.png" alt="Vitamin B12" style="max-height: 100%; width: auto; object-fit: contain;">
                     </div>
                     <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">ENERGY</div>
                     <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-primary);">Vitamin B12</h3>
@@ -262,7 +268,7 @@
                 <!-- Biotin -->
                 <div class="bento-item reveal" style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center;">
                     <div style="margin-bottom: 1.5rem; height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <img src="assets/biotin.png" alt="Biotin" style="max-height: 100%; width: auto; object-fit: contain;">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/biotin.png" alt="Biotin" style="max-height: 100%; width: auto; object-fit: contain;">
                     </div>
                     <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">GLOW</div>
                     <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-primary);">Biotin</h3>
@@ -276,7 +282,7 @@
                 <!-- Vitamin D3 -->
                 <div class="bento-item reveal" style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center;">
                     <div style="margin-bottom: 1.5rem; height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <img src="assets/vitamind.png" alt="Vitamin D3" style="max-height: 100%; width: auto; object-fit: contain;">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitamind.png" alt="Vitamin D3" style="max-height: 100%; width: auto; object-fit: contain;">
                     </div>
                     <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">IMMUNE</div>
                     <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-primary);">Vitamin D3</h3>
@@ -290,7 +296,7 @@
                 <!-- Glutathione -->
                 <div class="bento-item reveal" style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center;">
                     <div style="margin-bottom: 1.5rem; height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <img src="assets/glutathione1.png" alt="Glutathione" style="max-height: 100%; width: auto; object-fit: contain; border-radius: 8px;">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/glutathione1.png" alt="Glutathione" style="max-height: 100%; width: auto; object-fit: contain; border-radius: 8px;">
                     </div>
                     <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">DETOX</div>
                     <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-primary);">Glutathione</h3>
@@ -304,7 +310,7 @@
                 <!-- Lipo-Lean -->
                 <div class="bento-item reveal" style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center;">
                     <div style="margin-bottom: 1.5rem; height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <img src="assets/lipolean.png" alt="Lipo-Lean" style="max-height: 100%; width: auto; object-fit: contain;">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/lipolean.png" alt="Lipo-Lean" style="max-height: 100%; width: auto; object-fit: contain;">
                     </div>
                     <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-primary); letter-spacing: 2px; margin-bottom: 1rem;">METABOLISM</div>
                     <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-primary);">Lipo-Lean</h3>
@@ -322,7 +328,7 @@
     </section>
 
     <!-- Weight Loss Menu -->
-    <section class="section">
+    <section id="weight-loss" class="section">
         <div class="container">
             <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
                 <h2 style="color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 1rem;">Revive Weight Loss Injections</h2>
@@ -334,7 +340,7 @@
                 <!-- Semaglutide -->
                 <div class="service-card reveal">
                     <div class="service-card-image">
-                        <img src="assets/Semaglutide.webp" alt="Semaglutide">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/Semaglutide.webp" alt="Semaglutide">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">WEIGHT LOSS</div>
@@ -347,13 +353,47 @@
                 <!-- Tirzepatide -->
                 <div class="service-card reveal card-reverse">
                     <div class="service-card-image">
-                        <img src="assets/Tirzepatide.png" alt="Tirzepatide">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/Tirzepatide.png" alt="Tirzepatide">
                     </div>
                     <div class="service-card-info">
                         <div class="card-badge">WEIGHT LOSS</div>
                         <h3>Tirzepatide <span>Starting at $249</span></h3>
                         <p>Advanced dual-action weight management protocol optimized for robust results.</p>
                         <a href="products.html" class="btn-primary">Book Treatment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            
+    <!-- Microneedling section -->
+    <section id="microneedling" class="section">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 1rem;">Microneedling with PRP & PRF</h2>
+                <p style="color: var(--text-secondary);">Advanced skin rejuvenation and hair restoration</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-card-info">
+                        <h3>Microneedling (Face) <span>$500</span></h3>
+                        <p>Stimulate collagen production and improve skin texture with PRP.</p>
+                        <a href="products.html" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-info">
+                        <h3>Microneedling (Scalp) <span>$600</span></h3>
+                        <p>PRP hair restoration therapy to stimulate growth and thickness.</p>
+                        <a href="products.html" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-info">
+                        <h3>PRF Treatment <span>$700</span></h3>
+                        <p>Advanced second-generation platelet therapy for superior results.</p>
+                        <a href="products.html" class="btn-primary">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -376,19 +416,26 @@
 
         <div class="footer-middle-row">
             <div class="footer-logo-container">
-                <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV"></a>
+                <a href="index.html" class="logo"><img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV"></a>
             </div>
             
             <div class="footer-nav-container">
                 <ul class="footer-nav-list">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="iv-drips.html">IV Drips</a></li>
+                    <li class="dropdown">
+                    <a href="iv-drips.html" class="active">IV Menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="iv-drips.html#iv-drips">IV Drips</a></li>
+                        <li><a href="iv-drips.html#shot-bar">Shot Bar</a></li>
+                        <li><a href="iv-drips.html#weight-loss">Weight Loss</a></li>
+                        <li><a href="iv-drips.html#microneedling">Microneedling</a></li>
+                    </ul>
+                </li>
                     <li><a href="pricing.html">Pricing</a></li>
                 </ul>
                 <ul class="footer-nav-list">
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
                     <li><a href="products.html">Contact</a></li>
                 </ul>
             </div>
@@ -421,7 +468,41 @@
         console.log("Revive IV - Drips Menu v1.2 Loaded");
     </script>
 
-    </main>
+    
+    <!-- Microneedling section -->
+    <section id="microneedling" class="section">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 1rem;">Microneedling with PRP & PRF</h2>
+                <p style="color: var(--text-secondary);">Advanced skin rejuvenation and hair restoration</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-card-info">
+                        <h3>Microneedling (Face) <span>$500</span></h3>
+                        <p>Stimulate collagen production and improve skin texture with PRP.</p>
+                        <a href="products.html" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-info">
+                        <h3>Microneedling (Scalp) <span>$600</span></h3>
+                        <p>PRP hair restoration therapy to stimulate growth and thickness.</p>
+                        <a href="products.html" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-info">
+                        <h3>PRF Treatment <span>$700</span></h3>
+                        <p>Advanced second-generation platelet therapy for superior results.</p>
+                        <a href="products.html" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            </main>
 </body>
 </html>
 

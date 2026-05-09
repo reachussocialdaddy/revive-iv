@@ -20,11 +20,19 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
+            <a href="index.html" class="logo"><img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
             <ul class="nav-links desktop-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="iv-drips.html">IV Drips</a></li>
+                <li class="dropdown">
+                    <a href="iv-drips.html">IV Menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="iv-drips.html#iv-drips">IV Drips</a></li>
+                        <li><a href="iv-drips.html#shot-bar">Shot Bar</a></li>
+                        <li><a href="iv-drips.html#weight-loss">Weight Loss</a></li>
+                        <li><a href="iv-drips.html#microneedling">Microneedling</a></li>
+                    </ul>
+                </li>
                 <li><a href="products.html" class="active">Order</a></li>
             </ul>
             
@@ -52,7 +60,6 @@
             <a href="iv-drips.html">IV Drips</a>
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
-            <a href="faq.html">FAQs</a>
             <a href="contact.html" class="btn-solid" style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
         </div>
     </div>
@@ -62,30 +69,28 @@
 
     <!-- Store Container -->
     <div class="container store-container">
-        
         <h1 class="section-title reveal" style="text-align: left; font-size: 2.5rem; margin-bottom: 0.5rem;">Our Flagships</h1>
         <p class="section-subtitle reveal" style="text-align: left; margin-bottom: 2rem; margin-left: 0;">Add IV drips and shots directly to your cart.</p>
 
-        <!-- Category Nav -->
         <div class="category-nav reveal">
-            <a href="#iv-drips" class="category-link active">IV Drips</a>
+            <a href="#iv-drips" class="category-link active">IV Menu</a>
             <a href="#shots" class="category-link">Wellness Shots</a>
+            <a href="#shot-bar" class="category-link">Shot Bar Packages</a>
             <a href="#weight-loss" class="category-link">Weight Loss</a>
+            <a href="#microneedling" class="category-link">Microneedling</a>
         </div>
 
-        <!-- IV Drips Category -->
         <div id="iv-drips" class="product-category-section reveal">
-            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">IV Drips</h2>
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">IV Menu</h2>
             
-            <!-- Custom Drips -->
             <div class="product-item" data-id="drip_custom">
                 <div class="product-img-wrapper">
-                    <img src="assets/customdrips.webp" alt="Custom Drips">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/customdrips.webp" alt="Custom Drips">
                 </div>
                 <div class="product-info">
-                    <h3>Custom Drips <span style="font-size: 0.8rem; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;">MOST POPULAR</span></h3>
-                    <div class="product-price">$175 <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 500;">+ according to health needs</span></div>
-                    <p class="product-desc">Optimize wellness with our most comprehensive IV. Includes B-Complex, B12, C, Lipostat, Magnesium, Glutathione, Biotin, Zinc.</p>
+                    <h3>Custom Drips</h3>
+                    <div class="product-price">$175</div>
+                    <p class="product-desc">Optimize wellness with our most comprehensive IV blend.</p>
                 </div>
                 <div class="product-action">
                     <button class="btn-add-initial" onclick="addToCart('drip_custom', 'Custom Drips', 175, 'drip', 'assets/customdrips.webp')">ADD</button>
@@ -96,156 +101,148 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Myers Cocktail -->
+    
             <div class="product-item" data-id="drip_myers">
                 <div class="product-img-wrapper">
-                    <img src="assets/myserscocktail.jpg" alt="Myers Cocktail">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/myserscocktail.jpg" alt="Myers Cocktail">
                 </div>
                 <div class="product-info">
                     <h3>Myers Cocktail</h3>
-                    <div class="product-price">$399</div>
-                    <p class="product-desc">The gold standard of IV therapy. Hydrate, restore, and optimize your overall wellness.</p>
+                    <div class="product-price">$235</div>
+                    <p class="product-desc">The gold standard of IV therapy. Hydrate, restore, and optimize.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_myers', 'Myers Cocktail', 399, 'drip', 'assets/myserscocktail.jpg')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_myers', 'Myers Cocktail', 235, 'drip', 'assets/myserscocktail.jpg')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_myers')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_myers', 'Myers Cocktail', 399, 'drip', 'assets/myserscocktail.jpg')">+</button>
+                        <button onclick="addToCart('drip_myers', 'Myers Cocktail', 235, 'drip', 'assets/myserscocktail.jpg')">+</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Brain Focus -->
+    
             <div class="product-item" data-id="drip_brain">
                 <div class="product-img-wrapper">
-                    <img src="assets/brainfocus.webp" alt="Brain Focus">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/brainfocus.webp" alt="Brain Focus">
                 </div>
                 <div class="product-info">
                     <h3>Brain Focus</h3>
-                    <div class="product-price">$400</div>
+                    <div class="product-price">$235</div>
                     <p class="product-desc">Enhance cognitive function and power through your day.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_brain', 'Brain Focus', 400, 'drip', 'assets/brainfocus.webp')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_brain', 'Brain Focus', 235, 'drip', 'assets/brainfocus.webp')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_brain')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_brain', 'Brain Focus', 400, 'drip', 'assets/brainfocus.webp')">+</button>
+                        <button onclick="addToCart('drip_brain', 'Brain Focus', 235, 'drip', 'assets/brainfocus.webp')">+</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Revive Calm -->
+    
             <div class="product-item" data-id="drip_calm">
                 <div class="product-img-wrapper">
-                    <img src="assets/revivecalm.webp" alt="Revive Calm">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/revivecalm.webp" alt="Revive Calm">
                 </div>
                 <div class="product-info">
                     <h3>Revive Calm</h3>
-                    <div class="product-price">$279</div>
+                    <div class="product-price">$195</div>
                     <p class="product-desc">Replenish essential vitamins and soothe your mind.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_calm', 'Revive Calm', 279, 'drip', 'assets/revivecalm.webp')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_calm', 'Revive Calm', 195, 'drip', 'assets/revivecalm.webp')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_calm')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_calm', 'Revive Calm', 279, 'drip', 'assets/revivecalm.webp')">+</button>
+                        <button onclick="addToCart('drip_calm', 'Revive Calm', 195, 'drip', 'assets/revivecalm.webp')">+</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Revive Defense -->
+    
             <div class="product-item" data-id="drip_defense">
                 <div class="product-img-wrapper">
-                    <img src="assets/revivedefense.webp" alt="Revive Defense">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/revivedefense.webp" alt="Revive Defense">
                 </div>
                 <div class="product-info">
                     <h3>Revive Defense</h3>
-                    <div class="product-price">$299</div>
+                    <div class="product-price">$215</div>
                     <p class="product-desc">Strengthen your immune system to fight off illness.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_defense', 'Revive Defense', 299, 'drip', 'assets/revivedefense.webp')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_defense', 'Revive Defense', 215, 'drip', 'assets/revivedefense.webp')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_defense')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_defense', 'Revive Defense', 299, 'drip', 'assets/revivedefense.webp')">+</button>
+                        <button onclick="addToCart('drip_defense', 'Revive Defense', 215, 'drip', 'assets/revivedefense.webp')">+</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Beautify -->
+    
             <div class="product-item" data-id="drip_beautify">
                 <div class="product-img-wrapper">
-                    <img src="assets/beautify.webp" alt="Beautify">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/beautify.webp" alt="Beautify">
                 </div>
                 <div class="product-info">
                     <h3>Beautify</h3>
-                    <div class="product-price">$299</div>
+                    <div class="product-price">$215</div>
                     <p class="product-desc">Promote radiant skin, healthy hair, and strong nails.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_beautify', 'Beautify', 299, 'drip', 'assets/beautify.webp')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_beautify', 'Beautify', 215, 'drip', 'assets/beautify.webp')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_beautify')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_beautify', 'Beautify', 299, 'drip', 'assets/beautify.webp')">+</button>
+                        <button onclick="addToCart('drip_beautify', 'Beautify', 215, 'drip', 'assets/beautify.webp')">+</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Liquid Gold -->
+    
             <div class="product-item" data-id="drip_liquidgold">
                 <div class="product-img-wrapper">
-                    <img src="assets/liquidgold.webp" alt="Liquid Gold">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/liquidgold.webp" alt="Liquid Gold">
                 </div>
                 <div class="product-info">
                     <h3>Liquid Gold</h3>
-                    <div class="product-price">$259</div>
-                    <p class="product-desc">The ultimate hydration and vitamin replenishment blend (Hangover Cure).</p>
+                    <div class="product-price">$175</div>
+                    <p class="product-desc">The ultimate hydration and vitamin replenishment blend.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_liquidgold', 'Liquid Gold', 259, 'drip', 'assets/liquidgold.webp')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_liquidgold', 'Liquid Gold', 175, 'drip', 'assets/liquidgold.webp')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_liquidgold')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_liquidgold', 'Liquid Gold', 259, 'drip', 'assets/liquidgold.webp')">+</button>
+                        <button onclick="addToCart('drip_liquidgold', 'Liquid Gold', 175, 'drip', 'assets/liquidgold.webp')">+</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Revive Recovery -->
+    
             <div class="product-item" data-id="drip_recovery">
                 <div class="product-img-wrapper">
-                    <img src="assets/reviverecovery.webp" alt="Revive Recovery">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviverecovery.webp" alt="Revive Recovery">
                 </div>
                 <div class="product-info">
                     <h3>Revive Recovery</h3>
-                    <div class="product-price">$279</div>
-                    <p class="product-desc">Accelerate muscle repair, reduce soreness, and bounce back fast.</p>
+                    <div class="product-price">$195</div>
+                    <p class="product-desc">Accelerate muscle repair and bounce back fast.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('drip_recovery', 'Revive Recovery', 279, 'drip', 'assets/reviverecovery.webp')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('drip_recovery', 'Revive Recovery', 195, 'drip', 'assets/reviverecovery.webp')">ADD</button>
                     <div class="item-counter">
                         <button onclick="removeFromCart('drip_recovery')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('drip_recovery', 'Revive Recovery', 279, 'drip', 'assets/reviverecovery.webp')">+</button>
+                        <button onclick="addToCart('drip_recovery', 'Revive Recovery', 195, 'drip', 'assets/reviverecovery.webp')">+</button>
                     </div>
                 </div>
             </div>
+    
         </div>
 
-        <!-- Shots Category -->
         <div id="shots" class="product-category-section reveal">
             <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Wellness Shots</h2>
             
-            <!-- Vitamin B12 -->
             <div class="product-item" data-id="shot_b12">
-                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
-                    <img src="assets/vitaminb12.png" alt="Vitamin B12">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitaminb12.png" alt="Vitamin B12">
                 </div>
                 <div class="product-info">
                     <h3>Vitamin B12</h3>
@@ -261,51 +258,10 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Vitamin D -->
-            <div class="product-item" data-id="shot_d3">
-                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
-                    <img src="assets/vitamind.png" alt="Vitamin D">
-                </div>
-                <div class="product-info">
-                    <h3>Vitamin D</h3>
-                    <div class="product-price">$45</div>
-                    <p class="product-desc">Bone health, immunity, and mood regulation.</p>
-                </div>
-                <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('shot_d3', 'Vitamin D', 45, 'shot', 'assets/vitamind.png')">ADD</button>
-                    <div class="item-counter">
-                        <button onclick="removeFromCart('shot_d3')">-</button>
-                        <span class="qty-val">0</span>
-                        <button onclick="addToCart('shot_d3', 'Vitamin D', 45, 'shot', 'assets/vitamind.png')">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lipolean -->
-            <div class="product-item" data-id="shot_lipolean">
-                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
-                    <img src="assets/lipolean.png" alt="Lipolean">
-                </div>
-                <div class="product-info">
-                    <h3>Lipolean</h3>
-                    <div class="product-price">$40</div>
-                    <p class="product-desc">Fat metabolism and weight loss optimization.</p>
-                </div>
-                <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('shot_lipolean', 'Lipolean', 40, 'shot', 'assets/lipolean.png')">ADD</button>
-                    <div class="item-counter">
-                        <button onclick="removeFromCart('shot_lipolean')">-</button>
-                        <span class="qty-val">0</span>
-                        <button onclick="addToCart('shot_lipolean', 'Lipolean', 40, 'shot', 'assets/lipolean.png')">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Biotin -->
+    
             <div class="product-item" data-id="shot_biotin">
-                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
-                    <img src="assets/biotin.png" alt="Biotin">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/biotin.png" alt="Biotin">
                 </div>
                 <div class="product-info">
                     <h3>Biotin</h3>
@@ -321,43 +277,215 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Glutathione -->
-            <div class="product-item" data-id="shot_gluta">
-                <div class="product-img-wrapper" style="background: var(--bg-surface); padding: 1rem;">
-                    <img src="assets/glutathione1.png" alt="Glutathione" style="object-fit: contain;">
+    
+            <div class="product-item" data-id="shot_d3">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitamind.png" alt="Vitamin D3">
                 </div>
                 <div class="product-info">
-                    <h3>Glutathione</h3>
-                    <div class="product-price">$5</div>
-                    <p class="product-desc">Powerful antioxidant for detoxification and skin health.</p>
+                    <h3>Vitamin D3</h3>
+                    <div class="product-price">$35</div>
+                    <p class="product-desc">Bone health, immunity, and mood regulation.</p>
                 </div>
                 <div class="product-action">
-                    <button class="btn-add-initial" onclick="addToCart('shot_gluta', 'Glutathione', 5, 'shot', 'assets/glutathione1.png')">ADD</button>
+                    <button class="btn-add-initial" onclick="addToCart('shot_d3', 'Vitamin D3', 35, 'shot', 'assets/vitamind.png')">ADD</button>
                     <div class="item-counter">
-                        <button onclick="removeFromCart('shot_gluta')">-</button>
+                        <button onclick="removeFromCart('shot_d3')">-</button>
                         <span class="qty-val">0</span>
-                        <button onclick="addToCart('shot_gluta', 'Glutathione', 5, 'shot', 'assets/glutathione1.png')">+</button>
+                        <button onclick="addToCart('shot_d3', 'Vitamin D3', 35, 'shot', 'assets/vitamind.png')">+</button>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <!-- Weight Loss Category -->
-        <div id="weight-loss" class="product-category-section reveal">
-            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Revive Weight Loss Injections</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">Customized for your body & goals • Dosing increases gradually • Personalized plans • Ongoing support</p>
-            
-            <!-- Semaglutide -->
-            <div class="product-item" data-id="wl_sema">
-                <div class="product-img-wrapper" style="background: var(--bg-surface);">
-                    <img src="assets/Semaglutide.webp" alt="Semaglutide" style="object-fit: contain;">
+    
+            <div class="product-item" data-id="shot_gluta">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/glutathione1.png" alt="Glutathione">
                 </div>
                 <div class="product-info">
-                    <h3>Semaglutide <span style="font-size: 0.7rem; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;">WEIGHT LOSS</span></h3>
-                    <div class="product-price">$199 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">/ month</span></div>
-                    <p class="product-desc">Effective, customized injection plan to support your sustainable weight loss journey.</p>
+                    <h3>Glutathione</h3>
+                    <div class="product-price">$45</div>
+                    <p class="product-desc">Master antioxidant for detox and skin health.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_gluta', 'Glutathione', 45, 'shot', 'assets/glutathione1.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_gluta')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_gluta', 'Glutathione', 45, 'shot', 'assets/glutathione1.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="shot_lipo">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/lipolean.png" alt="Lipo Lean">
+                </div>
+                <div class="product-info">
+                    <h3>Lipo Lean</h3>
+                    <div class="product-price">$35</div>
+                    <p class="product-desc">Fat metabolism and weight loss optimization.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_lipo', 'Lipo Lean', 35, 'shot', 'assets/lipolean.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_lipo')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_lipo', 'Lipo Lean', 35, 'shot', 'assets/lipolean.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="shot_tri">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Tri-Immune">
+                </div>
+                <div class="product-info">
+                    <h3>Tri-Immune</h3>
+                    <div class="product-price">$40</div>
+                    <p class="product-desc">Triple defense immune support.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_tri', 'Tri-Immune', 40, 'shot', 'assets/reviveiv-logo.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_tri')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_tri', 'Tri-Immune', 40, 'shot', 'assets/reviveiv-logo.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="shot_taurine">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Taurine">
+                </div>
+                <div class="product-info">
+                    <h3>Taurine</h3>
+                    <div class="product-price">$35</div>
+                    <p class="product-desc">Energy, focus, and athletic performance.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('shot_taurine', 'Taurine', 35, 'shot', 'assets/reviveiv-logo.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('shot_taurine')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('shot_taurine', 'Taurine', 35, 'shot', 'assets/reviveiv-logo.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+        <div id="shot-bar" class="product-category-section reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Shot Bar Packages</h2>
+            
+            <div class="product-item" data-id="pkg_energy">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitaminb12.png" alt="Energy Boost (4 B12)">
+                </div>
+                <div class="product-info">
+                    <h3>Energy Boost (4 B12)</h3>
+                    <div class="product-price">$120</div>
+                    <p class="product-desc">Bundle of 4 B12 shots for sustained energy.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('pkg_energy', 'Energy Boost (4 B12)', 120, 'package', 'assets/vitaminb12.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('pkg_energy')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('pkg_energy', 'Energy Boost (4 B12)', 120, 'package', 'assets/vitaminb12.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="pkg_glow">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/biotin.png" alt="Glow Boost (4 Biotin)">
+                </div>
+                <div class="product-info">
+                    <h3>Glow Boost (4 Biotin)</h3>
+                    <div class="product-price">$120</div>
+                    <p class="product-desc">Bundle of 4 Biotin shots for beauty support.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('pkg_glow', 'Glow Boost (4 Biotin)', 120, 'package', 'assets/biotin.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('pkg_glow')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('pkg_glow', 'Glow Boost (4 Biotin)', 120, 'package', 'assets/biotin.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="pkg_power">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/glutathione1.png" alt="Power Boost (4 Glutathione)">
+                </div>
+                <div class="product-info">
+                    <h3>Power Boost (4 Glutathione)</h3>
+                    <div class="product-price">$150</div>
+                    <p class="product-desc">Bundle of 4 Glutathione shots for detox.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('pkg_power', 'Power Boost (4 Glutathione)', 150, 'package', 'assets/glutathione1.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('pkg_power')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('pkg_power', 'Power Boost (4 Glutathione)', 150, 'package', 'assets/glutathione1.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="pkg_metabolism">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/lipolean.png" alt="Metabolism Boost (4 Lipo Lean)">
+                </div>
+                <div class="product-info">
+                    <h3>Metabolism Boost (4 Lipo Lean)</h3>
+                    <div class="product-price">$120</div>
+                    <p class="product-desc">Bundle of 4 Lipo Lean shots.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('pkg_metabolism', 'Metabolism Boost (4 Lipo Lean)', 120, 'package', 'assets/lipolean.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('pkg_metabolism')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('pkg_metabolism', 'Metabolism Boost (4 Lipo Lean)', 120, 'package', 'assets/lipolean.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="pkg_immunity">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitamind.png" alt="Immunity Boost (4 D3)">
+                </div>
+                <div class="product-info">
+                    <h3>Immunity Boost (4 D3)</h3>
+                    <div class="product-price">$120</div>
+                    <p class="product-desc">Bundle of 4 D3 shots for immune health.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('pkg_immunity', 'Immunity Boost (4 D3)', 120, 'package', 'assets/vitamind.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('pkg_immunity')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('pkg_immunity', 'Immunity Boost (4 D3)', 120, 'package', 'assets/vitamind.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+        <div id="weight-loss" class="product-category-section reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Weight Loss</h2>
+            
+            <div class="product-item" data-id="wl_sema">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/Semaglutide.webp" alt="Semaglutide">
+                </div>
+                <div class="product-info">
+                    <h3>Semaglutide</h3>
+                    <div class="product-price">$199</div>
+                    <p class="product-desc">Sustainable weight loss journey support.</p>
                 </div>
                 <div class="product-action">
                     <button class="btn-add-initial" onclick="addToCart('wl_sema', 'Semaglutide', 199, 'weight_loss', 'assets/Semaglutide.webp')">ADD</button>
@@ -368,16 +496,15 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Tirzepatide -->
+    
             <div class="product-item" data-id="wl_tirz">
-                <div class="product-img-wrapper" style="background: var(--bg-surface);">
-                    <img src="assets/Tirzepatide.png" alt="Tirzepatide" style="object-fit: contain;">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/Tirzepatide.png" alt="Tirzepatide">
                 </div>
                 <div class="product-info">
-                    <h3>Tirzepatide <span style="font-size: 0.7rem; background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;">WEIGHT LOSS</span></h3>
-                    <div class="product-price">$249 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">/ month</span></div>
-                    <p class="product-desc">Advanced dual-action weight management protocol optimized for robust results.</p>
+                    <h3>Tirzepatide</h3>
+                    <div class="product-price">$249</div>
+                    <p class="product-desc">Advanced dual-action weight management.</p>
                 </div>
                 <div class="product-action">
                     <button class="btn-add-initial" onclick="addToCart('wl_tirz', 'Tirzepatide', 249, 'weight_loss', 'assets/Tirzepatide.png')">ADD</button>
@@ -388,11 +515,72 @@
                     </div>
                 </div>
             </div>
+    
+        </div>
 
+        <div id="microneedling" class="product-category-section reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Microneedling</h2>
+            
+            <div class="product-item" data-id="mn_face">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Microneedling (Face)">
+                </div>
+                <div class="product-info">
+                    <h3>Microneedling (Face)</h3>
+                    <div class="product-price">$500</div>
+                    <p class="product-desc">Collagen stimulation and skin rejuvenation.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('mn_face', 'Microneedling (Face)', 500, 'microneedling', 'assets/reviveiv-logo.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('mn_face')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('mn_face', 'Microneedling (Face)', 500, 'microneedling', 'assets/reviveiv-logo.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="mn_scalp">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Microneedling (Scalp)">
+                </div>
+                <div class="product-info">
+                    <h3>Microneedling (Scalp)</h3>
+                    <div class="product-price">$600</div>
+                    <p class="product-desc">PRP hair restoration therapy.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('mn_scalp', 'Microneedling (Scalp)', 600, 'microneedling', 'assets/reviveiv-logo.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('mn_scalp')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('mn_scalp', 'Microneedling (Scalp)', 600, 'microneedling', 'assets/reviveiv-logo.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-item" data-id="mn_prf">
+                <div class="product-img-wrapper">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="PRF Treatment">
+                </div>
+                <div class="product-info">
+                    <h3>PRF Treatment</h3>
+                    <div class="product-price">$700</div>
+                    <p class="product-desc">Advanced second-generation platelet therapy.</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn-add-initial" onclick="addToCart('mn_prf', 'PRF Treatment', 700, 'microneedling', 'assets/reviveiv-logo.png')">ADD</button>
+                    <div class="item-counter">
+                        <button onclick="removeFromCart('mn_prf')">-</button>
+                        <span class="qty-val">0</span>
+                        <button onclick="addToCart('mn_prf', 'PRF Treatment', 700, 'microneedling', 'assets/reviveiv-logo.png')">+</button>
+                    </div>
+                </div>
+            </div>
+    
         </div>
     </div>
 
-    <!-- Sticky Bottom Cart Bar -->
     <div id="cart-bottom-bar" class="cart-bottom-bar">
         <div class="cart-bar-content">
             <div class="cart-bar-info">

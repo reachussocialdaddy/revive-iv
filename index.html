@@ -40,17 +40,24 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV"
+            <a href="index.html" class="logo"><img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV"
                     style="height: 40px; width: auto; object-fit: contain;"></a>
 
             <ul class="nav-links desktop-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="iv-drips.html">IV Drips</a></li>
+                <li class="dropdown">
+                    <a href="iv-drips.html">IV Menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="iv-drips.html#iv-drips">IV Drips</a></li>
+                        <li><a href="iv-drips.html#shot-bar">Shot Bar</a></li>
+                        <li><a href="iv-drips.html#weight-loss">Weight Loss</a></li>
+                        <li><a href="iv-drips.html#microneedling">Microneedling</a></li>
+                    </ul>
+                </li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="faq.html">FAQs</a></li>
-            </ul>
+                </ul>
             <a href="products.html" class="btn-primary desktop-btn">Book Now</a>
 
             <!-- Mobile Actions -->
@@ -79,7 +86,6 @@
             <a href="iv-drips.html">IV Drips</a>
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
-            <a href="faq.html">FAQs</a>
             <a href="products.html" class="btn-solid"
                 style="margin-top: 2rem; display: inline-block; padding: 1rem 2.5rem; border-radius: 99px;">Book Now</a>
         </div>
@@ -182,7 +188,7 @@
         <!-- Hero Section -->
         <header class="hero">
             <div class="hero-bg-static">
-                <img src="assets/header12.png" alt="Luxury IV Hydration">
+                <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/header12.png" alt="Luxury IV Hydration">
             </div>
             <div class="hero-overlay"></div>
             <div class="container">
@@ -266,7 +272,7 @@
                 <!-- CSS-only Mobile Visual (Replaces WebGL on Mobile) -->
                 <div class="formulation-mobile-visual">
                     <div class="mobile-core-glow"></div>
-                    <img src="assets/reviveiv-logo.png" alt="Revive IV Logo" class="mobile-center-logo">
+                    <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV Logo" class="mobile-center-logo">
                     <div class="mobile-ring"></div>
 
                     <div class="mobile-orbit-track">
@@ -353,7 +359,7 @@
                 <h2 class="section-title reveal">The Revive Difference.</h2>
                 <div class="bento-grid">
                     <div class="bento-item bento-large bento-stagger">
-                        <img src="assets/replacesurgery.webp" alt="Medical Expert" class="bento-img">
+                        <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/replacesurgery.webp" alt="Medical Expert" class="bento-img">
                         <div class="bento-content">
                             <h3 class="text-gradient">Clinical Expertise</h3>
                             <p>Administered exclusively by highly trained, licensed Registered Nurses under strict
@@ -423,7 +429,7 @@
                         </div>
                         <div class="shot-body">
                             <div class="shot-content-wrapper">
-                                <img src="assets/vitaminb12.png" alt="B12" class="shot-img">
+                                <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitaminb12.png" alt="B12" class="shot-img">
                                 <div class="shot-text">
                                     <p>Instant, sustained energy boost and critical metabolic support. Say goodbye to
                                         the midday crash.</p>
@@ -441,7 +447,7 @@
                         </div>
                         <div class="shot-body">
                             <div class="shot-content-wrapper">
-                                <img src="assets/vitamind.png" alt="D3" class="shot-img">
+                                <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/vitamind.png" alt="D3" class="shot-img">
                                 <div class="shot-text">
                                     <p>Essential for bone health, robust immunity, and vital mood regulation—especially
                                         during winter months.</p>
@@ -459,7 +465,7 @@
                         </div>
                         <div class="shot-body">
                             <div class="shot-content-wrapper">
-                                <img src="assets/lipolean.png" alt="Lipo-Lean" class="shot-img">
+                                <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/lipolean.png" alt="Lipo-Lean" class="shot-img">
                                 <div class="shot-text">
                                     <p>Optimized blend of amino acids and B-vitamins designed to boost metabolism and
                                         support fat loss.</p>
@@ -477,7 +483,7 @@
                         </div>
                         <div class="shot-body">
                             <div class="shot-content-wrapper">
-                                <img src="assets/biotin.png" alt="Biotin" class="shot-img">
+                                <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/biotin.png" alt="Biotin" class="shot-img">
                                 <div class="shot-text">
                                     <p>Enhance the health and appearance of your hair, skin, and nails with this
                                         essential B-vitamin boost.</p>
@@ -495,7 +501,7 @@
                         </div>
                         <div class="shot-body">
                             <div class="shot-content-wrapper">
-                                <img src="assets/glutathione1.png" alt="Glutathione" class="shot-img">
+                                <img onerror="this.src='assets/reviveiv-logo.png'" src="assets/glutathione1.png" alt="Glutathione" class="shot-img">
                                 <div class="shot-text">
                                     <p>The master antioxidant. Facilitates deep liver detoxification and promotes a
                                         luminous, bright skin tone.</p>
@@ -689,18 +695,25 @@
         </div>
         <div class="footer-middle-row">
             <div class="footer-logo-container">
-                <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV"></a>
+                <a href="index.html" class="logo"><img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV"></a>
             </div>
             <div class="footer-nav-container">
                 <ul class="footer-nav-list">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="iv-drips.html">IV Drips</a></li>
+                    <li class="dropdown">
+                    <a href="iv-drips.html">IV Menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="iv-drips.html#iv-drips">IV Drips</a></li>
+                        <li><a href="iv-drips.html#shot-bar">Shot Bar</a></li>
+                        <li><a href="iv-drips.html#weight-loss">Weight Loss</a></li>
+                        <li><a href="iv-drips.html#microneedling">Microneedling</a></li>
+                    </ul>
+                </li>
                     <li><a href="pricing.html">Pricing</a></li>
                 </ul>
                 <ul class="footer-nav-list">
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
                     <li><a href="products.html">Contact</a></li>
                 </ul>
             </div>
