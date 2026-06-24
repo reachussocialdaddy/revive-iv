@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQ34LHL6DB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NQ34LHL6DB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Checkout | Revive IV</title>
+    
+    <!-- Content Security Policy to allow Square fonts, styles, and scripts -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self' https://revievivbackend.onrender.com;
+        script-src 'self' 'unsafe-inline' https://web.squarecdn.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://web.squarecdn.com;
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cash-f.squarecdn.com https://square-fonts-production-f.squarecdn.com https://d1g145x70srn7h.cloudfront.net;
+        img-src 'self' data: https://*.squarecdn.com https://i.pravatar.cc https://www.google-analytics.com;
+        connect-src 'self' https://revievivbackend.onrender.com https://*.squarecdn.com https://*.square.com https://*.squareup.com https://*.sentry.io https://www.google-analytics.com;
+        frame-src 'self' https://*.squarecdn.com https://*.square.com https://*.squareup.com;
+    ">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="store.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* Custom Flatpickr Theme to match Revive IV */
+        .flatpickr-calendar {
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            font-family: var(--font-body);
+            width: 100% !important;
+            max-width: 350px;
+        }
+        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.selected:focus, .flatpickr-day.selected:hover, .flatpickr-day.prevMonthDay.selected, .flatpickr-day.nextMonthDay.selected {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: #fff;
+        }
+        .flatpickr-day.today {
+            border-color: var(--accent-primary);
+        }
+        .flatpickr-day.today:hover {
+            background: var(--accent-primary);
+            color: #fff;
+        }
+        .flatpickr-months .flatpickr-month {
+            color: var(--text-primary);
+            fill: var(--text-primary);
+        }
+        .flatpickr-weekday {
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        .flatpickr-current-month .flatpickr-monthDropdown-months {
+            font-weight: 900;
+        }
+        .flatpickr-calendar.inline {
+            margin-top: 1rem;
+            box-shadow: none;
+            border: 1px solid var(--border-light);
+        }
+        /* Make disabled dates red and visible */
+        .flatpickr-day.flatpickr-disabled, 
+        .flatpickr-day.flatpickr-disabled:hover,
+        .flatpickr-day.prevMonthDay,
+        .flatpickr-day.nextMonthDay,
+        .flatpickr-day.disabled,
+        .flatpickr-day.disabled:hover {
+            color: #ff4444 !important;
+            opacity: 1 !important;
+            cursor: not-allowed !important;
+            background: transparent !important;
+        }
+
+    </style>
+    <script src="https://web.squarecdn.com/v1/square.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body data-barba="wrapper">
+    <div id="barba-curtain"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" style="position: relative; background: var(--bg-surface);">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 40px; width: auto; object-fit: contain;"></a>
+            <a href="products.html" style="color: var(--text-secondary); font-weight: 700; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='var(--text-secondary)'">← Back to Menu</a>
+        </div>
+    </nav>
+
+    <!-- Checkout Container -->
+    <div class="container checkout-container">
+        
+            <!-- Step 1: Details -->
+            <div id="details-step">
+                <div class="checkout-section">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Contact Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="checkout-fname" placeholder="Jane" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="checkout-lname" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="checkout-email" placeholder="jane@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="checkout-phone" placeholder="(516) 555-7890" required>
+                    </div>
+                </div>
+
+                <!-- Additional Guest Section (Visible only for Group Bookings) -->
+                <div id="guest-details-section" class="checkout-section" style="display: none;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Guest Details (Group Member)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">Please provide details for the second person in your group.</p>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Full Name</label>
+                        <input type="text" id="guest-name" placeholder="John Smith">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Email Address</label>
+                        <input type="email" id="guest-email" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="guest-phone" placeholder="(555) 987-6543">
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Select Date & Timeslot</h3>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label>Appointment Date</label>
+                        <div id="inline-calendar"></div>
+                        <input type="hidden" id="selected-date" required>
+                    </div>
+                    <div class="timeslot-grid">
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">8:00 AM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">9:00 AM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">10:00 AM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">11:00 AM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">12:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">1:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">2:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">3:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">4:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">5:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">6:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">7:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">8:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">9:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">10:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">11:00 PM</button>
+                        <button type="button" class="timeslot-pill" onclick="selectTimeslot(this)">12:00 AM</button>
+                    </div>
+                    <input type="hidden" id="selected-timeslot" required>
+                </div>
+
+                <div class="checkout-section">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Service Location</h3>
+                    <div class="form-group">
+                        <label>Street Address</label>
+                        <input type="text" id="checkout-street" placeholder="123 Wellness Ave, Apt 4B" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" id="checkout-city" placeholder="New York" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Zip Code (Optional)</label>
+                            <input type="text" id="checkout-zip" placeholder="10001 (Optional)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Special Instructions (Optional)</label>
+                        <input type="text" id="checkout-instructions" placeholder="E.g. Buzz 402, elevator is on the right.">
+                    </div>
+                </div>
+
+                <button id="submit-details-btn" class="btn-primary btn-solid" style="width: 100%; padding: 1.2rem; font-size: 1.1rem; margin-bottom: 2rem;" onclick="submitBookingDetails()">
+                    Continue to Payment
+                </button>
+                <div id="step1-status-container" style="color: red; margin-bottom: 1rem; text-align: center; font-size: 0.9rem;"></div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div>
+            <div class="checkout-section order-summary">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Order Summary</h3>
+                
+                <div id="checkout-items" style="margin-bottom: 1.5rem; max-height: 400px; overflow-y: auto;">
+                    <!-- Cart items rendered here via JS -->
+                </div>
+                
+                <div class="summary-row">
+                    <span style="color: var(--text-secondary);">Subtotal</span>
+                    <span id="checkout-subtotal" style="font-weight: 700;">$0</span>
+                </div>
+                <div id="discount-container"></div>
+                <div class="summary-row">
+                    <span style="color: var(--text-secondary);">Taxes & Fees</span>
+                    <span style="font-weight: 700;">Included</span>
+                </div>
+                <div class="summary-row">
+                    <span style="color: var(--text-secondary);">Travel Fee</span>
+                    <span style="font-weight: 700;">$0 (Promo)</span>
+                </div>
+                
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="checkout-total" style="color: var(--accent-primary);">$0</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9998; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
+        <div style="background: var(--bg-surface); padding: 2rem; border-radius: 20px; width: 90%; max-width: 500px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); position: relative;">
+            <button onclick="closePaymentModal()" style="position: absolute; right: 1.5rem; top: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
+            
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Complete Payment</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Review your booking and pay the 20% advance to confirm.</p>
+            
+            <div id="payment-preview" style="background: var(--bg-body); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--border-light);">
+                <!-- Preview content generated via JS -->
+            </div>
+
+            <div class="checkout-section" style="padding: 0; border: none; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; font-size: 1rem;">Payment Method</h3>
+                <div id="apple-pay-button" style="margin-bottom: 1rem; min-height: 48px;"></div>
+                <div id="card-container" style="min-height: 80px;"></div>
+                <div id="payment-status-container" style="color: red; margin-top: 1rem; font-size: 0.85rem;"></div>
+            </div>
+
+            <button id="pay-now-btn" class="btn-primary btn-solid" style="width: 100%; padding: 1rem;" onclick="processPayment()">
+                Pay $0.00 Now
+            </button>
+            
+            <p style="text-align: center; font-size: 0.75rem; color: var(--text-secondary); margin-top: 1.5rem;">
+                <i class="fas fa-lock"></i> SSL Encrypted & PCI Compliant Secure Payment
+            </p>
+        </div>
+    </div>
+
+    <!-- Success Modal (Simplified) -->
+    <div id="success-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div style="background: var(--bg-surface); padding: 3rem; border-radius: 16px; text-align: center; max-width: 400px; width: 90%;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Redirecting...</h2>
+            <p>Payment successful! Taking you to confirmation page.</p>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        function selectTimeslot(btn) {
+            document.querySelectorAll('.timeslot-pill').forEach(el => el.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('selected-timeslot').value = btn.innerText;
+        }
+
+        const appId = 'sq0idp-PlI25Ew1HbLqpuY8PeSkFw';
+        const locationId = 'LVJDYJ83APB0F'; 
+        let card;
+        let applePay;
+        let currentBookingId = null;
+
+        async function submitBookingDetails() {
+            const btn = document.getElementById('submit-details-btn');
+            const statusContainer = document.getElementById('step1-status-container');
+            
+            // Validate form
+            const fname = document.getElementById('checkout-fname').value;
+            const lname = document.getElementById('checkout-lname').value;
+            const email = document.getElementById('checkout-email').value;
+            const phone = document.getElementById('checkout-phone').value;
+            const street = document.getElementById('checkout-street').value;
+            const city = document.getElementById('checkout-city').value;
+            const date = document.getElementById('selected-date').value;
+            const timeslot = document.getElementById('selected-timeslot').value;
+            
+            if (!fname || !lname || !email || !phone || !street || !city || !date || !timeslot) {
+                statusContainer.innerText = 'Please fill in all required fields and select a date/timeslot.';
+                return;
+            }
+
+            statusContainer.innerText = '';
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            try {
+                let cartItems = JSON.parse(localStorage.getItem('reviveCart') || '[]');
+                const bookingType = localStorage.getItem('reviveBookingType') || 'individual';
+                
+                // Group booking must have at least 2 items (treatments)
+                const totalQty = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                if (bookingType === 'group' && totalQty < 2) {
+                    statusContainer.innerText = 'Group bookings require at least 2 treatments in your cart.';
+                    btn.textContent = 'Continue to Payment';
+                    btn.disabled = false;
+                    return;
+                }
+                
+                // Guest info for group
+                let guestInfo = null;
+                if (bookingType === 'group') {
+                    const gname = document.getElementById('guest-name').value;
+                    const gemail = document.getElementById('guest-email').value;
+                    const gphone = document.getElementById('guest-phone').value;
+                    
+                    if (!gname || !gemail || !gphone) {
+                        statusContainer.innerText = 'Please fill in the Guest Details for your group booking.';
+                        btn.textContent = 'Continue to Payment';
+                        btn.disabled = false;
+                        return;
+                    }
+                    guestInfo = { name: gname, email: gemail, phone: gphone };
+                }
+
+                let customerInfo = {
+                    fname, lname, email, phone, street, city,
+                    zip: document.getElementById('checkout-zip').value,
+                    instructions: document.getElementById('checkout-instructions').value,
+                    date, timeslot, cart: cartItems, bookingType,
+                    guestInfo
+                };
+
+                const response = await fetch(`${window.REVIVE_CONFIG.API_URL}/api/bookings`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ customerInfo })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    currentBookingId = result.bookingId;
+                    openPaymentModal();
+                } else {
+                    statusContainer.innerText = 'Error: ' + result.error;
+                }
+            } catch (err) {
+                console.error(err);
+                statusContainer.innerText = 'Connection error. Please try again.';
+            } finally {
+                btn.textContent = 'Continue to Payment';
+                btn.disabled = false;
+            }
+        }
+
+        function openPaymentModal() {
+            const modal = document.getElementById('payment-modal');
+            const preview = document.getElementById('payment-preview');
+            const totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
+            const finalTotal = parseFloat(totalStr) || 0;
+            const advance = (finalTotal * 0.20).toFixed(2);
+            const pending = (finalTotal - advance).toFixed(2);
+
+            preview.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                    <span>Treatment Total:</span>
+                    <span style="font-weight: 700;">$${finalTotal.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; color: var(--accent-primary);">
+                    <span>Advance Payment (20%):</span>
+                    <span style="font-weight: 700;">$${advance}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-light); padding-top: 0.8rem; font-size: 0.85rem; color: var(--text-secondary);">
+                    <span>Remaining Balance:</span>
+                    <span>$${pending}</span>
+                </div>
+            `;
+
+            document.getElementById('pay-now-btn').textContent = `Pay $${advance} Now`;
+            modal.style.display = 'flex';
+            
+            if (!card) initializeSquare();
+        }
+
+        async function closePaymentModal() {
+            document.getElementById('payment-modal').style.display = 'none';
+            if (currentBookingId) {
+                try {
+                    await fetch(`${window.REVIVE_CONFIG.API_URL}/api/bookings/${currentBookingId}/status`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ status: 'Payment Failed' })
+                    });
+                } catch (err) {
+                    console.error("Failed to update status on cancel", err);
+                }
+            }
+        }
+
+        async function initializeSquare() {
+            if (!window.Square) return;
+            
+            try {
+                const payments = window.Square.payments(appId, locationId);
+                card = await payments.card();
+                await card.attach('#card-container');
+
+                // Apple Pay
+                const totalStr = document.getElementById('checkout-total').innerText.replace('$', '');
+                const finalTotal = parseFloat(totalStr) || 0;
+                const advanceAmount = (finalTotal * 0.20).toFixed(2);
+
+                const paymentRequest = payments.paymentRequest({
+                    countryCode: 'US',
+                    currencyCode: 'USD',
+                    total: { amount: advanceAmount, label: 'Revive IV Advance' },
+                });
+
+                try {
+                    applePay = await payments.applePay(paymentRequest);
+                    await applePay.attach('#apple-pay-button');
+                    applePay.addEventListener('ontokenization', async (event) => {
+                        const { tokenResult } = event;
+                        if (tokenResult.status === 'OK') await handlePayment(tokenResult.token);
+                    });
+                } catch (e) {
+                    document.getElementById('apple-pay-button').style.display = 'none';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function processPayment() {
+            const btn = document.getElementById('pay-now-btn');
+            const statusContainer = document.getElementById('payment-status-container');
+            
+            statusContainer.innerText = '';
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+
+            try {
+                const result = await card.tokenize();
+                if (result.status === 'OK') {
+                    await handlePayment(result.token);
+                } else {
+                    statusContainer.innerText = result.errors[0].message;
+                    btn.textContent = 'Pay Now';
+                    btn.disabled = false;
+                }
+            } catch (e) {
+                statusContainer.innerText = 'Payment failed. Please try again.';
+                btn.disabled = false;
+            }
+        }
+
+        async function handlePayment(token) {
+            const statusContainer = document.getElementById('payment-status-container');
+
+            try {
+                const response = await fetch(`${window.REVIVE_CONFIG.API_URL}/api/process-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sourceId: token,
+                        bookingId: currentBookingId
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    localStorage.removeItem('reviveCart');
+                    window.location.href = 'thankyou.html';
+                } else {
+                    statusContainer.innerText = 'Payment error: ' + (result.error || 'Unknown error');
+                }
+            } catch (err) {
+                statusContainer.innerText = 'Server error. Please try again.';
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            flatpickr("#inline-calendar", {
+                inline: true,
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr, instance) {
+                    document.getElementById('selected-date').value = dateStr;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

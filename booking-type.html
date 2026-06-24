@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQ34LHL6DB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NQ34LHL6DB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Select Booking Type | Revive IV</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="store.css">
+    <link rel="stylesheet" href="booking-type.css">
+</head>
+<body data-barba="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar" style="position: absolute; width: 100%; top: 0; z-index: 100; background: transparent;">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/reviveiv-logo.png" alt="Revive IV" style="height: 60px; width: auto; object-fit: contain;"></a>
+            <a href="products.html" style="color: var(--text-secondary); font-weight: 700; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='var(--text-secondary)'">← Back to Menu</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main data-barba="container" data-barba-namespace="booking-type">
+        <div class="booking-page-wrapper">
+            
+            <div id="selection-view" style="width: 100%; max-width: 900px;">
+                <h1 class="booking-header-title"><span class="text-gradient">Choose Booking Type.</span></h1>
+                <p class="booking-header-subtitle">Select how you would like to proceed with your luxury IV treatment.</p>
+                
+                <div class="options-grid">
+                    <div class="booking-card" onclick="selectIndividual()" onmousemove="handleMouseMove(event, this)">
+                        <div class="booking-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3>Individual Booking</h3>
+                        <p>Proceed to checkout for a single person. Fast, easy, and completely personalized.</p>
+                        <div class="booking-card-action">
+                            Select Individual
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-card" onclick="selectGroup()" onmousemove="handleMouseMove(event, this)">
+                        <div class="badge-discount">SAVE 10%</div>
+                        <div class="booking-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3>Group Booking</h3>
+                        <p>Book for 2 or more people and receive a 10% discount on your entire order. Advance payment required.</p>
+                        <div class="booking-card-action">
+                            Select Group
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer new-footer">
+        <div class="footer-top-row">
+            <div class="footer-top-left">
+                <a href="tel:5165557890">516.555.7890</a>
+                <a href="mailto:info@reviveiv.io">info@reviveiv.io</a>
+            </div>
+            <div class="footer-top-right">
+                <a href="https://www.instagram.com/reviveivdrip_/" target="_blank">Instagram</a>
+            </div>
+        </div>
+        <div class="footer-middle-row">
+            <div class="footer-logo-container">
+                <a href="index.html" class="logo"><img onerror="this.src='assets/reviveiv-logo.png'" src="assets/reviveiv-logo.png" alt="Revive IV"></a>
+            </div>
+            <div class="footer-nav-container">
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="iv-drips.html">IV Menu</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+                <ul class="footer-nav-list">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="products.html">Book Online</a></li>
+                </ul>
+            </div>
+            <div class="footer-desc-container">
+                <p>Premium IV hydration & wellness treatments delivered to your doorstep. Long Island, NY & Surrounding Areas.</p>
+            </div>
+        </div>
+        <div class="footer-massive-row">REVIVE IV</div>
+        <div class="footer-bottom-row">
+            <p>&copy; 2026 Revive IV Hydration. Wellness Delivered.</p>
+            <p>Long Island, NY</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleMouseMove(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }
+
+        function selectIndividual() {
+            localStorage.setItem('reviveBookingType', 'individual');
+            localStorage.removeItem('reviveGroupDetails');
+            window.location.href = 'checkout.html';
+        }
+
+        function selectGroup() {
+            localStorage.setItem('reviveBookingType', 'group');
+            localStorage.removeItem('reviveGroupDetails'); // Clear old data if any
+            window.location.href = 'checkout.html';
+        }
+    </script>
+</body>
+</html>
